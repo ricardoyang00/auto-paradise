@@ -13,8 +13,7 @@ PRAGMA foreign_keys = ON;
 -- Create the ADDRESS table
 CREATE TABLE ADDRESS (
     address_id INT PRIMARY KEY,
-    postal_code_first VARCHAR(4) NOT NULL,
-    postal_code_second VARCHAR(3) NOT NULL,  
+    postal_code VARCHAR(10) NOT NULL,
     address VARCHAR(255) NOT NULL,
     city VARCHAR(100) NOT NULL
 );
@@ -87,22 +86,22 @@ CREATE TABLE EXTRA_SELLS (
 );
 
 -- Inserting sample data into the ADDRESS table
-INSERT INTO ADDRESS (address_id, postal_code_first, postal_code_second, address, city) VALUES
-    (1, '1234', '567', '123 Main Street', 'City1'),
-    (2, '5678', '901', '456 Elm Street', 'City2'),
-    (3, '9012', '345', '789 Oak Street', 'City3'),
-    (4, '3456', '789', '321 Pine Street', 'City4'),
-    (5, '7890', '123', '654 Maple Street', 'City5'),
-    (6, '2345', '678', '567 Oak Avenue', 'City6'),
-    (7, '6789', '012', '890 Cedar Street', 'City7'),
-    (8, '9012', '456', '234 Pine Road', 'City8'),
-    (9, '3456', '789', '456 Elm Lane', 'City9'),
-    (10, '7890', '234', '678 Maple Drive', 'City10'),
-    (11, '1234', '567', '890 Oak Street', 'City11'),
-    (12, '5678', '901', '123 Pine Avenue', 'City12'),
-    (13, '9012', '345', '456 Elm Road', 'City13'),
-    (14, '3456', '789', '789 Cedar Drive', 'City14'),
-    (15, '7890', '123', '234 Maple Lane', 'City15');
+INSERT INTO ADDRESS (address_id, postal_code, address, city) VALUES
+    (1, '1234-567', '123 Main Street', 'City1'),
+    (2, '5678-901', '456 Elm Street', 'City2'),
+    (3, '9012-345', '789 Oak Street', 'City3'),
+    (4, '3456-789', '321 Pine Street', 'City4'),
+    (5, '7890-123', '654 Maple Street', 'City5'),
+    (6, '2345-678', '567 Oak Avenue', 'City6'),
+    (7, '6789-012', '890 Cedar Street', 'City7'),
+    (8, '9012-456', '234 Pine Road', 'City8'),
+    (9, '3456-789', '456 Elm Lane', 'City9'),
+    (10, '7890-234', '678 Maple Drive', 'City10'),
+    (11, '1234-567', '890 Oak Street', 'City11'),
+    (12, '5678-901', '123 Pine Avenue', 'City12'),
+    (13, '9012-345', '456 Elm Road', 'City13'),
+    (14, '3456-789', '789 Cedar Drive', 'City14'),
+    (15, '7890-123', '234 Maple Lane', 'City15');
 
 -- Inserting sample data into the USER table
 INSERT INTO USER (username, name, password, phone_number, address_id) VALUES
