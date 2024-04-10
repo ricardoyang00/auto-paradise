@@ -10,7 +10,7 @@ Filters:
 - Category (Civil cars, DTM, F1, Le Mans, Other competitions, Rally, HOTWHEELS)
 
 Extra sells: (to be determinated)
-Helmets, trophies, racing shirts, caps...
+Helmets, trophies, racing shirts, caps, LEGOS
 
 Useful sites:
 - https://www.carlogos.org/
