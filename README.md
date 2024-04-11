@@ -16,5 +16,5 @@ Useful sites:
 - https://www.carlogos.org/
 
 ### Mockups
-![](images/mockup_01.jpg)
-![](images/mockup_02.jpg)
+![](images/mockups/mockup_01.jpg)
+![](images/mockups/mockup_02.jpg)
