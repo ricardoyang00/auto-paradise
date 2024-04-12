@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
     padding-left: 15%;
     padding-right: 15%;
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
 
     a {
         color: black;
@@ -123,15 +123,13 @@ header {
     }
 }
 
-
 footer {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: #858585;
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
     text-align: center;
-    padding: 0;
 }
+
 
 #sell {
     form {
@@ -188,4 +186,79 @@ footer {
     }
 }
 
+#filter {
+    width: 200px;
+    float: left;
+    padding: 20px;
+    background-color: #f0f0f0;
 
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .filter-option ul li {
+        margin-bottom: 10px;
+    }
+
+    label {
+        margin-bottom: 5px;
+    }
+}
+
+#products {
+    margin-left: 220px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+
+    article {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        h1 {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        
+        .add-wishlist {
+            display: block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        
+            :hover {
+                background-color: #ff8c00;
+            }
+            
+        }
+    }
+}
+
+footer {
+    clear: both;
+    width: 100%;
+    background-color: #f4f4f4;
+    color: #858585;
+    text-align: center;
+    padding: 5px 0;
+    margin-top: 20px;
+}
