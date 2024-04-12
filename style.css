@@ -187,7 +187,7 @@ footer {
 }
 
 #filter {
-    width: 200px;
+    width: 170px;
     float: left;
     padding: 20px;
     background-color: #f0f0f0;
@@ -201,8 +201,9 @@ footer {
         margin-bottom: 10px;
     }
 
-    label {
-        margin-bottom: 5px;
+    h2 {
+        font-size: large;
+        font-weight: bold;
     }
 }
 
