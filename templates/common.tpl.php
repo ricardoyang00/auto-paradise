@@ -1,3 +1,6 @@
+<?php declare(strict_types = 1); ?>
+
+<?php function drawHeader() { ?>
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -17,12 +20,12 @@
             </form>
             <span class="user-actions">
                 <section class="icons">
-                <a href="#"><i class="fas fa-envelope"></i></a>
-                <a href="#"><i class="fa-regular fa-heart"></i></a>
-                <a href="user.html"><i class="fa-regular fa-user"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                    <a href="user.php"><i class="fa-regular fa-user"></i></a>
                 </section>
                 <section class="sell-button">
-                <a href="sell.html">Sell now</a>
+                    <a href="sell.html">Sell now</a>
                 </section>
             </span>
             <nav id="menu">
@@ -36,17 +39,17 @@
                 </ul>
             </nav>
         </header>
-        <div class="login">
-            <form id="login-form" class="user-form" action="login.php" method="post">
-                <label for="loginUsername">Username</label>
-                <input type="text" id="loginUsername" name="loginUsername" required>
-                
-                <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <main>
+<?php } ?>
+
+<?php function drawFooter() { ?>
+        </main>
     
-                <input type="submit" value="Login">
-                <a href="register.html">Register</a>
-            </form>
-        </div>
+        <footer>
+            <p>&copy; 2024 Auto Paradise, LTW</p>
+        </footer>
     </body>
 </html>
+<?php } ?>
+

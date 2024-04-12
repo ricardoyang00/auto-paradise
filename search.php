@@ -1,46 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <title>Auto Paradise</title>    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
-    <link rel="icon" href="images/logo/auto-paradise-icon.png" type="image/png">
-    <script src="https://kit.fontawesome.com/0eb2febe39.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <header>
-        <a class="logo" href="index.html"><img src="images/logo/auto-paradise-logo.png" height="50" alt="Auto Paradise Logo"></a>
-        <form class="search-form" action="#" method="get">
-        <input type="text" name="search">
-        <button type="submit">Search</button>
-        </form>
-        <span class="user-actions">
-          <section class="icons">
-            <a href="#"><i class="fas fa-envelope"></i></a>
-            <a href="#"><i class="fa-regular fa-heart"></i></a>
-            <a href="user.html"><i class="fa-regular fa-user"></i></a>
-          </section>
-          <section class="sell-button">
-            <a href="sell.html">Sell now</a>
-          </section>
-        </span>
-        <nav id="menu">
-            <ul>
-              <li><a href="search.html">On Sales!</a></li>
-              <li><a href="search.html">DTM</a></li>
-              <li><a href="search.html">F1</a></li>
-              <li><a href="search.html">Le Mans</a></li>
-              <li><a href="search.html">Others</a></li>
-              <li><a href="search.html">Accessories</a></li>
-            </ul>
-        </nav>
-      </header>
-      <aside id="filter">
-        <h1>Filter by</h1>
-        <form id="filter-form" action="#" method="get">
-            <div class="filter-option">
-                <h2>Scale:</h2>
+<?php
+    declare(strict_types = 1);
+
+    require_once('templates/common.tpl.php');
+    drawHeader();
+?>
+
+<aside id="filter">
+    <h1>Filter by</h1>
+    <form id="filter-form" action="#" method="get">
+        <div class="filter-option">
+            <h2>Scale:</h2>
                 <ul>
                     <li><input type="checkbox" id="scale_1_8" name="scale" value="1/8"><label for="scale_1_8">1/8</label></li>
                     <li><input type="checkbox" id="scale_1_12" name="scale" value="1/12"><label for="scale_1_12">1/12</label></li>
