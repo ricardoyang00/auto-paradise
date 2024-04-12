@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Auto Paradise</title>    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css" rel="stylesheet">
+        <link rel="icon" href="images/logo/auto-paradise-icon.png" type="image/png">
+        <script src="https://kit.fontawesome.com/0eb2febe39.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="index.html"><img src="images/logo/auto-paradise-logo.png" height="50" alt="Auto Paradise Logo"></a>
+            <form class="search-form" action="#" method="get">
+            <input type="text" name="search">
+            <button type="submit">Search</button>
+            </form>
+            <span class="user-actions">
+                <section class="icons">
+                <a href="#"><i class="fas fa-envelope"></i></a>
+                <a href="#"><i class="fa-regular fa-heart"></i></a>
+                <a href="user.html"><i class="fa-regular fa-user"></i></a>
+                </section>
+                <section class="sell-button">
+                <a href="sell.html">Sell now</a>
+                </section>
+            </span>
+            <nav id="menu">
+                <ul>
+                    <li><a href="search.html">On Sales!</a></li>
+                    <li><a href="search.html">DTM</a></li>
+                    <li><a href="search.html">F1</a></li>
+                    <li><a href="search.html">Le Mans</a></li>
+                    <li><a href="search.html">Others</a></li>
+                    <li><a href="search.html">Accessories</a></li>
+                </ul>
+            </nav>
+        </header>
+        <form action="login.php" method="post">
+            <h1>Login</h1>
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" name="loginUsername" required>
+
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="loginPassword" required>
+
+            <input type="submit" value="Login">
+        </form>
+
+        <form action="register.php" method="post">
+            <h1>Register</h1>
+            <label for="registerUsername">Username</label>
+            <input type="text" id="registerUsername" name="registerUsername" required>
+
+            <label for="registerPassword">Password</label>
+            <input type="password" id="registerPassword" name="registerPassword" required>
+
+            <input type="submit" value="Register">
+        </form>
+    </body>
+</html>
