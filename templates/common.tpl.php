@@ -13,7 +13,7 @@
     </head>
     <body>
         <header>
-            <a class="logo" href="index.html"><img src="images/logo/auto-paradise-logo.png" height="50" alt="Auto Paradise Logo"></a>
+            <a class="logo" href="index.php"><img src="images/logo/auto-paradise-logo.png" height="50" alt="Auto Paradise Logo"></a>
             <form class="search-form" action="#" method="get">
             <input type="text" name="search">
             <button type="submit">Search</button>
@@ -25,17 +25,17 @@
                     <a href="user.php"><i class="fa-regular fa-user"></i></a>
                 </section>
                 <section class="sell-button">
-                    <a href="sell.html">Sell now</a>
+                    <a href="sell.php">Sell now</a>
                 </section>
             </span>
             <nav id="menu">
                 <ul>
-                    <li><a href="search.html">On Sales!</a></li>
-                    <li><a href="search.html">DTM</a></li>
-                    <li><a href="search.html">F1</a></li>
-                    <li><a href="search.html">Le Mans</a></li>
-                    <li><a href="search.html">Others</a></li>
-                    <li><a href="search.html">Accessories</a></li>
+                    <li><a href="search.php">On Sales!</a></li>
+                    <li><a href="search.php">DTM</a></li>
+                    <li><a href="search.php">F1</a></li>
+                    <li><a href="search.php">Le Mans</a></li>
+                    <li><a href="search.php">Others</a></li>
+                    <li><a href="search.php">Accessories</a></li>
                 </ul>
             </nav>
         </header>
