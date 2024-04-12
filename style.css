@@ -169,10 +169,15 @@ footer {
         }
     }
 
+    .input-container:last-of-type {
+        border-bottom: none;
+    }
+
     .upload-container {
         display: flex;
         flex-direction: column;
         margin-bottom: 40px;
+        justify-content: flex-end;
     }
 
     button[type="upload"] {
@@ -183,6 +188,9 @@ footer {
         color: white; 
         border: 10px;
         border-radius: 5px;
+        width: 120px;
+        align-self: flex-end;
+        margin: 0 20px;
     }
 }
 
@@ -260,5 +268,5 @@ footer {
     color: #858585;
     text-align: center;
     padding: 5px 0;
-    margin-top: 20px;
+    margin-top: 50px;
 }
