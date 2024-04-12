@@ -102,8 +102,5 @@
             <button class="add-wishlist">Add to Wishlist</button>
         </article>
     </section>
-    <footer>
-        <p>&copy; 2024 Auto Paradise, LTW</p>
-    </footer>
-  </body>
-</html>
+
+<?php drawFooter(); ?>
