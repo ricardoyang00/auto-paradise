@@ -243,12 +243,11 @@ footer {
             border-radius: 5px;
             cursor: pointer;
             text-align: center;
-            text-decoration: none;
-        
-            :hover {
-                background-color: #ff8c00;
-            }
-            
+            text-decoration: none;    
+        }
+
+        .add-wishlist:hover {
+            background-color: #ff8c00;
         }
     }
 }
