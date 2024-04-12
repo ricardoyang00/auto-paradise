@@ -13,8 +13,10 @@
         <label for="loginPassword">Password</label>
         <input type="password" id="loginPassword" name="loginPassword" required>
     
-        <input type="submit" value="Login">
-        <a href="register.php">Register</a>
+        <input type="submit" value="Log in">
+        <div class="account-link">
+            Don't have an account? <a href="register.php">Sign up</a>
+        </div>
     </form>
 </div>
 

@@ -307,12 +307,16 @@ footer {
     }
 }
 
-.login a {
+.login .account-link {
     display: block;
     text-align: center;
     margin-top: 10px;
     text-decoration: none;
     color: black;
     font-size: small;
+
+    a {
+        color: rgb(0, 132, 255);
+    }
 }
 /********************************/
