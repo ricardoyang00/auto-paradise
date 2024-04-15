@@ -202,16 +202,16 @@ INSERT INTO USER (username, name, password, phone_number, address_id) VALUES
     ('user10', 'Michael Thomas', 'password10', '012345678', 10);
 
 INSERT INTO PRODUCT (product_id, category, title, description, price, seller_id, brand, scale) VALUES
-    (1, 1, 'Acura NSX', 'Description for Acura NSX', 50000.00, 'user1', 1, 1),
-    (2, 1, 'Alfa Romeo Giulia', 'Description for Alfa Romeo Giulia', 45000.00, 'user2', 2, 2),
-    (3, 1, 'Aston Martin Vantage', 'Description for Aston Martin Vantage', 150000.00, 'user3', 4, 3),
-    (4, 1, 'Audi R8', 'Description for Audi R8', 175000.00, 'user4', 5, 4),
-    (5, 1, 'BMW M3', 'Description for BMW M3', 60000.00, 'user5', 6, 5),
-    (6, 1, 'Ferrari 488', 'Description for Ferrari 488', 250000.00, 'user6', 13, 6),
-    (7, 1, 'Ford Mustang', 'Description for Ford Mustang', 45000.00, 'user7', 15, 7),
-    (8, 1, 'Mercedes-Benz AMG GT', 'Description for Mercedes-Benz AMG GT', 160000.00, 'user8', 33, 3),
-    (9, 1, 'Porsche 911', 'Description for Porsche 911', 130000.00, 'user9', 38, 4),
-    (10, 1, 'Tesla Model S', 'Description for Tesla Model S', 80000.00, 'user10', 42, 5);
+    (1, 1, 'Acura NSX', 'Description for Acura NSX', 50.00, 'user1', 1, 1),
+    (2, 1, 'Alfa Romeo Giulia', 'Description for Alfa Romeo Giulia', 45.00, 'user2', 2, 2),
+    (3, 1, 'Aston Martin Vantage', 'Description for Aston Martin Vantage', 150.00, 'user3', 4, 3),
+    (4, 1, 'Audi R8', 'Description for Audi R8', 175.00, 'user4', 5, 4),
+    (5, 1, 'BMW M3', 'Description for BMW M3', 60.00, 'user5', 6, 5),
+    (6, 1, 'Ferrari 488', 'Description for Ferrari 488', 250.00, 'user6', 13, 6),
+    (7, 1, 'Ford Mustang', 'Description for Ford Mustang', 4.00, 'user7', 15, 7),
+    (8, 1, 'Mercedes-Benz AMG GT', 'Description for Mercedes-Benz AMG GT', 10.00, 'user8', 33, 3),
+    (9, 1, 'Porsche 911', 'Description for Porsche 911', 130.0, 'user9', 38, 4),
+    (10, 1, 'Tesla Model S', 'Description for Tesla Model S', 80.00, 'user10', 42, 5);
 
 INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall_evaluation, platform_evaluation, comment) VALUES
     (1, 5, 5, 5, 5, 'Great transaction, highly recommended seller!'),
