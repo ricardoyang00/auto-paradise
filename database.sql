@@ -32,10 +32,11 @@ CREATE TABLE PRODUCT (
     price DECIMAL(10, 2) NOT NULL,
     seller_id VARCHAR(50) NOT NULL,
     brand INT NOT NULL,
-    scale VARCHAR(10),
+    scale INT NOT NULL,
     FOREIGN KEY (seller_id) REFERENCES USER(username),
     FOREIGN KEY (brand) REFERENCES BRANDS(brand_id),
-    FOREIGN KEY (category) REFERENCES CATEGORY(category_id)
+    FOREIGN KEY (category) REFERENCES CATEGORY(category_id),
+    FOREIGN KEY (scale) REFERENCES SCALE(scale_id)
 );
 
 CREATE TABLE SELLS (
@@ -75,3 +76,99 @@ CREATE TABLE CATEGORY (
     category_id INTEGER PRIMARY KEY,
     category_name TEXT NOT NULL
 )
+
+CREATE TABLE SCALE {
+    scale_id INTEGER PRIMARY KEY,
+    scale_name TEXT NOT NULL
+}
+
+CREATE TABLE ACCESSORIES (
+    accessory_id INTEGER PRIMARY KEY,
+    accessory_name TEXT NOT NULL,
+    accessory_category INTEGER NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (accessory_category) REFERENCES ACCESSORY_CATEGORY(accessory_category_id)
+)
+
+CREATE TABLE ACCESSORY_CATEGORY {
+    accessory_category_id INTEGER PRIMARY KEY,
+    accessory_category_name TEXT NOT NULL
+}
+
+INSERT INTO BRANDS (brand_id, brand_name) VALUES 
+    (1, 'Acura'),
+    (2, 'Alfa Romeo'),
+    (3, 'Alpine'),
+    (4, 'Aston Martin'),
+    (5, 'Audi'),
+    (6, 'BMW'),
+    (7, 'Bugatti'),
+    (8, 'Buick'),
+    (9, 'Cadillac'),
+    (10, 'Chevrolet'),
+    (11, 'Chrysler'),
+    (12, 'Dodge'),
+    (13, 'Ferrari'),
+    (14, 'Fiat'),
+    (15, 'Ford'),
+    (16, 'Genesis'),
+    (17, 'GMC'),
+    (18, 'Haas'),
+    (19, 'Honda'),
+    (20, 'Hyundai'),
+    (21, 'Infiniti'),
+    (22, 'Jaguar'),
+    (23, 'Jeep'),
+    (24, 'Kia'),
+    (25, 'Lamborghini'),
+    (26, 'Land Rover'),
+    (27, 'Lexus'),
+    (28, 'Lincoln'),
+    (29, 'Lotus'),
+    (30, 'Maserati'),
+    (31, 'Mazda'),
+    (32, 'McLaren'),
+    (33, 'Mercedes-Benz'),
+    (34, 'Mini'),
+    (35, 'Mitsubishi'),
+    (36, 'Nissan'),
+    (37, 'Pagani'),
+    (38, 'Porsche'),
+    (39, 'Ram'),
+    (40, 'Rolls-Royce'),
+    (41, 'Subaru'),
+    (42, 'Tesla'),
+    (43, 'Toyota'),
+    (44, 'Volkswagen'),
+    (45, 'Volvo'),
+    (46, 'Red Bull Racing'),
+    (47, 'Williams Racing'),
+    (48, 'Others');
+
+INSERT INTO CATEGORY (category_id, category_name) VALUES
+    (1, 'Civil cars'),
+    (2, 'DTM'),
+    (3, 'F1'),
+    (4, 'GT'),
+    (5, 'Indy'),
+    (6, 'Le Mans'),
+    (7, 'Nascar'),
+    (8, 'Rally'),
+    (9, 'Touring'),
+    (10, 'Others');
+
+INSERT INTO SCALE (scale_id, scale_name) VALUES
+    (1, '1/8'),
+    (2, '1/12'),
+    (3, '1/18'),
+    (4, '1/24'),
+    (5, '1/32'),
+    (6, '1/43'),
+    (7, '1/64');
+
+INSERT INTO ACCESSORY_CATEGORY (accessory_category_id, accessory_category_name) VALUES
+    (1, 'Helmets'),
+    (2, 'Trophies'),
+    (3, 'Shirts'),
+    (4, 'Caps'),
+    (5, 'Legos');
