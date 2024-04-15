@@ -1,7 +1,7 @@
 <?php
     declare(strict_types = 1);
 
-    require_once('templates/common.tpl.php');
+    require_once(__DIR__ . '/../templates/common.tpl.php');
     drawHeader();
 ?>
 
@@ -51,56 +51,22 @@
             </div>
         </form>
     </aside> 
-    
     <section id="products">
+
+<?php
+    require_once(__DIR__ . '/../database/connection.db.php');
+    require_once(__DIR__ . '/../database/product.class.php');
+    $db = getDatabaseConnection();
+    $products = Product::getAllProducts($db);
+
+    foreach ($products as $product) {?>
         <article>
-            <img src="images//products/product_1.jpg" alt="Product 2">
-            <h1>Product 1</h3>
-            <p2>€29.99</p>
+            <img src="../images/products/<?= $product->id ?>.jpg" alt="<?= $product->title ?>">
+            <h1><?= $product->title ?></h3>
+            <p>€<?= $product->price ?></p>
             <button class="add-wishlist">Add to Wishlist</button>
         </article>
-        <article>
-            <img src="images//products/product_1.jpg" alt="Product 2">
-            <h1>Product 1</h3>
-            <p2>€29.99</p>
-            <button class="add-wishlist">Add to Wishlist</button>
-        </article>
-        <article>
-            <img src="images//products/product_1.jpg" alt="Product 2">
-            <h1>Product 1</h3>
-            <p2>€29.99</p>
-            <button class="add-wishlist">Add to Wishlist</button>
-        </article>
-        <article>
-            <img src="images//products/product_1.jpg" alt="Product 2">
-            <h1>Product 1</h3>
-            <p2>€29.99</p>
-            <button class="add-wishlist">Add to Wishlist</button>
-        </article>
-        <article>
-            <img src="images//products/product_1.jpg" alt="Product 2">
-            <h1>Product 1</h3>
-            <p2>€29.99</p>
-            <button class="add-wishlist">Add to Wishlist</button>
-        </article>
-        <article>
-            <img src="images//products/product_1.jpg" alt="Product 2">
-            <h1>Product 1</h3>
-            <p2>€29.99</p>
-            <button class="add-wishlist">Add to Wishlist</button>
-        </article>
-        <article>
-            <img src="images//products/product_1.jpg" alt="Product 2">
-            <h1>Product 1</h3>
-            <p2>€29.99</p>
-            <button class="add-wishlist">Add to Wishlist</button>
-        </article>
-        <article>
-            <img src="images//products/product_1.jpg" alt="Product 2">
-            <h1>Product 1</h3>
-            <p2>€29.99</p>
-            <button class="add-wishlist">Add to Wishlist</button>
-        </article>
+    <?php } ?>
     </section>
 
 <?php drawFooter(); ?>

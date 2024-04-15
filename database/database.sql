@@ -211,7 +211,7 @@ INSERT INTO PRODUCT (product_id, category, title, description, price, seller_id,
     (7, 1, 'Ford Mustang', 'Description for Ford Mustang', 4.00, 'user7', 15, 7),
     (8, 1, 'Mercedes-Benz AMG GT', 'Description for Mercedes-Benz AMG GT', 10.00, 'user8', 33, 3),
     (9, 1, 'Porsche 911', 'Description for Porsche 911', 130.0, 'user9', 38, 4),
-    (10, 1, 'Tesla Model S', 'Description for Tesla Model S', 80.00, 'user10', 42, 5);
+    (10, 1, 'Tesla Model S', 'Description for Tesla Model S', 80.99, 'user10', 42, 5);
 
 INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall_evaluation, platform_evaluation, comment) VALUES
     (1, 5, 5, 5, 5, 'Great transaction, highly recommended seller!'),

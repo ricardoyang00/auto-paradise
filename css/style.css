@@ -222,6 +222,9 @@ footer {
     grid-gap: 20px;
 
     article {
+        display: grid;
+        grid-template-rows: 1fr auto auto auto;
+
         background-color: #fff;
         padding: 20px;
         border-radius: 5px;
