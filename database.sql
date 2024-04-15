@@ -79,12 +79,12 @@ CREATE TABLE BRANDS (
 CREATE TABLE CATEGORY (
     category_id INTEGER PRIMARY KEY,
     category_name TEXT NOT NULL
-)
+);
 
-CREATE TABLE SCALE {
+CREATE TABLE SCALE (
     scale_id INTEGER PRIMARY KEY,
     scale_name TEXT NOT NULL
-}
+);
 
 CREATE TABLE ACCESSORIES (
     accessory_id INTEGER PRIMARY KEY,
@@ -92,12 +92,12 @@ CREATE TABLE ACCESSORIES (
     accessory_category INTEGER NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (accessory_category) REFERENCES ACCESSORY_CATEGORY(accessory_category_id)
-)
+);
 
-CREATE TABLE ACCESSORY_CATEGORY {
+CREATE TABLE ACCESSORY_CATEGORY (
     accessory_category_id INTEGER PRIMARY KEY,
     accessory_category_name TEXT NOT NULL
-}
+);
 
 INSERT INTO BRANDS (brand_id, brand_name) VALUES 
     (1, 'Acura'),
@@ -213,18 +213,6 @@ INSERT INTO PRODUCT (product_id, category, title, description, price, seller_id,
     (9, 1, 'Porsche 911', 'Description for Porsche 911', 130000.00, 'user9', 38, 4),
     (10, 1, 'Tesla Model S', 'Description for Tesla Model S', 80000.00, 'user10', 42, 5);
 
-INSERT INTO SELLS (sell_id, seller_id, buyer_id, product_id, review_id) VALUES
-    (1, 'user1', 'user2', 1, 1),
-    (2, 'user2', 'user3', 2, 2),
-    (3, 'user3', 'user4', 3, 3),
-    (4, 'user4', 'user5', 4, 4),
-    (5, 'user5', 'user6', 5, 5),
-    (6, 'user6', 'user7', 6, 6),
-    (7, 'user7', 'user8', 7, 7),
-    (8, 'user8', 'user9', 8, 8),
-    (9, 'user9', 'user10', 9, 9),
-    (10, 'user10', 'user1', 10, 10);
-
 INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall_evaluation, platform_evaluation, comment) VALUES
     (1, 5, 5, 5, 5, 'Great transaction, highly recommended seller!'),
     (2, 4, 5, 4, 4, 'Good product, fast shipping.'),
@@ -236,6 +224,18 @@ INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall
     (8, 5, 5, 5, 5, 'Perfect car, smooth transaction.'),
     (9, 3, 4, 3, 3, 'Okay car, shipping took a while.'),
     (10, 4, 5, 4, 4, 'Satisfactory car, fast shipping.');
+
+INSERT INTO SELLS (sell_id, seller_id, buyer_id, product_id, review_id) VALUES
+    (1, 'user1', 'user2', 1, 1),
+    (2, 'user2', 'user3', 2, 2),
+    (3, 'user3', 'user4', 3, 3),
+    (4, 'user4', 'user5', 4, 4),
+    (5, 'user5', 'user6', 5, 5),
+    (6, 'user6', 'user7', 6, 6),
+    (7, 'user7', 'user8', 7, 7),
+    (8, 'user8', 'user9', 8, 8),
+    (9, 'user9', 'user10', 9, 9),
+    (10, 'user10', 'user1', 10, 10);
 
 INSERT INTO EVENT (event_id, event_type, discount_percentage, sell_event) VALUES
     (1, 'flash_sale', 10.00, 'Flash sale event for selected products.'),
