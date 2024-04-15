@@ -1,5 +1,38 @@
 <?php declare(strict_types = 1); ?>
 
+<?php function drawHeader2() { ?>
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Auto Paradise</title>    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css" rel="stylesheet">
+        <link rel="icon" href="images/logo/auto-paradise-icon.png" type="image/png">
+        <script src="https://kit.fontawesome.com/0eb2febe39.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="index.php"><img src="images/logo/auto-paradise-logo.png" height="50" alt="Auto Paradise Logo"></a>
+            <form class="search-form" action="#" method="get">
+            <input type="text" name="search">
+            <button type="submit">Search</button>
+            </form>
+            <span class="user-actions">
+                <section class="icons">
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                    <a href="user.php"><i class="fa-regular fa-user"></i></a>
+                </section>
+                <section class="sell-button">
+                    <a href="sell.php">Sell now</a>
+                </section>
+            </span>
+        </header>
+
+        <main>
+<?php } ?>
+
 <?php function drawHeader() { ?>
 <!DOCTYPE html>
 <html lang="en-US">

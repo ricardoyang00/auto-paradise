@@ -279,6 +279,8 @@ footer {
     border-radius: 5px;
     background-color: #f9f9f9;
     margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 75px;
 
     input[type="text"],
     input[type="password"],

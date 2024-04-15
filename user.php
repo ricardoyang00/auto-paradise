@@ -2,7 +2,7 @@
     declare(strict_types = 1);
 
     require_once('templates/common.tpl.php');
-    drawHeader();
+    drawHeader2();
 ?>
 
 <div class="login">
