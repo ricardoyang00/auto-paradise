@@ -243,6 +243,8 @@ footer {
         img {
             width: 100%;
             border-radius: 5px;
+            justify-self: center;
+            align-self: center;
         }
         
         .add-wishlist {
