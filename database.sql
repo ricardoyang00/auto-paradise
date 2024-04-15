@@ -5,6 +5,10 @@ DROP TABLE IF EXISTS SELLS;
 DROP TABLE IF EXISTS REVIEWS;
 DROP TABLE IF EXISTS EVENT;
 DROP TABLE IF EXISTS BRANDS;
+DROP TABLE IF EXISTS CATEGORY;
+DROP TABLE IF EXISTS SCALE;
+DROP TABLE IF EXISTS ACCESSORIES;
+DROP TABLE IF EXISTS ACCESSORY_CATEGORY;
 
 PRAGMA foreign_keys = ON;
 
@@ -172,3 +176,79 @@ INSERT INTO ACCESSORY_CATEGORY (accessory_category_id, accessory_category_name) 
     (3, 'Shirts'),
     (4, 'Caps'),
     (5, 'Legos');
+
+INSERT INTO ADDRESS (address_id, postal_code, address, city) VALUES
+    (1, '12345', '123 Main St', 'City A'),
+    (2, '23456', '456 Elm St', 'City B'),
+    (3, '34567', '789 Oak St', 'City C'),
+    (4, '45678', '101 Pine St', 'City D'),
+    (5, '56789', '202 Maple St', 'City E'),
+    (6, '67890', '303 Cedar St', 'City F'),
+    (7, '78901', '404 Walnut St', 'City G'),
+    (8, '89012', '505 Birch St', 'City H'),
+    (9, '90123', '606 Spruce St', 'City I'),
+    (10, '01234', '707 Fir St', 'City J');
+
+INSERT INTO USER (username, name, password, phone_number, address_id) VALUES
+    ('user1', 'John Doe', 'password1', '123456789', 1),
+    ('user2', 'Jane Smith', 'password2', '234567890', 2),
+    ('user3', 'Alice Johnson', 'password3', '345678901', 3),
+    ('user4', 'Bob Brown', 'password4', '456789012', 4),
+    ('user5', 'Emma Davis', 'password5', '567890123', 5),
+    ('user6', 'James Wilson', 'password6', '678901234', 6),
+    ('user7', 'Olivia Martinez', 'password7', '789012345', 7),
+    ('user8', 'William Anderson', 'password8', '890123456', 8),
+    ('user9', 'Sophia Taylor', 'password9', '901234567', 9),
+    ('user10', 'Michael Thomas', 'password10', '012345678', 10);
+
+INSERT INTO PRODUCT (product_id, category, title, description, price, seller_id, brand, scale) VALUES
+    (1, 1, 'Acura NSX', 'Description for Acura NSX', 50000.00, 'user1', 1, 1),
+    (2, 1, 'Alfa Romeo Giulia', 'Description for Alfa Romeo Giulia', 45000.00, 'user2', 2, 2),
+    (3, 1, 'Aston Martin Vantage', 'Description for Aston Martin Vantage', 150000.00, 'user3', 4, 3),
+    (4, 1, 'Audi R8', 'Description for Audi R8', 175000.00, 'user4', 5, 4),
+    (5, 1, 'BMW M3', 'Description for BMW M3', 60000.00, 'user5', 6, 5),
+    (6, 1, 'Ferrari 488', 'Description for Ferrari 488', 250000.00, 'user6', 13, 6),
+    (7, 1, 'Ford Mustang', 'Description for Ford Mustang', 45000.00, 'user7', 15, 7),
+    (8, 1, 'Mercedes-Benz AMG GT', 'Description for Mercedes-Benz AMG GT', 160000.00, 'user8', 33, 3),
+    (9, 1, 'Porsche 911', 'Description for Porsche 911', 130000.00, 'user9', 38, 4),
+    (10, 1, 'Tesla Model S', 'Description for Tesla Model S', 80000.00, 'user10', 42, 5);
+
+INSERT INTO SELLS (sell_id, seller_id, buyer_id, product_id, review_id) VALUES
+    (1, 'user1', 'user2', 1, 1),
+    (2, 'user2', 'user3', 2, 2),
+    (3, 'user3', 'user4', 3, 3),
+    (4, 'user4', 'user5', 4, 4),
+    (5, 'user5', 'user6', 5, 5),
+    (6, 'user6', 'user7', 6, 6),
+    (7, 'user7', 'user8', 7, 7),
+    (8, 'user8', 'user9', 8, 8),
+    (9, 'user9', 'user10', 9, 9),
+    (10, 'user10', 'user1', 10, 10);
+
+INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall_evaluation, platform_evaluation, comment) VALUES
+    (1, 5, 5, 5, 5, 'Great transaction, highly recommended seller!'),
+    (2, 4, 5, 4, 4, 'Good product, fast shipping.'),
+    (3, 5, 4, 4, 5, 'Beautiful car, minor delay in delivery.'),
+    (4, 4, 4, 4, 4, 'Nice car, smooth transaction.'),
+    (5, 3, 5, 3, 3, 'Decent car, delayed shipping.'),
+    (6, 5, 5, 5, 5, 'Excellent car, fast shipping.'),
+    (7, 4, 5, 4, 4, 'Good car, no issues.'),
+    (8, 5, 5, 5, 5, 'Perfect car, smooth transaction.'),
+    (9, 3, 4, 3, 3, 'Okay car, shipping took a while.'),
+    (10, 4, 5, 4, 4, 'Satisfactory car, fast shipping.');
+
+INSERT INTO EVENT (event_id, event_type, discount_percentage, sell_event) VALUES
+    (1, 'flash_sale', 10.00, 'Flash sale event for selected products.'),
+    (2, 'holiday_discount', 20.00, 'Holiday discount event for all products.');
+
+INSERT INTO ACCESSORIES (accessory_id, accessory_name, accessory_category, price) VALUES
+    (1, 'Racing Helmet', 1, 100.00),
+    (2, 'Champion Trophy', 2, 50.00),
+    (3, 'Team Shirt', 3, 30.00),
+    (4, 'Logo Cap', 4, 20.00),
+    (5, 'Model Car', 5, 15.00),
+    (6, 'Racing Helmet', 1, 100.00),
+    (7, 'Champion Trophy', 2, 50.00),
+    (8, 'Team Shirt', 3, 30.00),
+    (9, 'Logo Cap', 4, 20.00),
+    (10, 'Model Car', 5, 15.00);
