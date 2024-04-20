@@ -8,13 +8,13 @@
 <section id="item">
     <div class="container">
         <div class="image">
-            <img src="../images/products/product_1.jpg" alt="Product Image">
+            <img src="../images/products/4.jpg" alt="Product Image">
         </div>
         <div class="title">
             <h2>Product Category</h2>
-            <h1>Product Title</h1>
+            <h1>Product Title title title title title title title title title </h1>
             <h3>€99.99</h3>
-            <button>Buy Now</button>
+            <button class="but">Buy Now</button>
             <button class="add-wishlist"><a href="#"><i class="fa-regular fa-heart"></i></a></button>
             
         </div>
@@ -33,6 +33,14 @@
                 <textarea placeholder="Ask a question..."></textarea>
                 <button type="submit">Submit</button>
             </form>
+            <div class="qa-item">
+                <p><strong>Q:</strong> Question text?</p>
+                <p><strong>A:</strong> Answer text...</p>
+            </div>
+            <div class="qa-item">
+                <p><strong>Q:</strong> Question text?</p>
+                <p><strong>A:</strong> Answer text...</p>
+            </div>
             <div class="qa-item">
                 <p><strong>Q:</strong> Question text?</p>
                 <p><strong>A:</strong> Answer text...</p>
