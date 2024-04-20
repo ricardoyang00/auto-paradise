@@ -27,15 +27,13 @@
             </section>
             <h1><?= $product->title ?></h1>
             <h3>€<?= $product->price ?></h3>
-            <button class="but">Buy Now</button>
+            <button class="buy">Buy Now</button>
             <button class="add-wishlist"><a href="#"><i class="fa-regular fa-heart"></i></a></button> 
         </div>
         <div class="seller-info">
             <h2>Seller Information</h2>
-            <p class="name"><?= $seller->name ?></p>
-            <p class="location"><i class="fa-solid fa-location-dot"></i>
-                <?=$seller->getUserAddress($db)->city?>, <?=$seller->getUserAddress($db)->country?>
-            </p>
+            <p class="user-name"><i class="fa-solid fa-user"></i><?= $seller->name ?></p>
+            <p class="location"><i class="fa-solid fa-location-dot"></i><?=$seller->getUserAddress($db)->city?>, <?=$seller->getUserAddress($db)->country?></p>
         </div>
         <div class="description">
             <h2>Description</h2>
