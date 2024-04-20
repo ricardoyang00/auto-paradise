@@ -61,8 +61,11 @@
 
     foreach ($products as $product) {?>
         <article>
+            <?php $url = "item.php?id=" . $product->id; ?>
             <img src="../images/products/<?= $product->id ?>.jpg" alt="<?= $product->title ?>">
-            <h1><?= $product->title ?></h3>
+            <a href="<?= $url ?>">
+                <h1><?= $product->title ?></h1>
+            </a>
             <p>€<?= $product->price ?></p>
             <button class="add-wishlist">Add to Wishlist</button>
         </article>

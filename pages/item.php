@@ -2,30 +2,40 @@
     declare(strict_types = 1);
 
     require_once(__DIR__ . '/../templates/common.tpl.php');
+    require_once(__DIR__ . '/../database/connection.db.php');
+    require_once(__DIR__ . '/../database/product.class.php');
+    require_once(__DIR__ . '/../database/user.class.php');
+
+    $id = $_GET['id'];
+    $db = getDatabaseConnection();
+    $product = Product::getProductById($db, $id);
+    $seller = User::getUserByUsername($db, $product->sellerId);
+
     drawHeader();
 ?>
 
 <section id="item">
     <div class="container">
         <div class="image">
-            <img src="../images/products/4.jpg" alt="Product Image">
+            <img src="../images/products/<?=$product->id?>.jpg" alt="Product Image">
         </div>
         <div class="title">
-            <h2>Product Category</h2>
-            <h1>Product Title title title title title title title title title </h1>
-            <h3>€99.99</h3>
+            <h2><?= $product->getCategory($db) ?></h2>
+            <h1><?= $product->title ?></h1>
+            <h3>€<?= $product->price ?></h3>
             <button class="but">Buy Now</button>
-            <button class="add-wishlist"><a href="#"><i class="fa-regular fa-heart"></i></a></button>
-            
+            <button class="add-wishlist"><a href="#"><i class="fa-regular fa-heart"></i></a></button> 
         </div>
         <div class="seller-info">
             <h2>Seller Information</h2>
-            <p class="name">John Doe</p>
-            <p class="location"><i class="fa-solid fa-location-dot"></i> City, Country</p>
+            <p class="name"><?= $seller->name ?></p>
+            <p class="location"><i class="fa-solid fa-location-dot"></i>
+                <?=$seller->getUserAddress($db)->city?>, <?=$seller->getUserAddress($db)->country?>
+            </p>
         </div>
         <div class="description">
             <h2>Description</h2>
-            <p>Description text Description textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription textDescription text</p>
+            <p><?= $product->description ?></p>
         </div>
         <div class="qna">
             <h2>Q&A</h2>

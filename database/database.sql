@@ -16,7 +16,8 @@ CREATE TABLE ADDRESS (
     address_id INT PRIMARY KEY,
     postal_code VARCHAR(10) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    city VARCHAR(100) NOT NULL
+    city VARCHAR(100) NOT NULL,
+    country VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE USER (
@@ -177,17 +178,17 @@ INSERT INTO ACCESSORY_CATEGORY (accessory_category_id, accessory_category_name) 
     (4, 'Caps'),
     (5, 'Legos');
 
-INSERT INTO ADDRESS (address_id, postal_code, address, city) VALUES
-    (1, '12345', '123 Main St', 'City A'),
-    (2, '23456', '456 Elm St', 'City B'),
-    (3, '34567', '789 Oak St', 'City C'),
-    (4, '45678', '101 Pine St', 'City D'),
-    (5, '56789', '202 Maple St', 'City E'),
-    (6, '67890', '303 Cedar St', 'City F'),
-    (7, '78901', '404 Walnut St', 'City G'),
-    (8, '89012', '505 Birch St', 'City H'),
-    (9, '90123', '606 Spruce St', 'City I'),
-    (10, '01234', '707 Fir St', 'City J');
+INSERT INTO ADDRESS (address_id, postal_code, address, city, country) VALUES
+    (1, '12345', '123 Main St', 'City A', 'Country A'),
+    (2, '23456', '456 Elm St', 'City B', 'Country B'),
+    (3, '34567', '789 Oak St', 'City C', 'Country C'),
+    (4, '45678', '101 Pine St', 'City D', 'Country D'),
+    (5, '56789', '202 Maple St', 'City E', 'Country E'),
+    (6, '67890', '303 Cedar St', 'City F', 'Country F'),
+    (7, '78901', '404 Walnut St', 'City G', 'Country G'),
+    (8, '89012', '505 Birch St', 'City H', 'Country H'),
+    (9, '90123', '606 Spruce St', 'City I', 'Country I'),
+    (10, '01234', '707 Fir St', 'City J', 'Country J');
 
 INSERT INTO USER (username, name, password, phone_number, address_id) VALUES
     ('user1', 'John Doe', 'password1', '123456789', 1),
