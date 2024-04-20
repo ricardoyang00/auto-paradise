@@ -20,7 +20,11 @@
             <img src="../images/products/<?=$product->id?>.jpg" alt="Product Image">
         </div>
         <div class="title">
-            <h2><?= $product->getCategory($db) ?></h2>
+            <section id="tags">
+                <h2><?= $product->getCategory($db) ?></h2>
+                <h2><?= $product->getScale($db) ?></h2>
+                <h2><?= $product->getBrand($db) ?></h2>
+            </section>
             <h1><?= $product->title ?></h1>
             <h3>€<?= $product->price ?></h3>
             <button class="but">Buy Now</button>
