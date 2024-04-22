@@ -20,7 +20,7 @@
         exit();
     } else {
         $session->addMessage('error', 'Wrong username or password!');
-        header('Location: /pages/search.php'); // temporary jump
+        header('Location: /pages/login.php');
         exit();
     }
 ?>

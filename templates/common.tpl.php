@@ -66,10 +66,6 @@
         </footer>
     </body>
 </html>
-
-<?php function drawProfile() { ?>
-    <p>Profile page to do</p>
 <?php } ?>
 
-<?php } ?>
 

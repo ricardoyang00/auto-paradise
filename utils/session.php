@@ -10,7 +10,7 @@
         }
 
         public function isLoggedIn() : bool {
-            return isset($_SESSION['id']);    
+            return isset($_SESSION['username']);    
         }
 
         public function logout() {
@@ -18,15 +18,7 @@
             session_destroy();
         }
 
-        public function getId() : ?int {
-            return isset($_SESSION['id']) ? $_SESSION['id'] : null;    
-        }
-
-        public function setId(int $id) {
-            $_SESSION['id'] = $id;
-        }
-
-        public function getUsername() : ?int {
+        public function getUsername() : ?string {
             return isset($_SESSION['username']) ? $_SESSION['username'] : null;    
         }
 
