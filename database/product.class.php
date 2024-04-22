@@ -64,6 +64,27 @@ class Product {
         );
     }
 
+    public static function getProductsByName(PDO $db, $productName): array {
+        $stmt = $db->prepare('SELECT * FROM PRODUCT WHERE title LIKE ?');
+        $stmt->execute(["%$productName%"]);
+
+        $products = array();
+        while ($product = $stmt->fetch()) {
+            $products[] = new Product(
+                $product['product_id'],
+                $product['category'],
+                $product['title'],
+                $product['description'],
+                $product['price'],
+                $product['seller_id'],
+                $product['brand'],
+                $product['scale']
+            );
+        }
+
+        return $products;
+    }
+
     public function getCategory(PDO $db) : string {
         $stmt = $db->prepare('SELECT * FROM CATEGORY WHERE category_id = ?');
         $stmt->execute([$this->category]);
