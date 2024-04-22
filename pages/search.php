@@ -57,19 +57,35 @@
     require_once(__DIR__ . '/../database/connection.db.php');
     require_once(__DIR__ . '/../database/product.class.php');
     $db = getDatabaseConnection();
-    $products = Product::getAllProducts($db);
 
-    foreach ($products as $product) {?>
-        <article>
-            <?php $url = "item.php?id=" . $product->id; ?>
-            <img src="../images/products/<?= $product->id ?>.jpg" alt="<?= $product->title ?>">
-            <a href="<?= $url ?>">
-                <h1><?= $product->title ?></h1>
-            </a>
-            <p>€<?= $product->price ?></p>
-            <button class="add-wishlist">Add to Wishlist</button>
-        </article>
+    if(isset($_GET['search']) && !empty($_GET['search'])) {
+        $searchQuery = $_GET['search'];
+        $products = Product::getProductsByName($db, $searchQuery);
+    } else {
+        $products = Product::getAllProducts($db);
+    }
+
+    if (!empty($products)) { ?>
+        <?php foreach ($products as $product) {?>
+            <article>
+                <?php $url = "item.php?id=" . $product->id; ?>
+                <img src="../images/products/<?= $product->id ?>.jpg" alt="<?= $product->title ?>">
+                <a href="<?= $url ?>">
+                    <h1><?= $product->title ?></h1>
+                </a>
+                <p>€<?= $product->price ?></p>
+                <button class="add-wishlist">Add to Wishlist</button>
+            </article>
+        <?php } ?>
+    <?php } else { ?>
+        <section id="no-results">
+            <h1>No results for "<?php echo htmlspecialchars($searchQuery); ?>"</h1>
+            <li>Check the spelling</li>
+            <li>Try different keywords</li>
+        </section>
     <?php } ?>
+    
+
     </section>
 
 <?php drawFooter(); ?>

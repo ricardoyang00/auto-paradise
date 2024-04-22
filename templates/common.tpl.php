@@ -15,9 +15,9 @@
 
 <?php function drawSearchBar() {?>
     <a class="logo" href="index.php"><img src="../images/logo/auto-paradise-logo.png" height="50" alt="Auto Paradise Logo"></a>
-    <form class="search-form" action="#" method="get">
-    <input type="text" name="search">
-    <button type="submit">Search</button>
+    <form class="search-form" action="../pages/search.php" method="get">
+        <input type="text" name="search">
+        <button type="submit">Search</button>
     </form>
     <span class="user-actions">
         <section class="icons">
