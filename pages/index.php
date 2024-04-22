@@ -7,11 +7,11 @@
 
 <section id="ads">
   <article>
-    <h1><a href="index.php">Can't afford a real Ferrari? No worries! Here, you can buy even an F1 car!</a></h1>
+    <h1><a href="../index.php">Can't afford a real Ferrari? No worries! Here, you can buy even an F1 car!</a></h1>
     <img src="../images/ads/post-4.jpg" width="300" alt="">
   </article>
   <article>
-    <h1><a href="sell.php">Share your happiness with others by selling now!</a></h1>
+    <h1><a href="../sell.php">Share your happiness with others by selling now!</a></h1>
     <img src="../images/ads/post-3.jpg" width="300" alt="">
   </article>
   <article>

@@ -47,12 +47,12 @@
             <?php drawSearchBar() ?>
             <nav id="menu">
                 <ul>
-                    <li><a href="search.php">On Sales!</a></li>
-                    <li><a href="search.php">DTM</a></li>
-                    <li><a href="search.php">F1</a></li>
-                    <li><a href="search.php">Le Mans</a></li>
-                    <li><a href="search.php">Others</a></li>
-                    <li><a href="search.php">Accessories</a></li>
+                    <li><a href="../pages/search.php">On Sales!</a></li>
+                    <li><a href="../pages/search.php">DTM</a></li>
+                    <li><a href="../pages/search.php">F1</a></li>
+                    <li><a href="../pages/search.php">Le Mans</a></li>
+                    <li><a href="../pages/search.php">Others</a></li>
+                    <li><a href="../pages/search.php">Accessories</a></li>
                 </ul>
             </nav>
         </header>
