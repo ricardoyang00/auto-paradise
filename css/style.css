@@ -203,10 +203,10 @@ footer {
     ul {
         list-style: none;
         padding: 0;
-    }
 
-    .filter-option ul li {
-        margin-bottom: 10px;
+        li {
+            margin-bottom: 10px;
+        }
     }
 
     h2 {
