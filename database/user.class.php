@@ -43,6 +43,12 @@ class User {
     public string $phoneNumber;
     public int $addressId;
 
+    public function saveToDatabase(PDO $db): bool {
+        $stmt = $db->prepare('INSERT INTO USER (username, name, password, phone_number, address_id) VALUES (?, ?, ?, ?, ?)');
+        $result = $stmt->execute([$this->username, $this->name, $this->password, $this->phoneNumber, $this->addressId]);
+        return $result;
+    }
+
     public function __construct(string $username, string $name, string $password, string $phoneNumber, int $addressId) {
         $this->username = $username;
         $this->name = $name;
@@ -72,6 +78,24 @@ class User {
         $userInstance->password = $user['password'];
     
         return $userInstance;
+    }
+
+    public static function getUserWithPassword(PDO $db, string $username, string $password): ?User {
+        $stmt = $db->prepare('SELECT * FROM USER WHERE username = ? AND password = ?');
+        $stmt->execute([$username, sha1($password)]);
+
+        $user = $stmt->fetch();
+    
+        if ($user = $stmt->fetch()) {
+            return new User(
+                $user['id'],
+                $user['username'],
+                $user['name'],
+                $user['password'],
+                $user['phone_number'],
+                $user['address_id']
+            );
+        } else return null;
     }
 
     public function getUserAddress(PDO $db): ?Address {

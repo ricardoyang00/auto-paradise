@@ -23,7 +23,7 @@
         <section class="icons">
             <a href="#"><i class="fas fa-envelope"></i></a>
             <a href="#"><i class="fa-regular fa-heart"></i></a>
-            <a href="../pages/user.php"><i class="fa-regular fa-user"></i></a>
+            <a href="../pages/profile.php"><i class="fa-regular fa-user"></i></a>
         </section>
         <section class="sell-button">
             <a href="../pages/sell.php">Sell now</a>
@@ -66,5 +66,10 @@
         </footer>
     </body>
 </html>
+
+<?php function drawProfile() { ?>
+    <p>Profile page to do</p>
+<?php } ?>
+
 <?php } ?>
 
