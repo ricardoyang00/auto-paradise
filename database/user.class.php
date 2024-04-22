@@ -84,11 +84,8 @@ class User {
         $stmt = $db->prepare('SELECT * FROM USER WHERE username = ? AND password = ?');
         $stmt->execute([$username, sha1($password)]);
 
-        $user = $stmt->fetch();
-    
         if ($user = $stmt->fetch()) {
             return new User(
-                $user['id'],
                 $user['username'],
                 $user['name'],
                 $user['password'],
