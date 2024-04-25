@@ -203,10 +203,10 @@ footer {
     ul {
         list-style: none;
         padding: 0;
-    }
 
-    .filter-option ul li {
-        margin-bottom: 10px;
+        li {
+            margin-bottom: 10px;
+        }
     }
 
     h2 {
@@ -264,6 +264,31 @@ footer {
             background-color: #ff8c00;
         }
     }
+
+    #no-results {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: center;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        text-align: start;
+        width: auto;
+        grid-column-end: span 4;
+
+        h1 {
+            font-size: 20px;
+            margin: 5px 3em 10px 3em;
+        }
+
+        li {
+            font-size: 16px;
+            margin-bottom: 5px;
+            margin-left: 3em;
+        }
+    }    
 }
 
 footer {
