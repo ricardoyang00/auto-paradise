@@ -9,8 +9,6 @@
 
     $db = getDatabaseConnection();
 
-    var_dump($_POST['loginUsername'], $_POST['loginPassword']);
-
     $user = User::getUserWithPassword($db, $_POST['loginUsername'], $_POST['loginPassword']);
 
     if ($user) {

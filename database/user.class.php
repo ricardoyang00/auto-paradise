@@ -59,7 +59,7 @@ class User {
 
     public static function getUserByUsername(PDO $db, string $username): ?User {
         $stmt = $db->prepare('SELECT * FROM USER WHERE username = ?');
-        $stmt->execute([$username]);
+        $stmt->execute([strtolower($username)]);
     
         $user = $stmt->fetch();
     
@@ -82,7 +82,7 @@ class User {
 
     public static function getUserWithPassword(PDO $db, string $username, string $password): ?User {
         $stmt = $db->prepare('SELECT * FROM USER WHERE username = ? AND password = ?');
-        $stmt->execute([$username, sha1($password)]);
+        $stmt->execute([strtolower($username), sha1($password)]);
 
         if ($user = $stmt->fetch()) {
             return new User(

@@ -22,6 +22,8 @@
             exit();
         }
 
+        $username = strtolower($username);
+        
         if (User::getUserByUsername($db, $username)) {
             $session->addMessage('error', 'Username already exists! Please choose another one.');
             header('Location: /pages/register.php');
