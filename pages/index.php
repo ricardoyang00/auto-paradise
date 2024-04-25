@@ -5,6 +5,9 @@
     $session = new Session();
 
     require_once(__DIR__ . '/../templates/common.tpl.php');
+
+    drawMessages($session);
+    
     drawHeader();
 ?>
 

@@ -489,3 +489,24 @@ footer {
     }
 }
 /********************************/
+
+/***********MESSAGES*************/
+#messages {
+    text-align: center;
+    article {
+        display: inline-block;
+        border-radius: 5px;
+        padding: 10px;
+    }
+}
+
+#messages article.success {
+    background-color: rgb(49, 204, 49);
+    color: white;
+}
+
+#messages article.error {
+    background-color: rgb(247, 44, 44);
+    color: white;
+}
+/********************************/
