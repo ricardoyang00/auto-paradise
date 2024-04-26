@@ -100,6 +100,14 @@ CREATE TABLE ACCESSORY_CATEGORY (
     accessory_category_name TEXT NOT NULL
 );
 
+CREATE TABLE WISH_LIST (
+    wish_id INTEGER PRIMARY KEY,
+    user_id VARCHAR(50) NOT NULL,
+    product_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES USER(username),
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
+);
+
 INSERT INTO BRANDS (brand_id, brand_name) VALUES 
     (1, 'Acura'),
     (2, 'Alfa Romeo'),
