@@ -13,9 +13,8 @@
     require_once(__DIR__ . '/../database/user.class.php');
     require_once(__DIR__ . '/../templates/common.tpl.php');
     
-    drawMessages($session);
-    
     drawHeader2();
+    drawMessages($session);
 ?>
 <div class="loginRegister">
     <form id="register-form" class="user-form" action="../actions/action_register.php" method="post">
