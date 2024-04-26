@@ -12,7 +12,7 @@
         <div id="product-information">
             <h1>product name product name product name product name product name </h1>
             <p>product description product description product description product description product description product description product description product description product description product description product description product description product description product description product description </p>
-            <button class="remove-wishlist" data-id="product-id">Remove</button>
+            <button class="remove-wishlist" data-id="product-id"><i class="fa-solid fa-x"></i> Remove</button>
         </div>
         <div id="product-price-buy">
             <p>€ 10.99</p>
@@ -24,7 +24,7 @@
         <div id="product-information">
             <h1>product name product name product name product name product name </h1>
             <p>product description product description product description product description product description product description product description product description product description product description product description product description product description product description product description </p>
-            <button class="remove-wishlist" data-id="product-id">Remove</button>
+            <button class="remove-wishlist" data-id="product-id"><i class="fa-solid fa-x"></i> Remove</button>
         </div>
         <div id="product-price-buy">
             <p>€ 10.99</p>
@@ -36,7 +36,7 @@
         <div id="product-information">
             <h1>product name product name product name product name product name </h1>
             <p>product description product description product description product description product description product description product description product description product description product description product description product description product description product description product description </p>
-            <button class="remove-wishlist" data-id="product-id">Remove</button>
+            <button class="remove-wishlist" data-id="product-id"><i class="fa-solid fa-x"></i> Remove</button>
         </div>
         <div id="product-price-buy">
             <p>€ 10.99</p>
@@ -48,7 +48,7 @@
         <div id="product-information">
             <h1>product name product name product name product name product name </h1>
             <p>product description product description product description product description product description product description product description product description product description product description product description product description product description product description product description </p>
-            <button class="remove-wishlist" data-id="product-id">Remove</button>
+            <button class="remove-wishlist" data-id="product-id"><i class="fa-solid fa-x"></i> Remove</button>
         </div>
         <div id="product-price-buy">
             <p>€ 10.99</p>
@@ -60,7 +60,19 @@
         <div id="product-information">
             <h1>product name product name product name product name product name </h1>
             <p>product description product description product description product description product description product description product description product description product description product description product description product description product description product description product description </p>
-            <button class="remove-wishlist" data-id="product-id">Remove</button>
+            <button class="remove-wishlist" data-id="product-id"><i class="fa-solid fa-x"></i> Remove</button>
+        </div>
+        <div id="product-price-buy">
+            <p>€ 10.99</p>
+            <button class="buy" data-id="product-id">Buy <i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+    </article>
+    <article>
+        <img src="../images/products/1.jpg">
+        <div id="product-information">
+            <h1>product name product name product name product name product name </h1>
+            <p>product description product description product description product description product description product description product description product description product description product description product description product description product description product description product description </p>
+            <button class="remove-wishlist" data-id="product-id"><i class="fa-solid fa-x"></i> Remove</button>
         </div>
         <div id="product-price-buy">
             <p>€ 10.99</p>
@@ -69,3 +81,4 @@
     </article>
 </section>
 
+<?php drawFooter(); ?>
