@@ -22,7 +22,7 @@
     <span class="user-actions">
         <section class="icons">
             <a href="#"><i class="fas fa-envelope"></i></a>
-            <a href="#"><i class="fa-regular fa-heart"></i></a>
+            <a href="../pages/wishList.php"><i class="fa-regular fa-heart"></i></a>
             <a href="../pages/profile.php"><i class="fa-regular fa-user"></i></a>
         </section>
         <section class="sell-button">

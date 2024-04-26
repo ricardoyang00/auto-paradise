@@ -73,7 +73,7 @@
                 <a href="<?= $url ?>">
                     <h1><?= $product->title ?></h1>
                 </a>
-                <p>€<?= $product->price ?></p>
+                <a class="price"><p>€<?= $product->price ?></p></a>
                 <button class="add-wishlist">Add to Wishlist</button>
             </article>
         <?php } ?>
@@ -84,8 +84,6 @@
             <li>Try different keywords</li>
         </section>
     <?php } ?>
-    
-
-    </section>
+</section>
 
 <?php drawFooter(); ?>
