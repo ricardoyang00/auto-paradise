@@ -15,7 +15,7 @@
             <button class="remove-wishlist" data-id="product-id"><i class="fa-solid fa-x"></i> Remove</button>
         </div>
         <div id="product-price-buy">
-            <p>€ 10.99</p>
+            <p>€ 1000000.99</p>
             <button class="buy" data-id="product-id">Buy <i class="fa-solid fa-cart-shopping"></i></button>
         </div>
     </article>

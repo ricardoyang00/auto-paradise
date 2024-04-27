@@ -453,29 +453,30 @@ footer {
         }
 
         #product-price-buy {
-            text-align: right;
+            text-align: center;
             display: grid;
-            grid-template-rows: auto auto;
+            grid-template-rows: 1fr 1.5fr;
 
             p {
                 margin-right: 5px;
                 font-size: 20px;
                 font-weight: bold;
                 color: var(--orange_primary);
-
                 align-self: start;
             }
 
             .buy {
-                padding: 5px 20px;
+                width: 7em;
+                height: 2em;
                 border-radius: 5px;
                 display: inline-block;
                 background-color: transparent;
                 border: 1px solid var(--orange_primary);
                 color: var(--orange_primary);
                 font-weight: normal;
-
+                margin: 10px;
                 align-self: end;
+                justify-self: end;
             }
 
             .buy:hover {
