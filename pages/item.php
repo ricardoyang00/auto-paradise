@@ -3,13 +3,19 @@
 
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../database/connection.db.php');
-    require_once(__DIR__ . '/../database/product.class.php');
     require_once(__DIR__ . '/../database/user.class.php');
+    require_once(__DIR__ . '/../database/product.class.php');
+    require_once(__DIR__ . '/../database/scale.class.php');
+    require_once(__DIR__ . '/../database/brand.class.php');
+    require_once(__DIR__ . '/../database/category.class.php');
 
     $id = $_GET['id'];
     $db = getDatabaseConnection();
     $product = Product::getProductById($db, $id);
     $seller = User::getUserByUsername($db, $product->sellerId);
+    $category = Category::getCategoryById($db, $product->category);
+    $brand = Brand::getBrandById($db, $product->brandId);
+    $scale = Scale::getScaleById($db, $product->scale);
 
     drawHeader();
 ?>
@@ -21,9 +27,9 @@
         </div>
         <div class="title">
             <section id="tags">
-                <h2><?= $product->getCategory($db) ?></h2>
-                <h2><?= $product->getScale($db) ?></h2>
-                <h2><?= $product->getBrand($db) ?></h2>
+                <h2><?= $category->name ?></h2>
+                <h2><?= $scale->name ?></h2>
+                <h2><?= $brand->name ?></h2>
             </section>
             <h1><?= $product->title ?></h1>
             <h3>€<?= $product->price ?></h3>

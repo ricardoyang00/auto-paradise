@@ -4,7 +4,9 @@
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../database/connection.db.php');
     require_once(__DIR__ . '/../database/product.class.php');
-    require_once(__DIR__ . '/../database/productRelated.class.php');
+    require_once(__DIR__ . '/../database/scale.class.php');
+    require_once(__DIR__ . '/../database/brand.class.php');
+    require_once(__DIR__ . '/../database/category.class.php');
     drawHeader();
 
     $db = getDatabaseConnection();
