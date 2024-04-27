@@ -10,6 +10,7 @@
         <link rel="icon" type="image/png" href="../images/logo/auto-paradise-icon.png">
         <link href="../css/style.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/0eb2febe39.js" crossorigin="anonymous"></script>
+        <script src="../javascript/theme.js" defer></script>
     </head>
 <?php } ?>
 
@@ -28,6 +29,7 @@
         <section class="sell-button">
             <a href="../pages/sell.php">Sell now</a>
         </section>
+        <button class="theme"></button>
     </span>
 <?php } ?>
 
