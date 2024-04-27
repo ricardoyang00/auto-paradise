@@ -301,6 +301,7 @@ footer {
             padding: 10px;
             resize: none;
             color: var(--text);
+            font-family: "Roboto", sans-serif;
         }
 
         input[type="number"]::-webkit-inner-spin-button,

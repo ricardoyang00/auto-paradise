@@ -83,34 +83,6 @@ class Product {
         }
 
         return $products;
-    }
-
-    public function getCategory(PDO $db) : string {
-        $stmt = $db->prepare('SELECT * FROM CATEGORY WHERE category_id = ?');
-        $stmt->execute([$this->category]);
-    
-        $category = $stmt->fetch();
-    
-        return $category['category_name'];
-    }
-
-    public function getScale(PDO $db) : string {
-        $stmt = $db->prepare('SELECT * FROM SCALE WHERE scale_id = ?');
-        $stmt->execute([$this->scale]);
-    
-        $scale = $stmt->fetch();
-    
-        return $scale['scale_name'];
-    }
-
-    public function getBrand(PDO $db) : string {
-        $stmt = $db->prepare('SELECT * FROM BRANDS WHERE brand_id = ?');
-        $stmt->execute([$this->brandId]);
-    
-        $brand = $stmt->fetch();
-    
-        return $brand['brand_name'];
-    }
-    
+    }    
 }
 ?>
