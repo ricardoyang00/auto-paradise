@@ -1,12 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+:root {
+    --background: #ffffff;
+    --orange_primary: rgb(255, 128, 0);
+    --orange_secondary: orange;
+    --text: black;
+    --text2: white;
+    --separator: #ccc;
+    --icons: #5b5b5b;
+    --filter_background: #f0f0f0;
+    --input_background: #f4f4f4;
+    --footer_background: #333;
+    --article_background: #fbfbfb;
+    --information_background: #f9f9f9;
+    --tags_background: #f0f0f0;
+
+    --background_dark: #000000;
+    --orange_primary_dark: rgb(255, 128, 0);
+    --orange_secondary_dark: orange;
+    --text_dark: black;
+    --text2_dark: white;
+    --separator_dark: #ccc;
+    --icons_dark: white;
+    --filter_background_dark: #f0f0f0;
+    --input_background_dark: #f4f4f4;
+    --footer_background_dark: #333;
+    --article_background_dark: #282828;
+    --information_background_dark: #f9f9f9;
+    --tags_background_dark: #f0f0f0;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background: var(--background_dark);
+        --orange_primary: var(--orange_primary_dark);
+        --orange_secondary: var(--orange_secondary_dark);
+        --text: var(--text_dark);
+        --text2: var(--text2_dark);
+        --separator: var(--separator_dark);
+        --icons: var(--icons_dark);
+        --filter_background: var(--filter_background_dark);
+        --input_background: var(--input_background_dark);
+        --footer_background: var(--footer_background_dark);
+        --article_background: var(--article_background_dark);
+        --information_background: var(--information_background_dark);
+        --tags_background: var(--tags_background_dark);
+    }
+}
+
 body {
     padding-left: 15%;
     padding-right: 15%;
     font-family: "Roboto", sans-serif;
+    background-color: var(--background);
 
     a {
-        color: black;
+        color: var(--text);
         text-decoration: none;
     }
 }
@@ -27,7 +76,7 @@ header {
 .search-form {
     display: flex;
     align-items: center;
-    background-color: #f4f4f4;
+    background-color: var(--input_background);
     border-radius: 5px;
     padding: 5px;
   
@@ -40,8 +89,8 @@ header {
   }
   
   button {
-    background-color: orange;
-    color: #fff;
+    background-color: var(--orange_secondary);
+    color: var(--background);
     border: none;
     padding: 8px 15px;
     border-radius: 5px;
@@ -57,7 +106,7 @@ header {
     .icons {
         a {
             margin-right: 40px;
-            color: #5b5b5b;
+            color: var(--icons);
         }
     }
 
@@ -66,7 +115,7 @@ header {
         padding: 8px;
         border-radius: 5px;
         display: inline-block;
-        background-color: orange;
+        background-color: var(--orange_primary);
 
         a {
             color: white;
@@ -91,7 +140,7 @@ header {
 
             a {
                 text-decoration: none;
-                color: #333;
+                color: var(--footer_background);
                 font-weight: 600;
                 text-transform: uppercase;
             }
@@ -109,7 +158,7 @@ header {
             position: absolute;
             color: white;
             font-size: 3vw;
-            text-shadow: .1em .1em .1em black;
+            text-shadow: .1em .1em .1em var(--text);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -124,8 +173,8 @@ header {
 }
 
 footer {
-    background-color: #333;
-    color: white;
+    background-color: var(--footer_background);
+    color: var(--text2);
     padding: 20px 0;
     text-align: center;
 }
@@ -148,7 +197,7 @@ footer {
         display: inline-block;
         width: 8px;
         height: 110%;
-        background-color: rgb(255, 128, 0);
+        background-color: var(--orange_primary);
         margin-right: 10px;
     }
 
@@ -157,7 +206,7 @@ footer {
         align-items: center;
         padding-bottom: 50px;
         margin-top: 40px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid var(--separator);
         
         label {
             width: 90%;
@@ -169,7 +218,7 @@ footer {
         textarea,
         select {
             border: none; 
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid var(--separator);
             background-color: transparent;
             width: 100%;
             padding: 10px;
@@ -199,8 +248,8 @@ footer {
         float: right; 
         padding: 5px 8px;
         font-size: 14px; 
-        background-color: orange; 
-        color: white; 
+        background-color: var(--orange_secondary); 
+        color: var(--text2); 
         border: 10px;
         border-radius: 5px;
         width: 120px;
@@ -213,7 +262,7 @@ footer {
     width: 170px;
     float: left;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: var(--filter_background);
 
     ul {
         list-style: none;
@@ -247,14 +296,14 @@ footer {
         display: inline-block;
         width: 8px;
         height: 110%;
-        background-color: rgb(255, 128, 0);
+        background-color: var(--orange_primary);
         margin-right: 10px;
     }
 
     article {
         display: grid;
         grid-template-columns: auto 1fr auto;
-        background-color: #fbfbfb;
+        background-color: var(--article_background);
         padding: 10px;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -279,7 +328,8 @@ footer {
             }
 
             p {
-                color:#959595;
+                color:var(--text);
+                opacity: 0.5;
                 font-size: small;
                 font-weight: 300;
             }
@@ -287,7 +337,7 @@ footer {
             .remove-wishlist {
                 justify-self: start;
                 align-self: end;
-                color: black;
+                color: var(--text);
                 background-color: transparent;
                 border: none;
                 padding: 5px 20px;
@@ -295,7 +345,7 @@ footer {
             }
 
             .remove-wishlist:hover {
-                color: rgb(255, 128, 0);
+                color: var(--orange_primary);
             }
         }
 
@@ -308,7 +358,7 @@ footer {
                 margin-right: 5px;
                 font-size: 20px;
                 font-weight: bold;
-                color: rgb(255, 128, 0);
+                color: var(--orange_primary);
 
                 align-self: start;
             }
@@ -318,15 +368,15 @@ footer {
                 border-radius: 5px;
                 display: inline-block;
                 background-color: transparent;
-                border: 1px solid rgb(255, 128, 0);
-                color: rgb(255, 128, 0);
+                border: 1px solid var(--orange_primary);
+                color: var(--orange_primary);
                 font-weight: normal;
 
                 align-self: end;
             }
 
             .buy:hover {
-                background-color: rgb(255, 128, 0);
+                background-color: var(--orange_primary);
                 color: white;
             }
             
@@ -344,7 +394,7 @@ footer {
         display: grid;
         grid-template-rows: 1fr auto auto auto;
 
-        background-color: #fff;
+        background-color: var(--text2);
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -370,8 +420,8 @@ footer {
             display: block;
             margin-top: 10px;
             padding: 8px 15px;
-            background-color: black;
-            color: #fff;
+            background-color: var(--text);
+            color: var(--text2);
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -380,7 +430,7 @@ footer {
         }
 
         .add-wishlist:hover {
-            background-color: #ff8c00;
+            background-color: var(--orange_primary);
         }
     }
 
@@ -390,9 +440,9 @@ footer {
         justify-content: center;
         justify-self: center;
         padding: 10px;
-        border: 1px solid #ccc;
+        border: 1px solid var(--separator);
         border-radius: 5px;
-        background-color: #f9f9f9;
+        background-color: var(--information_background);
         text-align: start;
         width: auto;
         grid-column-end: span 4;
@@ -413,8 +463,8 @@ footer {
 footer {
     clear: both;
     width: 100%;
-    background-color: #f4f4f4;
-    color: #858585;
+    background-color: var(--input_background);
+    color: var(--icons);
     text-align: center;
     padding: 5px 0;
     margin-top: 50px;
@@ -428,8 +478,8 @@ footer {
         margin-right: 5px;
         margin-bottom: 5px;
         padding: 10px 20px;
-        background-color: black;
-        color: #fff;
+        background-color: var(--text);
+        color: var(--text2);
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -442,7 +492,7 @@ footer {
     }
     
     button:hover {
-        background-color: #ff8c00;
+        background-color: var(--orange_primary);
     }
     
     .container {
@@ -455,7 +505,7 @@ footer {
     .image {
         grid-column: 1;
         grid-row: 1;
-        background-color: #f9f9f9;
+        background-color: var(--information_background);
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -473,7 +523,7 @@ footer {
     .title {
         grid-row: 1;
         grid-column: 2;
-        background-color: #f9f9f9;
+        background-color: var(--information_background);
         padding: 2em;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -491,7 +541,7 @@ footer {
                 font-weight: regular;
                 display: inline-block;
                 padding: 0.5em 1em;
-                background-color: #f0f0f0; 
+                background-color: var(--tags_background); 
                 border-radius: 4px;
                 margin-bottom: auto;
                 margin-right: auto;
@@ -508,7 +558,7 @@ footer {
     .seller-info {
         grid-row: 2;
         grid-column: 2;
-        background-color: #f9f9f9;
+        background-color: var(--information_background);
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -528,16 +578,15 @@ footer {
 
     .description, .qna {
         grid-column: 1;
-        background-color: #f9f9f9;
+        background-color: var(--information_background);
         padding: 20px;
         border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     }
 
     .qna {
         textarea {
-            border: 1px solid #bebebe; 
-            background-color: white;
+            border: 1px solid var(--separator); 
+            background-color: var(--text2);
             width: calc(100% - 20px);
             height: 5em;
             padding: 10px;
@@ -561,9 +610,9 @@ footer {
 .user-form {
     max-width: 300px;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--separator);
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: var(--input_background);
     margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 75px;
@@ -575,23 +624,23 @@ footer {
         padding: 10px;
         margin: 5px 0;
         display: inline-block;
-        border: 1px solid #ccc;
+        border: 1px solid var(--separator);
         border-radius: 4px;
         box-sizing: border-box;
     }
 
     input[type="submit"] {
-        background-color: #ff8c00;
+        background-color: var(--orange_primary);
         color: white;
-        border: 1px solid #ff8c00;
+        border: 1px solid var(--orange_primary);
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s;
     }
 
     input[type="submit"]:hover {
-        background-color: white;
-        color: black;
+        background-color: var(--text2);
+        color: var(--text);
     }
 }
 
