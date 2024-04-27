@@ -168,7 +168,7 @@ INSERT INTO BRANDS (brand_id, brand_name) VALUES
     (45, 'Volvo'),
     (46, 'Red Bull Racing'),
     (47, 'Williams Racing'),
-    (48, 'Others');
+    (48, 'Other');
 
 INSERT INTO CATEGORY (category_id, category_name) VALUES
     (1, 'Civil cars'),
@@ -180,7 +180,7 @@ INSERT INTO CATEGORY (category_id, category_name) VALUES
     (7, 'Nascar'),
     (8, 'Rally'),
     (9, 'Touring'),
-    (10, 'Others');
+    (10, 'Other');
 
 INSERT INTO SCALE (scale_id, scale_name) VALUES
     (1, '1/8'),
@@ -189,7 +189,8 @@ INSERT INTO SCALE (scale_id, scale_name) VALUES
     (4, '1/24'),
     (5, '1/32'),
     (6, '1/43'),
-    (7, '1/64');
+    (7, '1/64'),
+    (8, 'Other');
 
 INSERT INTO ACCESSORY_CATEGORY (accessory_category_id, accessory_category_name) VALUES
     (1, 'Helmets'),
