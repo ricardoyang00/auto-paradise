@@ -18,8 +18,8 @@
     --background_dark: #000000;
     --orange_primary_dark: rgb(255, 128, 0);
     --orange_secondary_dark: orange;
-    --text_dark: black;
-    --text2_dark: white;
+    --text_dark: white;
+    --text2_dark: black;
     --separator_dark: #ccc;
     --icons_dark: white;
     --filter_background_dark: #f0f0f0;
@@ -30,7 +30,7 @@
     --tags_background_dark: #f0f0f0;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
     :root {
         --background: var(--background_dark);
         --orange_primary: var(--orange_primary_dark);
@@ -46,6 +46,56 @@
         --information_background: var(--information_background_dark);
         --tags_background: var(--tags_background_dark);
     }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background: #ffffff;
+        --orange_primary: rgb(255, 128, 0);
+        --orange_secondary: orange;
+        --text: black;
+        --text2: white;
+        --separator: #ccc;
+        --icons: #5b5b5b;
+        --filter_background: #f0f0f0;
+        --input_background: #f4f4f4;
+        --footer_background: #333;
+        --article_background: #fbfbfb;
+        --information_background: #f9f9f9;
+        --tags_background: #f0f0f0;
+    }
+}
+
+[color-scheme="dark"] {
+    --background: var(--background_dark);
+    --orange_primary: var(--orange_primary_dark);
+    --orange_secondary: var(--orange_secondary_dark);
+    --text: var(--text_dark);
+    --text2: var(--text2_dark);
+    --separator: var(--separator_dark);
+    --icons: var(--icons_dark);
+    --filter_background: var(--filter_background_dark);
+    --input_background: var(--input_background_dark);
+    --footer_background: var(--footer_background_dark);
+    --article_background: var(--article_background_dark);
+    --information_background: var(--information_background_dark);
+    --tags_background: var(--tags_background_dark);
+}
+
+[color-scheme="light"] {
+    --background: #ffffff;
+    --orange_primary: rgb(255, 128, 0);
+    --orange_secondary: orange;
+    --text: black;
+    --text2: white;
+    --separator: #ccc;
+    --icons: #5b5b5b;
+    --filter_background: #f0f0f0;
+    --input_background: #f4f4f4;
+    --footer_background: #333;
+    --article_background: #fbfbfb;
+    --information_background: #f9f9f9;
+    --tags_background: #f0f0f0;
 }
 
 body {
@@ -121,6 +171,23 @@ header {
             color: white;
             font-weight: 600;
         }
+    }
+
+    .theme {
+        margin-left: 20px;
+        background-color: var(--text);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        border: none;
+    }
+
+    .theme:is(:hover, :focus) {
+        background-color: var(--orange_primary);
+        opacity: 0.8;
     }
 }
 
