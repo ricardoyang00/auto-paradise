@@ -22,7 +22,7 @@
             <h2>Scale</h2>
             <ul>
                 <?php foreach($scales as $scale){ ?>
-                    <li><input type="checkbox" id="scale_<?= $scale->id ?>" name="scale" value="<?= $scale->id ?>"><label for="scale_<?= $scale->id ?>"><?= $scale->name ?></label></li>
+                    <li><input type="checkbox" id="scale_<?= $scale->id ?>" name="scale[]" value="<?= $scale->id ?>"><label for="scale_<?= $scale->id ?>"><?= $scale->name ?></label></li>
                 <?php } ?>
             </ul>
         </div>
@@ -30,7 +30,7 @@
             <h2>Category</h2>
             <ul>
                 <?php foreach($categories as $category){ ?>
-                    <li><input type="checkbox" id="category_<?= $category->id ?>" name="category" value="<?= $category->id ?>"><label for="category_<?= $category->id ?>"><?= $category->name ?></label></li>
+                    <li><input type="checkbox" id="category_<?= $category->id ?>" name="category[]" value="<?= $category->id ?>"><label for="category_<?= $category->id ?>"><?= $category->name ?></label></li>
                 <?php } ?>
             </ul>
         </div>
@@ -38,7 +38,7 @@
             <h2>Brand</h2>
             <ul>
                 <?php foreach($brands as $brand){ ?>
-                    <li><input type="checkbox" id="brand_<?= $brand->id ?>" name="brand" value="<?= $brand->id ?>"><label for="brand_<?= $brand->id ?>"><?= $brand->name ?></label></li>
+                    <li><input type="checkbox" id="brand_<?= $brand->id ?>" name="brand[]" value="<?= $brand->id ?>"><label for="brand_<?= $brand->id ?>"><?= $brand->name ?></label></li>
                 <?php } ?>
             </ul>
         </div>
@@ -47,10 +47,6 @@
 
 <section id="products">
 <?php
-    require_once(__DIR__ . '/../database/connection.db.php');
-    require_once(__DIR__ . '/../database/product.class.php');
-    $db = getDatabaseConnection();
-
     if(isset($_GET['search']) && !empty($_GET['search'])) {
         $searchQuery = $_GET['search'];
         $products = Product::getProductsByName($db, $searchQuery);
@@ -58,8 +54,8 @@
         $products = Product::getAllProducts($db);
     }
 
-    if (!empty($products)) { ?>
-        <?php foreach ($products as $product) {?>
+    if (!empty($products)) {
+        foreach ($products as $product) {?>
             <article>
                 <?php $url = "item.php?id=" . $product->id; ?>
                 <img src="../images/products/<?= $product->id ?>.jpg" alt="<?= $product->title ?>">
