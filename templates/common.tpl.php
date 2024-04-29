@@ -29,7 +29,7 @@
         <section class="sell-button">
             <a href="../pages/sell.php">Sell now</a>
         </section>
-        <button class="theme"></button>
+        <section class="theme"><i class="fa-solid theme-selector fa-sun"></i></section>
     </span>
 <?php } ?>
 
