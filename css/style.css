@@ -34,16 +34,28 @@
     --tags_background: #c1c1c1;
 }
 
+html {
+    min-height: 100vh;
+}
 body {
     padding-left: 15%;
     padding-right: 15%;
     font-family: "Roboto", sans-serif;
     background-color: var(--background);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
 
     a {
         color: var(--text);
         text-decoration: none;
     }
+
+    main {
+        flex-grow: 1;
+    }
+
 }
 
 header {
@@ -61,7 +73,6 @@ footer {
     width: 100%;
     text-align: center;
     padding: 5px 0;
-    margin-top: 50px;
 }
 
   
