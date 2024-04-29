@@ -61,6 +61,49 @@
         <main>
 <?php } ?>
 
+<?php function drawLoginForm() { ?>
+    <div class="loginRegister">
+    <form id="login-form" class="user-form" action="../actions/action_login.php" method="post">
+        <label for="loginUsername">Username</label>
+        <input type="text" id="loginUsername" name="loginUsername" required>
+            
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <input type="submit" value="Log in">
+        <div class="account-link">
+            Don't have an account? <a href="register.php">Sign up</a>
+        </div>
+    </form>
+    </div>
+<?php } ?>
+
+<?php function drawRegisterForm() { ?>
+    <div class="loginRegister">
+    <form id="register-form" class="user-form" action="../actions/action_register.php" method="post">
+        <label for="registerUsername">Username</label>
+        <input type="text" id="registerUsername" name="registerUsername" required>
+
+        <label for="registerName">Name</label>
+        <input type="text" id="registerName" name="registerName" required>
+    
+        <label for="registerPassword">Password</label>
+        <input type="password" id="registerPassword" name="registerPassword" required>
+    
+        <label for="registerPhoneNumber">Phone number</label>
+        <input type="text" id="registerPhoneNumber" name="registerPhoneNumber" required>
+
+        <label for="registerAddressId">Address</label>
+        <input type="text" id="registerAddressId" name="registerAddressId" required>
+
+        <input type="submit" value="Register">
+        <div class="account-link">
+            Already have an account? <a href="profile.php">Log in</a>
+        </div>
+    </form>
+    </div>
+<?php } ?>
+
 <?php function drawFooter() { ?>
         </main>
         <footer>
@@ -79,3 +122,4 @@
     <?php } ?>
     </section>
 <?php } ?>
+

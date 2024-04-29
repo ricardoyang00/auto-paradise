@@ -15,23 +15,6 @@
     
     drawHeader2();
     drawMessages($session);
-?>
-
-<div class="loginRegister">
-<form id="login-form" class="user-form" action="../actions/action_login.php" method="post">
-    <label for="loginUsername">Username</label>
-    <input type="text" id="loginUsername" name="loginUsername" required>
-            
-    <label for="loginPassword">Password</label>
-    <input type="password" id="loginPassword" name="loginPassword" required>
-
-    <input type="submit" value="Log in">
-    <div class="account-link">
-        Don't have an account? <a href="register.php">Sign up</a>
-    </div>
-</form>
-</div>
-
-<?php
+    drawLoginForm();
     drawFooter();
 ?>

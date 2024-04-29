@@ -14,7 +14,7 @@
     if ($user) {
         $session->setUsername($user->username);
         $session->addMessage('success', 'You have logged in!');
-        header('Location: /pages/index.php'); // temporary jump
+        header('Location: /pages/index.php');
         exit();
     } else {
         $session->addMessage('error', 'Wrong username or password!');
