@@ -83,6 +83,46 @@ class Product {
         }
 
         return $products;
+    }
+
+    public static function getFilteredProducts(PDO $db, array $filters): array {
+        $query = 'SELECT * FROM PRODUCT WHERE 1';
+    
+        $params = array();
+    
+        if (isset($filters['category'])) {
+            $query .= ' AND category IN (' . implode(',', array_fill(0, count($filters['category']), '?')) . ')';
+            $params = array_merge($params, $filters['category']);
+        }
+    
+        if (isset($filters['brand'])) {
+            $query .= ' AND brand IN (' . implode(',', array_fill(0, count($filters['brand']), '?')) . ')';
+            $params = array_merge($params, $filters['brand']);
+        }
+    
+        if (isset($filters['scale'])) {
+            $query .= ' AND scale IN (' . implode(',', array_fill(0, count($filters['scale']), '?')) . ')';
+            $params = array_merge($params, $filters['scale']);
+        }
+    
+        $stmt = $db->prepare($query);
+        $stmt->execute($params);
+    
+        $products = array();
+        while ($product = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $products[] = new Product(
+                $product['product_id'],
+                $product['category'],
+                $product['title'],
+                $product['description'],
+                $product['price'],
+                $product['seller_id'],
+                $product['brand'],
+                $product['scale']
+            );
+        }
+    
+        return $products;
     }    
 }
 ?>

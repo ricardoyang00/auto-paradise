@@ -11,6 +11,7 @@
         <link href="../css/style.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/0eb2febe39.js" crossorigin="anonymous"></script>
         <script src="../javascript/theme.js" defer></script>
+        <script src="../javascript/filter.js"></script>
     </head>
 <?php } ?>
 
