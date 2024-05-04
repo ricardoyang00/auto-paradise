@@ -669,9 +669,8 @@ footer {
     border: 1px solid var(--separator);
     border-radius: 5px;
     background-color: var(--input_background);
-    margin: 0 auto;
-    margin-top: 50px;
-    margin-bottom: 75px;
+    margin: auto;
+    margin-top: auto;
     color: var(--text);
 
     input[type="text"],
@@ -714,7 +713,13 @@ footer {
 
 /***********MESSAGES*************/
 #messages {
+    position: fixed;
     text-align: center;
+    z-index: 999;
+    left: 50%;
+    top: 160px;
+    transform: translateX(-50%);
+
     article {
         display: inline-block;
         border-radius: 5px;
