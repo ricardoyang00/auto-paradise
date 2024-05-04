@@ -26,7 +26,7 @@ CREATE TABLE USER (
     username VARCHAR(50) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(9) NOT NULL,
+    phone_number VARCHAR NOT NULL,
     address_id INT,
     FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
 );
