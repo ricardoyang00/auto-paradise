@@ -22,7 +22,6 @@ function setTheme(theme) {
     themeSelector.classList.remove('fa-solid', 'fa-regular');
     themeSelector.classList.remove('fa-moon', 'fa-sun');
     themeSelector.classList.add(theme === 'light' ? 'fa-regular' : 'fa-solid');
-    
     themeSelector.classList.add(theme === 'light' ? 'fa-sun' : 'fa-moon');
   }
 }
