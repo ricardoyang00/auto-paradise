@@ -23,7 +23,7 @@ class Product {
     }
 
     public static function getAllProducts(PDO $db) : array {
-        $stmt = $db->query('SELECT * FROM PRODUCT');
+        $stmt = $db->query('SELECT * FROM PRODUCT ORDER BY title ASC');
 
         $products = array();
         while ($product = $stmt->fetch()) {
@@ -124,5 +124,26 @@ class Product {
     
         return $products;
     }    
+
+    public function getProductImages(PDO $db): array {
+        $stmt = $db->prepare('SELECT image_url FROM PRODUCT_IMAGES WHERE product_id = ?');
+        $stmt->execute([$this->id]);
+
+        $images = array();
+        while ($image = $stmt->fetch()) {
+            $images[] = $image['image_url'];
+        }
+
+        return $images;
+    }
+
+    public function getProductThumbnail(PDO $db): string {
+        $stmt = $db->prepare('SELECT image_url FROM PRODUCT_IMAGES WHERE product_id = ? LIMIT 1');
+        $stmt->execute([$this->id]);
+
+        $image = $stmt->fetch();
+
+        return $image['image_url'];
+    }
 }
 ?>

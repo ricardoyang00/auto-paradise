@@ -244,16 +244,17 @@ INSERT INTO PRODUCT (product_id, category, title, description, price, seller_id,
     (10, 1, 'Tesla Model S', 'Description for Tesla Model S', 80.99, 'user10', 42, 5);
 
 INSERT INTO PRODUCT_IMAGES (image_id, product_id, image_url) VALUES
-    (1, 1, 'image_product1.jpg'),
-    (2, 2, 'image_product2.jpg'),
-    (3, 3, 'image_product3.jpg'),
-    (4, 4, 'image_product4.jpg'),
-    (5, 5, 'image_product5.jpg'),
-    (6, 6, 'image_product6.jpg'),
-    (7, 7, 'image_product7.jpg'),
-    (8, 8, 'image_product8.jpg'),
-    (9, 9, 'image_product9.jpg'),
-    (10, 10, 'image_product10.jpg');
+    (1, 1, '1.jpg'),
+    (2, 2, '2.jpg'),
+    (3, 3, '3.jpg'),
+    (4, 4, '4.jpg'),
+    (5, 5, '5.jpg'),
+    (6, 6, '6.jpg'),
+    (7, 7, '7.jpg'),
+    (8, 8, '8.jpg'),
+    (9, 9, '9.jpg'),
+    (10, 10, '10.jpg'),
+    (11, 4, '4_1.jpg');
 
 INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall_evaluation, platform_evaluation, comment) VALUES
     (1, 5, 5, 5, 5, 'Great transaction, highly recommended seller!'),

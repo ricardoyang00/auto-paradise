@@ -13,6 +13,7 @@
         <script src="../javascript/theme.js" defer></script>
         <script src="../javascript/filter.js"></script>
         <script src="../javascript/notification.js"></script>
+        <script src="../javascript/images.js" defer></script>
     </head>
 <?php } ?>
 

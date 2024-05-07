@@ -23,7 +23,8 @@
 <section id="item">
     <div class="container">
         <div class="image">
-            <img src="../images/products/<?=$product->id?>.jpg" alt="Product Image">
+            <?php $url = "item.php?id=" . $product->id; ?>
+            <img src=<?="../database/images/originals/". $product->getProductThumbnail($db);?> alt="Product Image">
         </div>
         <div class="title">
             <section id="tags">

@@ -20,8 +20,8 @@
   // Create folders if they don't exist
   if (!is_dir('../database/images')) mkdir('../database/images');
   if (!is_dir('../database/images/originals')) mkdir('../database/images/originals');
-  if (!is_dir('../database/images/thumbs_small')) mkdir('../database/images/thumbs_small');
-  if (!is_dir('../database/images/thumbs_medium')) mkdir('../database/images/thumbs_medium');
+  //if (!is_dir('../database/images/thumbs_small')) mkdir('../database/images/thumbs_small');
+  //if (!is_dir('../database/images/thumbs_medium')) mkdir('../database/images/thumbs_medium');
   
 
   // Check if the form was submitted
@@ -48,33 +48,33 @@
 
     // Generate filenames for original, small, and medium files
     $originalFileName = uniqid('image_') . '.jpg';
-    $smallFileName = uniqid('image_') . '.jpg';
-    $mediumFileName = uniqid('image_') . '.jpg';
+    //$smallFileName = uniqid('image_') . '.jpg';
+    //$mediumFileName = uniqid('image_') . '.jpg';
 
     // Save original file as jpeg (even if it came in a different format)
     $uploadDir = '../database/images/originals/';
     imagejpeg($original, $uploadDir . $originalFileName);
 
     // Create and save a small square thumbnail
-    $small = imagecreatetruecolor(200, 200);
-    $square = min(imagesx($original), imagesy($original));
-    imagecopyresized($small, $original, 0, 0, 0, 0, 200, 200, $square, $square);
-    $thumbSmallDir = '../database/images/thumbs_small/';
-    imagejpeg($small, $thumbSmallDir . $smallFileName);
+    //$small = imagecreatetruecolor(200, 200);
+    //$square = min(imagesx($original), imagesy($original));
+    //imagecopyresized($small, $original, 0, 0, 0, 0, 200, 200, $square, $square);
+    //$thumbSmallDir = '../database/images/thumbs_small/';
+    //imagejpeg($small, $thumbSmallDir . $smallFileName);
 
     // Calculate width and height of medium-sized image (max width: 400)
-    $mediumWidth = imagesx($original);
-    $mediumHeight = imagesy($original);
-    if ($mediumWidth > 400) {
-        $mediumWidth = 400;
-        $mediumHeight = (int) round($mediumHeight * ($mediumWidth / imagesx($original)));
-    }
+    //$mediumWidth = imagesx($original);
+    //$mediumHeight = imagesy($original);
+    //if ($mediumWidth > 400) {
+    //    $mediumWidth = 400;
+    //    $mediumHeight = (int) round($mediumHeight * ($mediumWidth / imagesx($original)));
+    //}
 
     // Create and save a medium image
-    $medium = imagecreatetruecolor($mediumWidth, $mediumHeight);
-    imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumWidth, $mediumHeight, imagesx($original), imagesy($original));
-    $thumbMediumDir = '../database/images/thumbs_medium/';
-    imagejpeg($medium, $thumbMediumDir . $mediumFileName);
+    //$medium = imagecreatetruecolor($mediumWidth, $mediumHeight);
+    //imagecopyresized($medium, $original, 0, 0, 0, 0, $mediumWidth, $mediumHeight, imagesx($original), imagesy($original));
+    //$thumbMediumDir = '../database/images/thumbs_medium/';
+    //imagejpeg($medium, $thumbMediumDir . $mediumFileName);
 
 
     // Get seller_id from session
