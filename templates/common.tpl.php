@@ -110,23 +110,26 @@
     <h1 id="profile-heading">Profile</h1>
 
 <div class="profile">
-    <div class="user-label">Username:</div>
+    <a href="../actions/action_edit_profile.php" class="edit-icon">
+        <i class="fas fa-pen"></i>
+    </a>
+    <div class="user-label">Username</div>
     <div class="data-container">
         <span id="username"><?=$user->username?></span>
     </div>
 
-    <div class="user-label">Name:</div>
+    <div class="user-label">Name</div>
     <div class="data-container">
         <span id="name"><?=$user->name?></span>
     </div>
 
-    <div class="user-label">Phone Number:</div>
+    <div class="user-label">Phone Number</div>
     <div class="data-container">
         <span id="phoneNumber"><?=$user->phoneNumber?></span>
     </div>
 
     <?php if ($address !== null) { ?>
-        <div class="user-label">Address:</div>
+        <div class="user-label">Address</div>
         <div class="data-container">
             <span id="address"><?=$address->address?></span>
             <span id="postalCode"><?=$address->postalCode?></span>,

@@ -717,14 +717,14 @@ footer {
 }
 
 .profile {
+    position: relative;
     width: 80%;
     background-color: white;
     margin: 0 auto;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    
+
     .user-label {
-        font-size: 1.2em;
         color: #333;
         font-weight: bold;
         margin-bottom: 10px;
@@ -740,14 +740,16 @@ footer {
     .data {
         font-size: 1.4em;
     }
+}
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
+.edit-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #333;
 
-    li {
-        margin-bottom: 10px;
+    :hover {
+        color: var(--orange_primary);
     }
 }
 
