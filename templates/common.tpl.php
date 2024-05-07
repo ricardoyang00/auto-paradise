@@ -95,8 +95,17 @@
         <label for="registerPhoneNumber">Phone number</label>
         <input type="text" id="registerPhoneNumber" name="registerPhoneNumber" required>
 
-        <label for="registerAddressId">Address</label>
-        <input type="text" id="registerAddressId" name="registerAddressId" required>
+        <label for="registerAddress">Address</label>
+        <input type="text" id="registerAddress" name="registerAddress" required>
+
+        <label for="registerPostalCode">Postal Code</label>
+        <input type="text" id="registerPostalCode" name="registerPostalCode" required>
+
+        <label for="registerCity">City</label>
+        <input type="text" id="registerCity" name="registerCity" required>
+
+        <label for="registerCountry">Country</label>
+        <input type="text" id="registerCountry" name="registerCountry" required>
 
         <input type="submit" value="Register">
         <div class="account-link">
@@ -183,9 +192,6 @@
         </form>
     <?php }
 } ?>
-
-<?php function drawLogoutButton() { ?>
-<?php } ?>
 
 <?php function drawFooter() { ?>
         </main>

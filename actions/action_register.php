@@ -14,9 +14,13 @@
         $name = $_POST['registerName'] ?? '';
         $password = $_POST['registerPassword'] ?? '';
         $phoneNumber = $_POST['registerPhoneNumber'] ?? '';
-        $addressId = (int)$_POST['registerAddressId'] ?? 0;
+        $address = $_POST['registerAddress'] ?? '';
+        $postalCode = $_POST['registerPostalCode'] ?? '';
+        $city = $_POST['registerCity'] ?? '';
+        $country = $_POST['registerCountry'] ?? '';
 
-        if (empty($username) || empty($name) || empty($password) || empty($phoneNumber) || empty($addressId)) {
+        if (empty($username) || empty($name) || empty($password) || empty($phoneNumber) || 
+            empty($address) || empty($postalCode) || empty($city) || empty($country)) {
             $session->addMessage('error', 'All fields are required!');
             header('Location: /pages/register.php');
             exit();
@@ -30,12 +34,19 @@
             exit();
         }
 
+        $addressId = Address::getAddressByDetails($db, $postalCode, $address, $city, $country);
+        if ($addressId === null) {
+            $addressObj = new Address(0, $postalCode, $address, $city, $country);
+            $addressId = $addressObj->saveToAddressTable($db);
+        }
+
         $options = ['cost' => 12];
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT, $options);
 
         $user = new User($username, $name, $hashedPassword, $phoneNumber, $addressId);
 
         if ($user->saveToDatabase($db)) {
+            error_log("Saved Address ID: " . $user->addressId);
             $session->addMessage('success', 'Registration successful! You can now log in.');
             header('Location: /pages/login.php');
             exit();

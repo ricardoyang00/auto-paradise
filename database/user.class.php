@@ -16,6 +16,20 @@ class Address {
         $this->country = $country;
     }
 
+    public function saveToAddressTable(PDO $db): int {
+        $stmt = $db->prepare('SELECT MAX(address_id) AS max_id FROM ADDRESS');
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastId = $row['max_id'];
+
+        $newId = $lastId + 1;
+
+        $stmt = $db->prepare('INSERT INTO ADDRESS (address_id, postal_code, address, city, country) VALUES (?, ?, ?, ?, ?)');
+        $stmt->execute([$newId, $this->postalCode, $this->address, $this->city, $this->country]);
+
+        return (int)$db->lastInsertId();
+    }
+
     public static function getAddressById(PDO $db, int $addressId): ?Address {
         $stmt = $db->prepare('SELECT * FROM ADDRESS WHERE address_id = ?');
         $stmt->execute([$addressId]);
@@ -23,6 +37,7 @@ class Address {
         $address = $stmt->fetch();
 
         if (!$address) {
+            error_log("No address found with ID: " . $addressId);
             return null;
         }
 
@@ -33,6 +48,15 @@ class Address {
             $address['city'],
             $address['country']
         );
+    }
+
+    public static function getAddressByDetails(PDO $db, string $postalCode, string $address, string $city, string $country): ?int {
+        $stmt = $db->prepare('SELECT address_id FROM ADDRESS WHERE postal_code = ? AND address = ? AND city = ? AND country = ?');
+        $stmt->execute([$postalCode, $address, $city, $country]);
+
+        $result = $stmt->fetch();
+
+        return $result ? $result['address_id'] : null;
     }
 }
 

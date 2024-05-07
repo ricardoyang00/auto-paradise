@@ -18,10 +18,7 @@
     $db = getDatabaseConnection();
 
     $user = User::getUserByUsername($db, $session->getUsername());
-    $address = $user->getUserAddress($db);
-
+    $address = Address::getAddressById($db, $user->addressId);
     drawProfile($user, $address, false);
-    drawLogoutButton();
-
     drawFooter();
 ?>
