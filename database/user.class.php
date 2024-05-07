@@ -16,6 +16,20 @@ class Address {
         $this->country = $country;
     }
 
+    public function saveToAddressTable(PDO $db): int {
+        $stmt = $db->prepare('SELECT MAX(address_id) AS max_id FROM ADDRESS');
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastId = $row['max_id'];
+
+        $newId = $lastId + 1;
+
+        $stmt = $db->prepare('INSERT INTO ADDRESS (address_id, postal_code, address, city, country) VALUES (?, ?, ?, ?, ?)');
+        $stmt->execute([$newId, $this->postalCode, $this->address, $this->city, $this->country]);
+
+        return (int)$db->lastInsertId();
+    }
+
     public static function getAddressById(PDO $db, int $addressId): ?Address {
         $stmt = $db->prepare('SELECT * FROM ADDRESS WHERE address_id = ?');
         $stmt->execute([$addressId]);
@@ -23,6 +37,7 @@ class Address {
         $address = $stmt->fetch();
 
         if (!$address) {
+            error_log("No address found with ID: " . $addressId);
             return null;
         }
 
@@ -33,6 +48,20 @@ class Address {
             $address['city'],
             $address['country']
         );
+    }
+
+    public static function getAddressByDetails(PDO $db, string $postalCode, string $address, string $city, string $country): ?int {
+        $postalCode = trim($postalCode);
+        $address = trim($address);
+        $city = trim($city);
+        $country = trim($country);
+
+        $stmt = $db->prepare('SELECT address_id FROM ADDRESS WHERE LOWER(postal_code) = LOWER(?) AND LOWER(address) = LOWER(?) AND LOWER(city) = LOWER(?) AND LOWER(country) = LOWER(?)');
+        $stmt->execute([$postalCode, $address, $city, $country]);
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $result ? $result['address_id'] : null;
     }
 }
 
@@ -67,38 +96,60 @@ class User {
             return null;
         }
     
-        $userInstance = new User(
+        return new User(
             $user['username'],
             $user['name'],
             $user['password'],
             $user['phone_number'],
             $user['address_id']
         );
-    
-        $userInstance->password = $user['password'];
-    
-        return $userInstance;
     }
 
     public static function getUserWithPassword(PDO $db, string $username, string $password): ?User {
-        $stmt = $db->prepare('SELECT * FROM USER WHERE username = ? AND password = ?');
-        $stmt->execute([strtolower($username), sha1($password)]);
+        $stmt = $db->prepare('SELECT * FROM USER WHERE username = ?');
+        $stmt->execute([strtolower($username)]);
 
         if ($user = $stmt->fetch()) {
-            return new User(
-                $user['username'],
-                $user['name'],
-                $user['password'],
-                $user['phone_number'],
-                $user['address_id']
-            );
-        } else return null;
+            if (password_verify($password, $user['password'])) {
+                return new User(
+                    $user['username'],
+                    $user['name'],
+                    $user['password'],
+                    $user['phone_number'],
+                    $user['address_id']
+                );
+            }
+        }
+    
+        return null;
     }
 
     public function getUserAddress(PDO $db): ?Address {
         return Address::getAddressById($db, $this->addressId);
     }
     
+    public function updateProfile(PDO $db): void {
+        $fields = [];
+        $values = [];
+
+        if ($this->name !== null) {
+            $fields[] = 'name = ?';
+            $values[] = $this->name;
+        }
+        if ($this->phoneNumber !== null) {
+            $fields[] = 'phone_number = ?';
+            $values[] = $this->phoneNumber;
+        }
+        if ($this->addressId !== null) {
+            $fields[] = 'address_id = ?';
+            $values[] = $this->addressId;
+        }
+
+        $values[] = $this->username;
+
+        $stmt = $db->prepare('UPDATE USER SET ' . implode(', ', $fields) . ' WHERE username = ?');
+        $stmt->execute($values);
+    }
 }
 
 ?>

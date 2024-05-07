@@ -9,16 +9,27 @@
 
     $db = getDatabaseConnection();
 
-    $user = User::getUserWithPassword($db, $_POST['loginUsername'], $_POST['loginPassword']);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $username = $_POST['loginUsername'] ?? '';
+        $password = $_POST['loginPassword'] ?? '';
 
-    if ($user) {
-        $session->setUsername($user->username);
-        $session->addMessage('success', 'You have logged in!');
-        header('Location: /pages/index.php');
-        exit();
-    } else {
-        $session->addMessage('error', 'Wrong username or password!');
-        header('Location: /pages/login.php');
-        exit();
+        if (empty($username) || empty($password)) {
+            $session->addMessage('error', 'Username and password are required!');
+            header('Location: /pages/login.php');
+            exit();
+        }
+
+        $user = User::getUserWithPassword($db, $username, $password);
+
+        if ($user) {
+            $session->setUsername($user->username);
+            $session->addMessage('success', 'You have logged in!');
+            header('Location: /pages/index.php');
+            exit();
+        } else {
+            $session->addMessage('error', 'Wrong username or password!');
+            header('Location: /pages/login.php');
+            exit();
+        }
     }
 ?>
