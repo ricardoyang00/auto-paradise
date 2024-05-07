@@ -118,6 +118,7 @@
 <?php function drawProfile($user, $address, $isEditable = false) { 
     if ($isEditable) { ?>
         <h1 id="profile-heading">Profile (Editing)</h1>
+        <form action="../actions/action_update_profile.php" method="post">
     <?php } else { ?>
         <h1 id="profile-heading">Profile</h1>    
     <?php } ?>
@@ -185,7 +186,8 @@
         <?php } ?>
     </div>
     <?php if ($isEditable) { ?>
-        <button type="submit" class="profile-button" id="save">Save</button>
+            <button type="submit" class="profile-button" id="save">Save</button>
+        </form>
     <?php } else { ?>
         <form action="../actions/action_logout.php" method="post">
             <button type="submit" class="profile-button" id="logout">Logout</button>
@@ -212,3 +214,30 @@
     </section>
 <?php } ?>
 
+
+<!-- DEBUG FUNCTIONS -->
+
+<?php function printAllUsers(PDO $db, string $prefix): void {
+        $stmt = $db->prepare('SELECT * FROM USER');
+        $stmt->execute();
+    
+        $output = $prefix . PHP_EOL;
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $output .= 'Username: ' . $row['username'] . ', Name: ' . $row['name'] . ', Phone Number: ' . $row['phone_number'] . ', Address ID: ' . $row['address_id'] . PHP_EOL;
+        }
+    
+        $filePath = __DIR__ . '/output.txt';
+        file_put_contents($filePath, $output, FILE_APPEND);
+    }
+
+    function printAllAddresses(PDO $db, string $message): void {
+        $stmt = $db->query('SELECT * FROM ADDRESS');
+        $addresses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $filePath = __DIR__ . '/output.txt';
+        file_put_contents($filePath, $message . PHP_EOL, FILE_APPEND);
+        foreach ($addresses as $address) {
+            file_put_contents($filePath, "Address ID: " . $address['address_id'] . ", Postal Code: " . $address['postal_code'] . ", Address: " . $address['address'] . ", City: " . $address['city'] . ", Country: " . $address['country'] . PHP_EOL, FILE_APPEND);
+        }
+    }
+?>

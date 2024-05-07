@@ -51,11 +51,16 @@ class Address {
     }
 
     public static function getAddressByDetails(PDO $db, string $postalCode, string $address, string $city, string $country): ?int {
-        $stmt = $db->prepare('SELECT address_id FROM ADDRESS WHERE postal_code = ? AND address = ? AND city = ? AND country = ?');
+        $postalCode = trim($postalCode);
+        $address = trim($address);
+        $city = trim($city);
+        $country = trim($country);
+
+        $stmt = $db->prepare('SELECT address_id FROM ADDRESS WHERE LOWER(postal_code) = LOWER(?) AND LOWER(address) = LOWER(?) AND LOWER(city) = LOWER(?) AND LOWER(country) = LOWER(?)');
         $stmt->execute([$postalCode, $address, $city, $country]);
-
-        $result = $stmt->fetch();
-
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
         return $result ? $result['address_id'] : null;
     }
 }
@@ -123,6 +128,28 @@ class User {
         return Address::getAddressById($db, $this->addressId);
     }
     
+    public function updateProfile(PDO $db): void {
+        $fields = [];
+        $values = [];
+
+        if ($this->name !== null) {
+            $fields[] = 'name = ?';
+            $values[] = $this->name;
+        }
+        if ($this->phoneNumber !== null) {
+            $fields[] = 'phone_number = ?';
+            $values[] = $this->phoneNumber;
+        }
+        if ($this->addressId !== null) {
+            $fields[] = 'address_id = ?';
+            $values[] = $this->addressId;
+        }
+
+        $values[] = $this->username;
+
+        $stmt = $db->prepare('UPDATE USER SET ' . implode(', ', $fields) . ' WHERE username = ?');
+        $stmt->execute($values);
+    }
 }
 
 ?>

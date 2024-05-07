@@ -46,7 +46,6 @@
         $user = new User($username, $name, $hashedPassword, $phoneNumber, $addressId);
 
         if ($user->saveToDatabase($db)) {
-            error_log("Saved Address ID: " . $user->addressId);
             $session->addMessage('success', 'Registration successful! You can now log in.');
             header('Location: /pages/login.php');
             exit();

@@ -14,11 +14,13 @@
     require_once(__DIR__ . '/../templates/common.tpl.php');
 
     drawHeader2();
+    drawMessages($session);
 
     $db = getDatabaseConnection();
-
+    
     $user = User::getUserByUsername($db, $session->getUsername());
     $address = Address::getAddressById($db, $user->addressId);
+    
     drawProfile($user, $address, false);
     drawFooter();
 ?>
