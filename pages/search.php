@@ -70,7 +70,9 @@
                 <h1><?= $product->title ?></h1>
             </a>
             <a class="price"><p>€<?= $product->price ?></p></a>
-            <button class="add-wishlist">Add to Wishlist</button>
+            <?php $product_id = $product->id; ?>
+            <?php $product_id = $product->id; ?>
+            <button class="add-wishlist" onclick="addToWishlist(<?= $product_id ?>)">Add to Wishlist</button>
         </article>
         <?php } ?>
     <?php } else { ?>

@@ -100,7 +100,7 @@ class User {
     }
 
     public function getUserWishList(PDO $db): array {
-        $stmt = $db->prepare('SELECT * FROM WISHLIST WHERE username = ?');
+        $stmt = $db->prepare('SELECT * FROM WISHLIST WHERE user_id = ?');
         $stmt->execute([$this->username]);
 
         $wishList = array();

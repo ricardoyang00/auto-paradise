@@ -14,6 +14,7 @@
         <script src="../javascript/filter.js"></script>
         <script src="../javascript/notification.js"></script>
         <script src="../javascript/images.js" defer></script>
+        <script src="../javascript/wishlist.js" defer></script>
     </head>
 <?php } ?>
 

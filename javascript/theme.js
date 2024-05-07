@@ -25,3 +25,19 @@ function setTheme(theme) {
     themeSelector.classList.add(theme === 'light' ? 'fa-sun' : 'fa-moon');
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const heartIcon = document.querySelector('.fa-heart');
+
+  heartIcon.addEventListener('mouseenter', function() {
+      heartIcon.classList.remove('fa-regular');
+      heartIcon.classList.add('fa-solid');
+      heartIcon.style.color = 'red';
+  });
+
+  heartIcon.addEventListener('mouseleave', function() {
+      heartIcon.classList.remove('fa-solid');
+      heartIcon.classList.add('fa-regular');
+      heartIcon.style.color = '';
+  });
+});
