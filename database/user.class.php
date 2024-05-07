@@ -98,6 +98,23 @@ class User {
     public function getUserAddress(PDO $db): ?Address {
         return Address::getAddressById($db, $this->addressId);
     }
+
+    public function getUserWishList(PDO $db): array {
+        $stmt = $db->prepare('SELECT * FROM WISHLIST WHERE username = ?');
+        $stmt->execute([$this->username]);
+
+        $wishList = array();
+        while ($product = $stmt->fetch()) {
+            $wishList[] = Product::getProductById($db, $product['product_id']);
+        }
+
+        return $wishList;
+    }
+
+    public function addToWishList(PDO $db, int $productId): bool {
+        $stmt = $db->prepare('INSERT INTO WISHLIST (username, product_id) VALUES (?, ?)');
+        return $stmt->execute([$this->username, $productId]);
+    }
     
 }
 
