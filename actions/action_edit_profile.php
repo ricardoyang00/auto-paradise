@@ -20,8 +20,6 @@
     $user = User::getUserByUsername($db, $session->getUsername());
     $address = $user->getUserAddress($db);
 
-    drawProfile($user, $address, false);
-    drawLogoutButton();
-
+    drawProfile($user, $address, true);
     drawFooter();
 ?>

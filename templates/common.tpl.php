@@ -106,44 +106,85 @@
     </div>
 <?php } ?>
 
-<?php function drawProfile($user, $address) { ?>
-    <h1 id="profile-heading">Profile</h1>
-
-<div class="profile">
-    <a href="../actions/action_edit_profile.php" class="edit-icon">
-        <i class="fas fa-pen"></i>
-    </a>
-    <div class="user-label">Username</div>
-    <div class="data-container">
-        <span id="username"><?=$user->username?></span>
-    </div>
-
-    <div class="user-label">Name</div>
-    <div class="data-container">
-        <span id="name"><?=$user->name?></span>
-    </div>
-
-    <div class="user-label">Phone Number</div>
-    <div class="data-container">
-        <span id="phoneNumber"><?=$user->phoneNumber?></span>
-    </div>
-
-    <?php if ($address !== null) { ?>
-        <div class="user-label">Address</div>
-        <div class="data-container">
-            <span id="address"><?=$address->address?></span>
-            <span id="postalCode"><?=$address->postalCode?></span>,
-            <span id="city"><?=$address->city?></span>,
-            <span id="country"><?=$address->country?></span>
-        </div>
+<?php function drawProfile($user, $address, $isEditable = false) { 
+    if ($isEditable) { ?>
+        <h1 id="profile-heading">Profile (Editing)</h1>
+    <?php } else { ?>
+        <h1 id="profile-heading">Profile</h1>    
     <?php } ?>
+
+    <div class="profile">
+        <?php if (!$isEditable) { ?>
+            <a href="../actions/action_edit_profile.php" class="edit-icon">
+                <i class="fas fa-pen"></i>
+            </a>
+        <?php } ?>
+
+        <div class="user-label">Username</div>
+        <div class="data-container">
+            <span id="username"><?=$user->username?></span>
+        </div>
+
+        <div class="user-label">Name</div>
+        <div class="data-container">
+            <?php if ($isEditable) { ?>
+                <input type="text" id="name" name="name" value="<?=$user->name?>">
+            <?php } else { ?>
+                <span id="name"><?=$user->name?></span>
+            <?php } ?>
+        </div>
+
+        <div class="user-label">Phone Number</div>
+        <div class="data-container">
+        <?php if ($isEditable) { ?>
+                <input type="text" id="phoneNumber" name="phoneNumber" value="<?=$user->phoneNumber?>">
+            <?php } else { ?>
+                <span id="phoneNumber"><?=$user->phoneNumber?></span>
+            <?php } ?>
+        </div>
+
+        <?php if ($address !== null) { ?>
+            <div class="user-label">Address</div>
+            <div class="data-container">
+                <?php if ($isEditable) { ?>
+                    <input type="text" id="address" name="address" value="<?=$address->address?>">
+                <?php } else { ?>
+                    <span id="address"><?=$address->address?></span>
+                    <span id="postalCode"><?=$address->postalCode?></span>,
+                    <span id="city"><?=$address->city?></span>,
+                    <span id="country"><?=$address->country?></span>
+                <?php } ?>
+            </div>
+            
+            <?php if ($isEditable) { ?>
+                <div class="user-label">Postal Code</div>
+                <div class="data-container">
+                    <input type="text" id="postalCode" name="postalCode" value="<?=$address->postalCode?>">
+                </div>
+
+                <div class="user-label">City</div>
+                <div class="data-container">
+                    <input type="text" id="city" name="city" value="<?=$address->city?>">
+                </div>
+
+                <div class="user-label">Country</div>
+                <div class="data-container">
+                    <input type="text" id="country" name="country" value="<?=$address->country?>">
+                </div>
+            <?php } ?>
+
+        <?php } ?>
     </div>
-<?php } ?>
+    <?php if ($isEditable) { ?>
+        <button type="submit" class="profile-button" id="save">Save</button>
+    <?php } else { ?>
+        <form action="../actions/action_logout.php" method="post">
+            <button type="submit" class="profile-button" id="logout">Logout</button>
+        </form>
+    <?php }
+} ?>
 
 <?php function drawLogoutButton() { ?>
-    <form action="../actions/action_logout.php" method="post">
-        <button type="submit" class="logout-button">Logout</button>
-    </form>
 <?php } ?>
 
 <?php function drawFooter() { ?>

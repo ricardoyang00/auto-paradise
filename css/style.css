@@ -742,6 +742,34 @@ footer {
     }
 }
 
+.profile-button {
+    display: block;
+    width: 100px;
+    height: 30px;
+    margin: 20px auto;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#logout {
+    background-color: #f44336;
+
+    :hover {
+        background-color: #da190b;
+    }
+}
+
+#save {
+    background-color: #4CAF50;
+    
+    :hover {
+        background-color: #45a049;
+    }
+}
+
 .edit-icon {
     position: absolute;
     top: 10px;
@@ -751,27 +779,6 @@ footer {
     :hover {
         color: var(--orange_primary);
     }
-}
-
-.address-container span {
-    margin-right: 5px;
-}
-
-.logout-button {
-    display: block;
-    width: 100px;
-    height: 30px;
-    margin: 20px auto;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-}
-
-.logout-button:hover {
-    background-color: #da190b;
 }
 
 /********************************/
