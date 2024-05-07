@@ -106,6 +106,43 @@
     </div>
 <?php } ?>
 
+<?php function drawProfile($user, $address) { ?>
+    <h1 id="profile-heading">Profile</h1>
+
+<div class="profile">
+    <div class="user-label">Username:</div>
+    <div class="data-container">
+        <span id="username"><?=$user->username?></span>
+    </div>
+
+    <div class="user-label">Name:</div>
+    <div class="data-container">
+        <span id="name"><?=$user->name?></span>
+    </div>
+
+    <div class="user-label">Phone Number:</div>
+    <div class="data-container">
+        <span id="phoneNumber"><?=$user->phoneNumber?></span>
+    </div>
+
+    <?php if ($address !== null) { ?>
+        <div class="user-label">Address:</div>
+        <div class="data-container">
+            <span id="address"><?=$address->address?></span>
+            <span id="postalCode"><?=$address->postalCode?></span>,
+            <span id="city"><?=$address->city?></span>,
+            <span id="country"><?=$address->country?></span>
+        </div>
+    <?php } ?>
+    </div>
+<?php } ?>
+
+<?php function drawLogoutButton() { ?>
+    <form action="../actions/action_logout.php" method="post">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
+<?php } ?>
+
 <?php function drawFooter() { ?>
         </main>
         <footer>

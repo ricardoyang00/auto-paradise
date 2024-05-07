@@ -709,6 +709,69 @@ footer {
         color: rgb(0, 132, 255);
     }
 }
+
+#profile-heading {
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+}
+
+.profile {
+    width: 80%;
+    background-color: white;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    
+    .user-label {
+        font-size: 1.2em;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    
+    .data-container {
+        background-color: #f9f9f9;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    
+    .data {
+        font-size: 1.4em;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+}
+
+.address-container span {
+    margin-right: 5px;
+}
+
+.logout-button {
+    display: block;
+    width: 100px;
+    height: 30px;
+    margin: 20px auto;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.logout-button:hover {
+    background-color: #da190b;
+}
+
 /********************************/
 
 /***********MESSAGES*************/

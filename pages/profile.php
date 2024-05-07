@@ -18,14 +18,10 @@
     $db = getDatabaseConnection();
 
     $user = User::getUserByUsername($db, $session->getUsername());
-?>
+    $address = $user->getUserAddress($db);
 
-<h1>Profile page to do</h1>
-
-<form action="/actions/action_logout.php" method="post">
-    <button type="submit">Logout</button>
-</form>
-
-<?php
+    drawProfile($user, $address);
+    drawLogoutButton();
+    
     drawFooter();
 ?>
