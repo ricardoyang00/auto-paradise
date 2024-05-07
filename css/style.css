@@ -280,8 +280,47 @@ footer {
         margin: 0 20px;
     }
 
-    button[type="upload"]:hover {
+    #image::-webkit-file-upload-button {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
 
+    #image-preview {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        justify-content: flex-end;
+
+        img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .upload-btn {
+        background-color: var(--text);
+        color: var(--text2);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: auto;
+        text-align: center;
+    }
+
+    .upload-btn:hover {
+        background-color: var(--orange_primary);
+        color: white;
     }
 }
 
@@ -440,6 +479,7 @@ footer {
     grid-gap: 20px;
 
     article {
+        height: 360px;
         display: grid;
         grid-template-rows: 1fr auto auto auto;
 
@@ -551,8 +591,9 @@ footer {
         grid-template-rows: 1fr;
         grid-gap: 2em;
     }
-    
+
     .image {
+        position: relative;
         grid-column: 1;
         grid-row: 1;
         background-color: var(--input_background);
@@ -563,10 +604,31 @@ footer {
         align-items: center;
         display: flex;
 
+
         img {
             max-width: 100%;
             height: auto;
-            border-radius: 5px;
+            border-radius: 5px; 
+        }
+
+        .carousel-prev,
+        .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1;
+        }
+    
+        .carousel-prev {
+            left: 0;
+        }
+    
+        .carousel-next {
+            right: 0;
         }
     }    
     
