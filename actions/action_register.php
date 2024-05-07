@@ -30,7 +30,8 @@
             exit();
         }
 
-        $hashedPassword = sha1($password);
+        $options = ['cost' => 12];
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT, $options);
 
         $user = new User($username, $name, $hashedPassword, $phoneNumber, $addressId);
 

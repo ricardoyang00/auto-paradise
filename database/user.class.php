@@ -67,32 +67,32 @@ class User {
             return null;
         }
     
-        $userInstance = new User(
+        return new User(
             $user['username'],
             $user['name'],
             $user['password'],
             $user['phone_number'],
             $user['address_id']
         );
-    
-        $userInstance->password = $user['password'];
-    
-        return $userInstance;
     }
 
     public static function getUserWithPassword(PDO $db, string $username, string $password): ?User {
-        $stmt = $db->prepare('SELECT * FROM USER WHERE username = ? AND password = ?');
-        $stmt->execute([strtolower($username), sha1($password)]);
+        $stmt = $db->prepare('SELECT * FROM USER WHERE username = ?');
+        $stmt->execute([strtolower($username)]);
 
         if ($user = $stmt->fetch()) {
-            return new User(
-                $user['username'],
-                $user['name'],
-                $user['password'],
-                $user['phone_number'],
-                $user['address_id']
-            );
-        } else return null;
+            if (password_verify($password, $user['password'])) {
+                return new User(
+                    $user['username'],
+                    $user['name'],
+                    $user['password'],
+                    $user['phone_number'],
+                    $user['address_id']
+                );
+            }
+        }
+    
+        return null;
     }
 
     public function getUserAddress(PDO $db): ?Address {
