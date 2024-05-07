@@ -23,7 +23,7 @@ class Product {
     }
 
     public static function getAllProducts(PDO $db) : array {
-        $stmt = $db->query('SELECT * FROM PRODUCT ORDER BY title ASC');
+        $stmt = $db->query('SELECT * FROM PRODUCT ORDER BY LOWER(title) ASC');
 
         $products = array();
         while ($product = $stmt->fetch()) {

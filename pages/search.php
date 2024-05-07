@@ -56,22 +56,22 @@
 
     if (!empty($products)) {
         foreach ($products as $product) {?>
-            <article>
-                <?php 
-                    $url = "item.php?id=" . $product->id; 
-                    $product_images = $product->getProductImages($db);
-                    $product_thumb_url = "../database/images/originals/" . $product_images[0];
-                    $second_product_thumb_url = isset($product_images[1]) ? "../database/images/originals/" . $product_images[1] : null;
-                ?>
-                <img src="<?= $product_thumb_url ?>" alt="<?= $product->title ?>"
-                    onmouseover="changeImage(this, '<?= $second_product_thumb_url ?>')"
-                    onmouseout="resetImage(this, '<?= $product_thumb_url ?>')">
-                <a href="<?= $url ?>">
-                    <h1><?= $product->title ?></h1>
-                </a>
-                <a class="price"><p>€<?= $product->price ?></p></a>
-                <button class="add-wishlist">Add to Wishlist</button>
-            </article>
+        <article>
+            <?php 
+                $url = "item.php?id=" . $product->id; 
+                $product_images = $product->getProductImages($db);
+                $product_thumb_url = "../database/images/" . $product_images[0];
+                $second_product_thumb_url = isset($product_images[1]) ? "../database/images/" . $product_images[1] : null;
+            ?>
+            <img src="<?= $product_thumb_url ?>" alt="<?= $product->title ?>"
+                onmouseover="changeImage(this, '<?= $second_product_thumb_url ?>')"
+                onmouseout="resetImage(this, '<?= $product_thumb_url ?>')">
+            <a href="<?= $url ?>">
+                <h1><?= $product->title ?></h1>
+            </a>
+            <a class="price"><p>€<?= $product->price ?></p></a>
+            <button class="add-wishlist">Add to Wishlist</button>
+        </article>
         <?php } ?>
     <?php } else { ?>
         <section id="no-results">
