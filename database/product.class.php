@@ -149,5 +149,39 @@ class Product {
 
         return $image ? $image['image_url'] : 'default.png';
     }
+
+    public static function getUserWishList(PDO $db, $username): array {
+        $stmt = $db->prepare('SELECT * FROM WISHLIST WHERE user_id = ?');
+        $stmt->execute([$username]);
+
+        $wishList = array();
+        while ($product = $stmt->fetch()) {
+            $wishList[] = Product::getProductById($db, $product['product_id']);
+        }
+
+        return $wishList;
+    }
+
+    public function addToWishlist(PDO $db, $username): bool {
+        $stmt = $db->prepare('SELECT COUNT(*) FROM WISHLIST WHERE user_id = ? AND product_id = ?');
+        $stmt->execute([$username, $this->id]);
+        $count = $stmt->fetchColumn();
+    
+        if ($count > 0) {
+            return false;
+        }
+    
+        $stmt = $db->prepare('INSERT INTO WISHLIST (user_id, product_id) VALUES (?, ?)');
+        return $stmt->execute([$username, $this->id]);
+    }
+
+    public function removeFromWishlist(PDO $db, $username): bool {
+        $stmt = $db->prepare('DELETE FROM WISHLIST WHERE user_id = ? AND product_id = ?');
+        $success = $stmt->execute([$username, $this->id]);
+    
+        // If the deletion was successful or the product was not in the wishlist to begin with, return true
+        return $success || $stmt->rowCount() == 0;
+    }
+    
 }
 ?>

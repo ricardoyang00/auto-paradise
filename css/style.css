@@ -399,7 +399,7 @@ footer {
         img {
             width: auto;
             border-radius: 5px;
-            max-width: 100%;
+            max-width: 150px;
             max-height: 150px;
             justify-self: center;
         }
@@ -407,7 +407,7 @@ footer {
         #product-information {
             padding: 0 20px;
             display: grid;
-            grid-template-rows: auto 1fr auto;
+            grid-template-rows: auto 1fr;
             text-align: start;
 
             h1 {
@@ -419,20 +419,6 @@ footer {
                 opacity: 0.5;
                 font-size: small;
                 font-weight: 300;
-            }
-
-            .remove-wishlist {
-                justify-self: start;
-                align-self: end;
-                color: var(--text);
-                background-color: transparent;
-                border: none;
-                padding: 5px 20px;
-                font-weight: 400;
-            }
-
-            .remove-wishlist:hover {
-                color: var(--orange_primary);
             }
         }
 
@@ -446,28 +432,49 @@ footer {
                 font-size: 20px;
                 font-weight: bold;
                 color: var(--orange_primary);
-                align-self: start;
-            }
-
-            .buy {
-                width: 7em;
-                height: 2em;
-                border-radius: 5px;
-                display: inline-block;
-                background-color: transparent;
-                border: 1px solid var(--orange_primary);
-                color: var(--orange_primary);
-                font-weight: normal;
-                margin: 10px;
                 align-self: end;
                 justify-self: end;
+                margin-right: 20px;
             }
 
-            .buy:hover {
-                background-color: var(--orange_primary);
-                color: white;
+            #actions {
+                display: flex;
+                gap: 10px; 
+                align-items: center;
+                height: 100%;
+                margin-right: 10px;
+
+                .remove-wishlist {
+                    color: var(--text);
+                    background-color: transparent;
+                    border: none;
+                    padding: 5px 20px;
+                    font-weight: 400;
+                    margin-top: auto;
+                    margin-bottom: 15px;
+                }
+                
+                .remove-wishlist:hover {
+                    color: var(--orange_primary);
+                }
+                
+                .buy {
+                    width: 7em;
+                    height: 2em;
+                    border-radius: 5px;
+                    background-color: transparent;
+                    border: 1px solid var(--orange_primary);
+                    color: var(--orange_primary);
+                    font-weight: normal;
+                    margin-top: auto;
+                    margin-bottom: 15px;
+                }
+                
+                .buy:hover {
+                    background-color: var(--orange_primary);
+                    color: white;
+                }
             }
-            
         }
     }
 }
