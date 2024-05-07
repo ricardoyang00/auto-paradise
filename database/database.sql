@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS ADDRESS;
 DROP TABLE IF EXISTS USER;
 DROP TABLE IF EXISTS PRODUCT;
+DROP TABLE IF EXISTS PRODUCT_IMAGES;
 DROP TABLE IF EXISTS SELLS;
 DROP TABLE IF EXISTS REVIEWS;
 DROP TABLE IF EXISTS EVENT;
@@ -32,7 +33,7 @@ CREATE TABLE USER (
 );
 
 CREATE TABLE PRODUCT (
-    product_id INT PRIMARY KEY,
+    product_id INTEGER PRIMARY KEY AUTOINCREMENT,
     category INT NOT NULL,
     title VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
@@ -44,6 +45,13 @@ CREATE TABLE PRODUCT (
     FOREIGN KEY (brand) REFERENCES BRANDS(brand_id),
     FOREIGN KEY (category) REFERENCES CATEGORY(category_id),
     FOREIGN KEY (scale) REFERENCES SCALE(scale_id)
+);
+
+CREATE TABLE PRODUCT_IMAGES (
+    image_id INTEGER PRIMARY KEY,
+    product_id INT NOT NULL,
+    image_url TEXT,
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
 CREATE TABLE SELLS (
@@ -234,6 +242,18 @@ INSERT INTO PRODUCT (product_id, category, title, description, price, seller_id,
     (8, 1, 'Mercedes-Benz AMG GT', 'Description for Mercedes-Benz AMG GT', 10.00, 'user8', 33, 3),
     (9, 1, 'Porsche 911', 'Description for Porsche 911', 130.0, 'user9', 38, 4),
     (10, 1, 'Tesla Model S', 'Description for Tesla Model S', 80.99, 'user10', 42, 5);
+
+INSERT INTO PRODUCT_IMAGES (image_id, product_id, image_url) VALUES
+    (1, 1, 'image_product1.jpg'),
+    (2, 2, 'image_product2.jpg'),
+    (3, 3, 'image_product3.jpg'),
+    (4, 4, 'image_product4.jpg'),
+    (5, 5, 'image_product5.jpg'),
+    (6, 6, 'image_product6.jpg'),
+    (7, 7, 'image_product7.jpg'),
+    (8, 8, 'image_product8.jpg'),
+    (9, 9, 'image_product9.jpg'),
+    (10, 10, 'image_product10.jpg');
 
 INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall_evaluation, platform_evaluation, comment) VALUES
     (1, 5, 5, 5, 5, 'Great transaction, highly recommended seller!'),

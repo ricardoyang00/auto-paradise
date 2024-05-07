@@ -6,18 +6,25 @@
     require_once(__DIR__ . '/../database/scale.class.php');
     require_once(__DIR__ . '/../database/brand.class.php');
     require_once(__DIR__ . '/../database/category.class.php');
+    require_once(__DIR__ . '/../utils/session.php');
 
     $db = getDatabaseConnection();
     $categories = Category::getAllCategories($db);
     $scales = Scale::getAllScales($db);
     $brands = Brand::getAllBrands($db);
 
+    $section = new Session();
+    if (!$section->isLoggedIn()) {
+        header('Location: /pages/login.php');
+        exit();
+    }
+    
     drawHeader();
 ?>
 
 <section id="sell">
   <h2>Sell an item</h2>
-  <form action="#" method="post" enctype="multipart/form-data">
+  <form action="../actions/upload.php" method="post" enctype="multipart/form-data">
       <div class="input-container">
           <label for="image">Upload Images</label>
           <input type="file" id="image" name="image" accept="image/*">
