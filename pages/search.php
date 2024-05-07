@@ -60,7 +60,7 @@
             <?php 
                 $url = "item.php?id=" . $product->id; 
                 $product_images = $product->getProductImages($db);
-                $product_thumb_url = "../database/images/" . $product_images[0];
+                $product_thumb_url = "../database/images/" . $product->getProductThumbnail($db);
                 $second_product_thumb_url = isset($product_images[1]) ? "../database/images/" . $product_images[1] : null;
             ?>
             <img src="<?= $product_thumb_url ?>" alt="<?= $product->title ?>"

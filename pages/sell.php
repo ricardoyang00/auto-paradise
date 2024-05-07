@@ -27,7 +27,7 @@
   <form action="../actions/upload.php" method="post" enctype="multipart/form-data">
       <div class="input-container">
           <label for="image">Upload Images</label>
-          <input type="file" id="image" name="image[]" accept="image/*" multiple class="upload-btn">
+          <input type="file" id="image" name="image[]" accept="image/*" multiple class="upload-btn" required>
           <div id="image-preview"></div>
       </div>
       <div class="input-container">

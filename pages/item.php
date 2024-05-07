@@ -24,7 +24,18 @@
     <div class="container">
         <div class="image">
             <?php $url = "item.php?id=" . $product->id; ?>
-            <img src=<?="../database/images/". $product->getProductThumbnail($db);?> alt="Product Image">
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <?php 
+                    $images = $product->getProductImages($db);
+                    foreach($images as $index => $image) {
+                        echo '<img src="../database/images/' . $image . '" alt="Product Image" class="carousel-image' . ($index === 0 ? ' active' : '') . '">';
+                    }
+                    ?>
+                </div>
+                <a class="carousel-prev">&#10094;</a>
+                <a class="carousel-next">&#10095;</a>
+            </div>
         </div>
         <div class="title">
             <section id="tags">
