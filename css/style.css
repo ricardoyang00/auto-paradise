@@ -1014,9 +1014,9 @@ footer {
     }
     
     .checkout-user-info {
-        height: 30px;
+        max-height: 30px;
         overflow: hidden;
-        transition: height 2s ease-in-out;
+        transition: max-height 0.5s ease-in-out;
         margin: 20px;
         margin-right: auto;
         display: grid;
@@ -1053,7 +1053,7 @@ footer {
     }
 
     .checkout-user-info[data-expanded="true"] {
-        height: auto;
+        max-height: 1000px;
     }
 }
 /*********************************/
