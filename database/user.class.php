@@ -167,6 +167,26 @@ class User {
         $stmt = $db->prepare('UPDATE USER SET ' . implode(', ', $fields) . ' WHERE username = ?');
         $stmt->execute($values);
     }
-}
 
-?>
+    public function changePassword(PDO $db, string $oldPassword, string $newPassword): bool {
+        if (!password_verify($oldPassword, $this->password)) {
+            return false;
+        }
+
+        $options = ['cost' => 12];
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT, $options);
+
+        $stmt = $db->prepare('UPDATE USER SET password = ? WHERE username = ?');
+        $result = $stmt->execute([$hashedPassword, $this->username]);
+
+        if ($result) {
+            $this->password = $hashedPassword;
+        }
+
+        return $result;
+    }
+
+    public function checkPassword($password) {
+        return password_verify($password, $this->password);
+    }
+} ?>
