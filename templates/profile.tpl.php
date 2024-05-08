@@ -158,3 +158,70 @@
         </form>
     </div>
 <?php } ?>
+
+<?php function updateProfile($db, $session, $post) {
+    $user = User::getUserByUsername($db, $session->getUsername());
+    
+    if (isset($post['name'])) {
+        $user->name = $post['name'];
+    }
+    if (isset($post['phoneNumber'])) {
+        $user->phoneNumber = $post['phoneNumber'];
+    }
+    
+    $address = $user->getUserAddress($db);
+    if (isset($post['postalCode'])) {
+        $address->postalCode = $post['postalCode'];
+    }
+    if (isset($post['address'])) {
+        $address->address = $post['address'];
+    }
+    if (isset($post['city'])) {
+        $address->city = $post['city'];
+    }
+    if (isset($post['country'])) {
+        $address->country = $post['country'];
+    }
+
+    $addressId = Address::getAddressByDetails($db, $address->postalCode, $address->address, $address->city, $address->country);
+    if ($addressId === null) {
+        $addressObj = new Address(0, $address->postalCode, $address->address, $address->city, $address->country);
+        $addressId = $addressObj->saveToAddressTable($db);
+    }
+
+    $user->addressId = $addressId;
+    $user->updateProfile($db);
+    
+    $session->addMessage('success', 'Profile updated!');
+    header('Location: ../pages/profile.php');
+    exit();
+} ?>
+
+<?php function changePassword($db, $session, $post, $user) {
+    $oldPassword = $post['oldPassword'];
+    $newPassword = $post['newPassword'];
+
+    if ($user->checkPassword($oldPassword)) {
+        if ($oldPassword == $newPassword) {
+            $session->addMessage('error', 'New password cannot be the same as the current password!');
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit();
+        } else {
+            $result = $user->changePassword($db, $oldPassword, $newPassword);
+        
+            if ($result) {
+                $session->addMessage('success', 'Password changed successfully!');
+                header('Location: ../pages/profile.php');
+                exit();
+            } else {
+                $session->addMessage('error', 'Failed to change password!');
+                header('Location: ' . $_SERVER['PHP_SELF']);
+                exit();
+            }
+        }
+    } else {
+        $session->addMessage('error', 'Wrong current password!');
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit();
+    }
+} ?>

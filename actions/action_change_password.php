@@ -22,32 +22,7 @@
     $user = User::getUserByUsername($db, $session->getUsername());
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $oldPassword = $_POST['oldPassword'];
-        $newPassword = $_POST['newPassword'];
-
-        if ($user->checkPassword($oldPassword)) {
-            if ($oldPassword == $newPassword) {
-                $session->addMessage('error', 'New password cannot be the same as the current password!');
-                header('Location: ' . $_SERVER['PHP_SELF']);
-                exit();
-            } else {
-                $result = $user->changePassword($db, $oldPassword, $newPassword);
-            
-                if ($result) {
-                    $session->addMessage('success', 'Password changed successfully!');
-                    header('Location: ../pages/profile.php');
-                    exit();
-                } else {
-                    $session->addMessage('error', 'Failed to change password!');
-                    header('Location: ' . $_SERVER['PHP_SELF']);
-                    exit();
-                }
-            }
-        } else {
-            $session->addMessage('error', 'Wrong current password!');
-            header('Location: ' . $_SERVER['PHP_SELF']);
-            exit();
-        }
+        changePassword($db, $session, $_POST, $user);
     }
 
     drawChangePasswordForm();
