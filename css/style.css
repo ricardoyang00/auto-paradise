@@ -119,6 +119,10 @@ footer {
             margin-right: 40px;
             color: var(--icons);
         }
+
+        a:hover .fa-user {
+            color: var(--orange_primary);
+        }
     }
 
     .sell-button {
@@ -766,16 +770,20 @@ footer {
     }
 }
 
-.loginRegister .account-link {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-    text-decoration: none;
-    color: var(--text);
-    font-size: small;
+.loginRegister {
+    padding-bottom: 50px;
 
-    a {
-        color: rgb(0, 132, 255);
+    .account-link {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        text-decoration: none;
+        color: var(--text);
+        font-size: small;
+    
+        a {
+            color: rgb(0, 132, 255);
+        }
     }
 }
 
