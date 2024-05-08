@@ -18,10 +18,13 @@
     drawMessages($session);
 
     $db = getDatabaseConnection();
-    
+
     $user = User::getUserByUsername($db, $session->getUsername());
-    $address = Address::getAddressById($db, $user->addressId);
-    
-    drawProfile($user, $address, false);
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        changePassword($db, $session, $_POST, $user);
+    }
+
+    drawChangePasswordForm();
     drawFooter();
 ?>

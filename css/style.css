@@ -844,23 +844,40 @@ footer {
     }
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .profile-button {
-    display: block;
     width: 100px;
-    height: 30px;
-    margin: 20px auto;
+    height: 40px;
+    margin: 20px;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-size: 16px; 
 }
 
-#logout {
+#change-password {
+    background-color: var(--orange_primary);
+}
+
+#change-password:hover {
+    background-color: var(--orange_secondary);
+}
+
+#logout, #cancel{
     background-color: #f44336;
 }
 
-#logout:hover {
+#logout:hover, #cancel:hover {
     background-color: #da190b;
 }
 
