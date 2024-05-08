@@ -33,28 +33,43 @@
 
     <h1 id="checkout-heading">Checkout</h1>
     <div class="checkout-container">
-        <div id="checkoutUserInfo" class="checkout-user-info" onclick="toggleUserInfo()">
-            <h2>User Information</h2>
-            <div class="info-box">
-                <label>Username</label>
-                <p class="info-rectangle"><?= $user->username ?></p>
+        <div class="checkout-steps">
+            <div id="checkoutUserInfo" class="checkout-user-info" onclick="toggleUserInfo()">
+                <h2>1. User Information</h2>
+                <div class="info-box">
+                    <label>Username</label>
+                    <p class="info-rectangle"><?= $user->username ?></p>
+                </div>
+                <div class="info-box">
+                    <label>Name</label>
+                    <p class="info-rectangle"><?= $user->name ?></p>
+                </div>
+                <div class="info-box">
+                    <label>Phone Number</label>
+                    <p class="info-rectangle"><?= $user->phoneNumber ?></p>
+                </div>
+                <div class="info-box">
+                    <label>Address</label>
+                    <p class="info-rectangle" id="inline">
+                        <?=$address->address?>,
+                        <?=$address->postalCode?>,
+                        <?=$address->city?>,
+                        <?=$address->country?>
+                    </p>
+                </div>
             </div>
-            <div class="info-box">
-                <label>Name</label>
-                <p class="info-rectangle"><?= $user->name ?></p>
-            </div>
-            <div class="info-box">
-                <label>Phone Number</label>
-                <p class="info-rectangle"><?= $user->phoneNumber ?></p>
-            </div>
-            <div class="info-box">
-                <label>Address</label>
-                <p class="info-rectangle" id="inline">
-                    <?=$address->address?>,
-                    <?=$address->postalCode?>,
-                    <?=$address->city?>,
-                    <?=$address->country?>
-                </p>
+            <div id="shippingMethod" class="shipping-method">
+                <h2>2. Shipping Method</h2>
+                <div id="shippingMethodSelect" class="shipping-box">
+                    <div class="radio-option">
+                        <input type="radio" id="standard" name="shippingMethod" value="standard">
+                        <label for="standard">Standard Shipping</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="express" name="shippingMethod" value="express">
+                        <label for="express">Express Shipping</label>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="product-box">
