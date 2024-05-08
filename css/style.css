@@ -780,9 +780,23 @@ footer {
 }
 
 #profile-heading {
-    color: #333;
-    font-family: Arial, sans-serif;
-    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--text);
+    font-size: 30px;
+}
+
+#profile-heading::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 110%;
+    background-color: var(--orange_primary);
+    margin-right: 10px;
 }
 
 .profile {
@@ -825,18 +839,18 @@ footer {
 
 #logout {
     background-color: #f44336;
+}
 
-    :hover {
-        background-color: #da190b;
-    }
+#logout:hover {
+    background-color: #da190b;
 }
 
 #save {
     background-color: #4CAF50;
-    
-    :hover {
-        background-color: #45a049;
-    }
+}
+
+#save:hover {
+    background-color: #45a049;
 }
 
 .edit-icon {
