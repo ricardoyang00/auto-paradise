@@ -134,7 +134,7 @@
 
         <div class="user-label">Username</div>
         <div class="data-container">
-            <span id="username"><?=$user->username?></span>
+            <span class="user-data" id="username"><?=$user->username?></span>
         </div>
 
         <div class="user-label">Name</div>
@@ -142,7 +142,7 @@
             <?php if ($isEditable) { ?>
                 <input type="text" id="name" name="name" value="<?=$user->name?>">
             <?php } else { ?>
-                <span id="name"><?=$user->name?></span>
+                <span class="user-data" id="name"><?=$user->name?></span>
             <?php } ?>
         </div>
 
@@ -151,7 +151,7 @@
         <?php if ($isEditable) { ?>
                 <input type="text" id="phoneNumber" name="phoneNumber" value="<?=$user->phoneNumber?>">
             <?php } else { ?>
-                <span id="phoneNumber"><?=$user->phoneNumber?></span>
+                <span class="user-data" id="phoneNumber"><?=$user->phoneNumber?></span>
             <?php } ?>
         </div>
 
@@ -161,10 +161,10 @@
                 <?php if ($isEditable) { ?>
                     <input type="text" id="address" name="address" value="<?=$address->address?>">
                 <?php } else { ?>
-                    <span id="address"><?=$address->address?></span>
-                    <span id="postalCode"><?=$address->postalCode?></span>,
-                    <span id="city"><?=$address->city?></span>,
-                    <span id="country"><?=$address->country?></span>
+                    <span class="user-data" id="address"><?=$address->address?></span>
+                    <span class="user-data" id="postalCode"><?=$address->postalCode?></span>,
+                    <span class="user-data" id="city"><?=$address->city?></span>,
+                    <span class="user-data" id="country"><?=$address->country?></span>
                 <?php } ?>
             </div>
             
