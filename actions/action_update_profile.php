@@ -47,6 +47,6 @@
         $user->updateProfile($db);
         
         $session->addMessage('success', 'Profile updated!');
-        header('Location: ../pages/profile.php');
+        header('Location: ../pages/account.php');
     }
 ?>

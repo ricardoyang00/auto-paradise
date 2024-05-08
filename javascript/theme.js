@@ -41,3 +41,32 @@ document.addEventListener('DOMContentLoaded', function() {
       heartIcon.style.color = '';
   });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  var navLinks = document.querySelectorAll('.nav-link');
+
+  navLinks.forEach(function(link) {
+      link.addEventListener('click', function(event) {
+          event.preventDefault();
+
+          var contentId = link.getAttribute('data-content');
+
+          // Remove 'selected' class from all links
+          navLinks.forEach(function(navLink) {
+              navLink.classList.remove('selected');
+          });
+
+          // Add 'selected' class to the clicked link
+          link.classList.add('selected');
+
+          fetch('content/' + contentId + '_content.php')
+          .then(response => response.text())
+          .then(data => {
+              document.querySelector('.account-content').innerHTML = data;
+          })
+          .catch(error => {
+              console.error('Error fetching content:', error);
+          });
+      });
+  });
+});

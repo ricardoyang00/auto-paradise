@@ -29,7 +29,7 @@
         <section class="icons">
             <a href="#"><i class="fas fa-envelope"></i></a>
             <a href="../pages/wishList.php"><i class="fa-regular fa-heart"></i></a>
-            <a href="../pages/profile.php"><i class="fa-regular fa-user"></i></a>
+            <a href="../pages/account.php"><i class="fa-regular fa-user"></i></a>
         </section>
         <section class="sell-button">
             <a href="../pages/sell.php">Sell now</a>
@@ -117,86 +117,6 @@
     </form>
     </div>
 <?php } ?>
-
-<?php function drawProfile($user, $address, $isEditable = false) { 
-    if ($isEditable) { ?>
-        <h1 id="profile-heading">Profile (Editing)</h1>
-        <form action="../actions/action_update_profile.php" method="post">
-    <?php } else { ?>
-        <h1 id="profile-heading">Profile</h1>    
-    <?php } ?>
-
-    <div class="profile">
-        <?php if (!$isEditable) { ?>
-            <a href="../actions/action_edit_profile.php" class="edit-icon">
-                <i class="fas fa-pen"></i>
-            </a>
-        <?php } ?>
-
-        <div class="user-label">Username</div>
-        <div class="data-container">
-            <span id="username"><?=$user->username?></span>
-        </div>
-
-        <div class="user-label">Name</div>
-        <div class="data-container">
-            <?php if ($isEditable) { ?>
-                <input type="text" id="name" name="name" value="<?=$user->name?>">
-            <?php } else { ?>
-                <span id="name"><?=$user->name?></span>
-            <?php } ?>
-        </div>
-
-        <div class="user-label">Phone Number</div>
-        <div class="data-container">
-        <?php if ($isEditable) { ?>
-                <input type="text" id="phoneNumber" name="phoneNumber" value="<?=$user->phoneNumber?>">
-            <?php } else { ?>
-                <span id="phoneNumber"><?=$user->phoneNumber?></span>
-            <?php } ?>
-        </div>
-
-        <?php if ($address !== null) { ?>
-            <div class="user-label">Address</div>
-            <div class="data-container">
-                <?php if ($isEditable) { ?>
-                    <input type="text" id="address" name="address" value="<?=$address->address?>">
-                <?php } else { ?>
-                    <span id="address"><?=$address->address?></span>
-                    <span id="postalCode"><?=$address->postalCode?></span>,
-                    <span id="city"><?=$address->city?></span>,
-                    <span id="country"><?=$address->country?></span>
-                <?php } ?>
-            </div>
-            
-            <?php if ($isEditable) { ?>
-                <div class="user-label">Postal Code</div>
-                <div class="data-container">
-                    <input type="text" id="postalCode" name="postalCode" value="<?=$address->postalCode?>">
-                </div>
-
-                <div class="user-label">City</div>
-                <div class="data-container">
-                    <input type="text" id="city" name="city" value="<?=$address->city?>">
-                </div>
-
-                <div class="user-label">Country</div>
-                <div class="data-container">
-                    <input type="text" id="country" name="country" value="<?=$address->country?>">
-                </div>
-            <?php } ?>
-
-        <?php } ?>
-    </div>
-    <?php if ($isEditable) { ?>
-            <button type="submit" class="profile-button" id="save">Save</button>
-        </form>
-    <?php } else { ?>
-        <form action="../actions/action_logout.php" method="post">
-            <button type="submit" class="profile-button" id="logout">Logout</button>
-        </form>
-    <?php }
-} ?>
 
 <?php function drawFooter() { ?>
         </main>

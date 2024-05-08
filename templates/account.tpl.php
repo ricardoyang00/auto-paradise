@@ -3,7 +3,7 @@ function drawProfileContent($user, $address) { ?>
     <h2>Profile</h2>
     <div id="profile" class="account-content">
         <div class="profile-content">
-            <a href="../actions/action_edit_profile.php" class="edit-icon"><i class="fas fa-pen"></i></a>
+            <a href="#" class="edit-icon"><i class="fas fa-pen"></i></a>
 
             <h3>Username</h3>
             <div class="data-container">
