@@ -5,5 +5,7 @@
     $session = new Session();
     $session->logout();
 
+    $session->addMessage('success', 'You have logged out!');
     header('Location: /pages/index.php');
+    exit();
 ?>

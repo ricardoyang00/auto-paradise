@@ -1,0 +1,14 @@
+database/database.db
+database/images/*
+!database/images/1.jpg
+!database/images/2.jpg
+!database/images/3.jpg
+!database/images/4.jpg
+!database/images/4_1.jpg
+!database/images/5.jpg
+!database/images/6.jpg
+!database/images/7.jpg
+!database/images/8.jpg
+!database/images/9.jpg
+!database/images/10.jpg
+!database/images/default.jpg
