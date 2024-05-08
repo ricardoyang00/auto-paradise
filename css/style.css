@@ -902,6 +902,7 @@ footer {
             color: var(--text);
             font-size: 30px;
             padding-left: 20px;
+            margin-bottom: 50px;
         }
         
         h2::before {
@@ -916,44 +917,63 @@ footer {
         }
 
         #profile {
-            color: var(--text);
-            position: relative;
-            width: 80%;
-            background-color: var(--article_background);
-            margin: 0;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        
-            h3 {
-                text-transform: uppercase;
-                padding: 16px 0 0 16px;
-                font-size: 1em;
-                margin-top: 0;
-                margin-bottom: 10px;
-            }
-        
-            p {
-                padding-left: 16px;
+            .profile-content {
+                color: var(--text);
+                position: relative;
+                width: 80%;
+                background-color: var(--article_background);
                 margin: 0;
-                margin-bottom: 20px;
-                opacity: 70%;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+            
+                h3 {
+                    text-transform: uppercase;
+                    padding: 16px 0 0 16px;
+                    font-size: 1em;
+                    margin-top: 0;
+                    margin-bottom: 10px;
+                }
+            
+                p {
+                    padding-left: 16px;
+                    margin: 0;
+                    margin-bottom: 20px;
+                    opacity: 70%;
+                    
+                }
                 
+                .edit-icon {
+                    position: absolute;
+                    top: 20px; 
+                    right: 20px;
+                }
+            
+                .edit-icon:hover {
+                    color: var(--orange_primary);
+                }
+            }
+    
+            .profile-button {
+                display: block;
+                width: 100px;
+                height: 30px;
+                margin-left: auto;
+                margin-right: 12em;
+                margin-top: 30px;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                text-align: center;
             }
             
-            .edit-icon {
-                position: absolute;
-                top: 20px; 
-                right: 20px;
-            }
-        
-            .edit-icon:hover {
-                color: var(--orange_primary);
+            #logout {
+                background-color: #f44336;
             }
         }
 
         #my-orders, #my-sells {
-            margin-left: -10px;
             display: grid;
             grid-template-columns: 1fr;
             width: 100%;
