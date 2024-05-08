@@ -35,7 +35,11 @@
                 <button class="remove-wishlist" onclick="removeFromWishlist(<?= $product->id ?>)">
                     <i class="fa-solid fa-x"></i> Remove
                 </button>
-                <button class="buy" data-id="product-id">Buy <i class="fa-solid fa-cart-shopping"></i></button>
+                <button class="buy" data-id="<?= $product->id ?>">
+                    <a href="buy.php?product_id=<?= $product->id ?>">
+                        Buy <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                </button>
             </div>
         </div>
     </article>
