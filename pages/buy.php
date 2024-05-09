@@ -1,6 +1,14 @@
 <?php
     declare(strict_types = 1);
 
+    function calculateDeliveryDate($startDay, $endDay) {
+        $date1 = new DateTime();
+        $date1->modify('+' . $startDay . ' day');
+        $date2 = new DateTime();
+        $date2->modify('+' . $endDay . ' days');
+        return '<p>Estimated delivery ' . $date1->format('l, j F') . ' - ' . $date2->format('l, j F') . '</p>';
+    }
+
     require_once(__DIR__ . '/../utils/session.php');
     $session = new Session();
 
@@ -26,7 +34,7 @@
 
     $productId = $_GET['product_id'];
     $product = Product::getProductById($db, $productId);
-
+    
     ?>
 
     <script src="../javascript/checkout.js"></script>
@@ -34,7 +42,7 @@
     <h1 id="checkout-heading">Checkout</h1>
     <div class="checkout-container">
         <div class="checkout-steps">
-            <div id="checkoutUserInfo" class="checkout-user-info" onclick="toggleUserInfo()">
+            <div id="checkoutUserInfo" class="checkout-user-info" data-expanded="true" onclick="toggleUserInfo()">
                 <h2>1. User Information</h2>
                 <div class="info-box">
                     <label>Username</label>
@@ -58,16 +66,28 @@
                     </p>
                 </div>
             </div>
-            <div id="shippingMethod" class="shipping-method">
+            <div id="shippingMethod" class="shipping-method" data-expanded="false" onclick="toggleShippingMethod()">
                 <h2>2. Shipping Method</h2>
                 <div id="shippingMethodSelect" class="shipping-box">
                     <div class="radio-option">
-                        <input type="radio" id="standard" name="shippingMethod" value="standard">
-                        <label for="standard">Standard Shipping</label>
+                        <input type="radio" id="standard" name="shippingMethod" value="standard" checked>
+                        <div class="method-delivery">
+                            <span class="method">Standard</span>
+                            <div class="delivery-date">
+                                <?php echo calculateDeliveryDate(3, 5); ?>
+                            </div>
+                        </div>
+                        <span class="cost">Free</span>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="express" name="shippingMethod" value="express">
-                        <label for="express">Express Shipping</label>
+                        <div class="method-delivery">
+                            <span class="method">Express</span>
+                            <div class="delivery-date">
+                                <?php echo calculateDeliveryDate(1, 3); ?>
+                            </div>
+                        </div>
+                        <span class="cost">€5.99</span>
                     </div>
                 </div>
             </div>
@@ -85,10 +105,13 @@
                 <div class="line"></div>
             </div>
             <div class="subtotal">
-                Subtotal: <span id="price">€ <?= $product->price ?></span>
+                Subtotal: <span class="checkout-price">€ <?= $product->price ?></span>
+            </div>
+            <div id="shippingCost" class="subtotal">
+                <!-- This is filled in by checkout.js -->
             </div>
             <div class="total">
-                TOTAL TO PAY: <span id="price">€ <?= $product->price ?></span>
+                TOTAL TO PAY: <span class="checkout-price">€ <?= $product->price ?></span>
             </div>
         </div>
     </div>
