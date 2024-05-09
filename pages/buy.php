@@ -13,7 +13,7 @@
     require_once(__DIR__ . '/../database/user.class.php');
     require_once(__DIR__ . '/../database/product.class.php');
     require_once(__DIR__ . '/../templates/common.tpl.php');
-    require_once(__DIR__ . '/../templates/profile.tpl.php');
+    require_once(__DIR__ . '/../templates/account.tpl.php');
     require_once(__DIR__ . '/../templates/checkout.tpl.php');
 
     drawHeader2();
