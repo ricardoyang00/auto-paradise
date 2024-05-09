@@ -42,7 +42,7 @@
     <h1 id="checkout-heading">Checkout</h1>
     <div class="checkout-container">
         <div class="checkout-steps">
-            <div id="checkoutUserInfo" class="checkout-user-info" data-expanded="false" onclick="toggleUserInfo()">
+            <div id="checkoutUserInfo" class="checkout-user-info" data-expanded="true" onclick="toggleUserInfo()">
                 <h2>1. User Information</h2>
                 <div class="info-box">
                     <label>Username</label>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div id="paymentMethod" class="payment-method" data-expanded="true" onclick="togglePaymentMethod()">
+            <div id="paymentMethod" class="payment-method" data-expanded="false" onclick="togglePaymentMethod()">
                 <h2>3. Payment Method</h2>
                 <div id="paymentMethodSelect" class="payment-box">
                     <div class="radio-option rectangle">
@@ -137,6 +137,7 @@
                     </div>
                 </div>
             </div>        
+            <button type="submit">Checkout</button>
         </div>
         <div class="product-box">
             <div class="product-content">

@@ -1416,6 +1416,18 @@ footer {
         .payment-method[data-expanded="true"] {
             max-height: 1000px;
         }
+
+        button[type="submit"] {
+            display: block;
+            margin: 40px auto;
+            width: 20%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
     }
 }
 /*********************************/
