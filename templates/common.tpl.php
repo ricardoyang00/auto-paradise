@@ -15,6 +15,7 @@
         <script src="../javascript/notification.js"></script>
         <script src="../javascript/images.js" defer></script>
         <script src="../javascript/wishlist.js" defer></script>
+        <script src="../javascript/profile.js" defer></script>
     </head>
 <?php } ?>
 
@@ -28,7 +29,7 @@
         <section class="icons">
             <a href="#"><i class="fas fa-envelope"></i></a>
             <a href="../pages/wishList.php"><i class="fa-regular fa-heart"></i></a>
-            <a href="../pages/profile.php"><i class="fa-regular fa-user"></i></a>
+            <a href="../pages/account.php"><i class="fa-regular fa-user"></i></a>
         </section>
         <section class="sell-button">
             <a href="../pages/sell.php">Sell now</a>

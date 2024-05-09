@@ -55,15 +55,14 @@ CREATE TABLE PRODUCT_IMAGES (
 );
 
 CREATE TABLE SELLS (
-    sell_id INT PRIMARY KEY,
+    sell_id INTEGER PRIMARY KEY,
     seller_id VARCHAR(50) NOT NULL,
     buyer_id VARCHAR(50) NOT NULL,
     product_id INT NOT NULL,
-    review_id INT,
+    order_date DATE NOT NULL,
     FOREIGN KEY (seller_id) REFERENCES USER(username),
     FOREIGN KEY (buyer_id) REFERENCES USER(username),
-    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
-    FOREIGN KEY (review_id) REFERENCES REVIEWS(review_id)
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
 CREATE TABLE REVIEWS (
@@ -268,17 +267,9 @@ INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall
     (9, 3, 4, 3, 3, 'Okay car, shipping took a while.'),
     (10, 4, 5, 4, 4, 'Satisfactory car, fast shipping.');
 
-INSERT INTO SELLS (sell_id, seller_id, buyer_id, product_id, review_id) VALUES
-    (1, 'user1', 'user2', 1, 1),
-    (2, 'user2', 'user3', 2, 2),
-    (3, 'user3', 'user4', 3, 3),
-    (4, 'user4', 'user5', 4, 4),
-    (5, 'user5', 'user6', 5, 5),
-    (6, 'user6', 'user7', 6, 6),
-    (7, 'user7', 'user8', 7, 7),
-    (8, 'user8', 'user9', 8, 8),
-    (9, 'user9', 'user10', 9, 9),
-    (10, 'user10', 'user1', 10, 10);
+INSERT INTO SELLS (sell_id, seller_id, buyer_id, product_id, order_date) VALUES
+    (1, 'user1', 'user2', 1, '2024-05-08'),
+    (2, 'user2', 'user3', 2, '2024-06-18');
 
 INSERT INTO EVENT (event_id, event_type, discount_percentage, sell_event) VALUES
     (1, 'flash_sale', 10.00, 'Flash sale event for selected products.'),
