@@ -1318,6 +1318,104 @@ footer {
         .shipping-method[data-expanded="true"] {
             max-height: 1000px;
         }
+
+        .payment-method {
+            max-height: 30px;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+            margin: 20px;
+            margin-right: auto;
+            display: grid;
+            grid-template-rows: auto auto;
+            grid-gap: 2em;
+            background-color: var(--input_background);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            position: relative;
+            color: var(--text);
+
+            .rectangle {
+                border: 1px solid var(--icons); 
+                padding: 10px; 
+                margin: 10px; 
+                border-radius: 4px;
+            }
+
+            .payment-details {
+                padding-left: 20px;
+                padding-top: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+                width: 60%;
+            }
+            
+            .payment-details label {
+                font-size: 0.8em;
+            }
+            
+            .payment-details input[type="text"] {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+
+            .align-start {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .align-start input[type="text"] {
+                width: 100%;
+            }
+
+            .row {
+                box-sizing: border-box;
+                display: flex;
+                align-items: flex-start;
+                width: 100%;
+                
+                > div {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+            
+            .expiry {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+
+                #slash {
+                    font-size: 1.5em;
+                    font-weight: lighter;
+                }
+            }
+            
+            #expiryMonth, #expiryYear {
+                width: 10%;
+            }
+            
+            .cvv-container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: auto;
+                
+                #cvv {
+                    width: 20%;
+                }
+            }
+        }
+
+        .payment-method[data-expanded="true"] {
+            max-height: 1000px;
+        }
     }
 }
 /*********************************/

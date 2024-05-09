@@ -16,6 +16,7 @@
         <script src="../javascript/images.js" defer></script>
         <script src="../javascript/wishlist.js" defer></script>
         <script src="../javascript/profile.js" defer></script>
+        <script src="../javascript/checkout.js" defer></script>
     </head>
 <?php } ?>
 

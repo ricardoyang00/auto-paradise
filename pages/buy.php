@@ -42,7 +42,7 @@
     <h1 id="checkout-heading">Checkout</h1>
     <div class="checkout-container">
         <div class="checkout-steps">
-            <div id="checkoutUserInfo" class="checkout-user-info" data-expanded="true" onclick="toggleUserInfo()">
+            <div id="checkoutUserInfo" class="checkout-user-info" data-expanded="false" onclick="toggleUserInfo()">
                 <h2>1. User Information</h2>
                 <div class="info-box">
                     <label>Username</label>
@@ -91,6 +91,52 @@
                     </div>
                 </div>
             </div>
+            <div id="paymentMethod" class="payment-method" data-expanded="true" onclick="togglePaymentMethod()">
+                <h2>3. Payment Method</h2>
+                <div id="paymentMethodSelect" class="payment-box">
+                    <div class="radio-option rectangle">
+                        <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked>
+                        <span class="method">Credit Card</span>
+                        <div class="payment-details">
+                            <div class="align-start">
+                                <label for="cardHolder">Name on card</label>
+                                <input type="text" id="cardHolder" name="cardHolder" placeholder="John Doe">
+                            </div>
+                            <div class="align-start">
+                                <label for="cardNumber">Card number</label>
+                                <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <label for="expiryDate">Expiry date</label>
+                                    <div class="expiry">
+                                        <input type="text" id="expiryMonth" name="expiryMonth" placeholder="MM" maxlength="2">
+                                        <span id="slash">/</span>
+                                        <input type="text" id="expiryYear" name="expiryYear" placeholder="YY" maxlength="2">
+                                    </div>
+                                </div>
+                            
+                                <div>
+                                    <div class="cvv-container">
+                                        <label for="cvv">CVC/CVV</label>
+                                        <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="radio-option rectangle">
+                        <input type="radio" id="mbway" name="paymentMethod" value="mbway">
+                        <span class="method">MBWay</span>
+                        <div class="payment-details">
+                            <div class="align-start">
+                                <label for="phoneNumber">Phone Number</label>
+                                <input type="text" id="phoneNumber" name="phoneNumber" maxlength="9">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
         </div>
         <div class="product-box">
             <div class="product-content">
