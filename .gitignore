@@ -12,3 +12,4 @@ database/images/*
 !database/images/9.jpg
 !database/images/10.jpg
 !database/images/default.jpg
+.DS_Store
