@@ -56,7 +56,6 @@
     }
 
     drawProductList($db, $products, $searchQuery ?? null);
-
 ?>
 </section>
 

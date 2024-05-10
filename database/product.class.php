@@ -85,10 +85,14 @@ class Product {
         return $products;
     }
 
-    public static function getFilteredProducts(PDO $db, array $filters): array {
+    public static function getFilteredProducts(PDO $db, array $filters, $productName = null): array {
         $query = 'SELECT * FROM PRODUCT WHERE 1';
-    
         $params = array();
+    
+        if (!empty($productName)) {
+            $query .= ' AND title LIKE ?';
+            $params[] = "%$productName%";
+        }
     
         if (isset($filters['category'])) {
             $query .= ' AND category IN (' . implode(',', array_fill(0, count($filters['category']), '?')) . ')';
@@ -104,6 +108,8 @@ class Product {
             $query .= ' AND scale IN (' . implode(',', array_fill(0, count($filters['scale']), '?')) . ')';
             $params = array_merge($params, $filters['scale']);
         }
+    
+        $query .= ' ORDER BY LOWER(title) ASC';
     
         $stmt = $db->prepare($query);
         $stmt->execute($params);
@@ -123,7 +129,8 @@ class Product {
         }
     
         return $products;
-    }    
+    }
+    
 
     public function getProductImages(PDO $db): array {
         $stmt = $db->prepare('SELECT image_url FROM PRODUCT_IMAGES WHERE product_id = ?');
