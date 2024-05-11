@@ -6,6 +6,6 @@ function delayedRedirect(url, delay) {
 
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.endsWith('waitPayment.php')) {
-        delayedRedirect('../pages/account.php', 3000);
+        delayedRedirect('../pages/account.php', 5000);
     }
 });

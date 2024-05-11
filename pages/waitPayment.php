@@ -22,9 +22,7 @@
     $db = getDatabaseConnection();
     
     $user = User::getUserByUsername($db, $session->getUsername());
-?>
 
-<?php
     $isPaymentSuccessful = rand(1, 4) !== 1;
     if ($isPaymentSuccessful) {
         $session->addMessage('success', 'Payment Successful! Your order has been placed.');
@@ -33,8 +31,10 @@
     }
 ?>
 
-<div id="waitingAnimation">Processing your payment...</div>
-
+<div id="waitingAnimationContainer">
+    <div class="loader"></div>
+    <div id="waitingAnimationText">Processing your payment...</div>    
+</div>
 
 <?php
     drawFooter();
