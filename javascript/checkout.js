@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var shippingCostElement = document.getElementById('shippingCost');
     var totalElement = document.querySelector('.total .checkout-price');
     var subtotal = parseFloat(document.querySelector('.subtotal .checkout-price').textContent.replace('€ ', ''));
-
+    var totalToPayInput = document.getElementById('totalToPayInput');
+    
     function updateShippingCost() {
         var selectedOption = document.querySelector('input[name="shippingMethod"]:checked').value;
         var shippingCost = selectedOption === 'standard' ? 0 : 5.99;
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateTotal(shippingCost) {
         var total = subtotal + shippingCost;
         totalElement.textContent = '€ ' + total.toFixed(2);
+        totalToPayInput.value = total.toFixed(2);
     }
 
     radioOptions.forEach(function(option) {

@@ -22,12 +22,21 @@
     $db = getDatabaseConnection();
     
     $user = User::getUserByUsername($db, $session->getUsername());
+    $address = Address::getAddressById($db, $user->addressId);
 
-    $isPaymentSuccessful = rand(1, 4) !== 1;
-    if ($isPaymentSuccessful) {
-        $session->addMessage('success', 'Payment Successful! Your order has been placed.');
-    } else {
-        $session->addMessage('error', 'Payment Failed! Please try again.');
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $productId = isset($_POST['productId']) ? $_POST['productId'] : null;
+        $totalToPay = isset($_POST['totalToPay']) ? $_POST['totalToPay'] : null;
+    
+        $product = Product::getProductById($db, $productId);
+
+        $isPaymentSuccessful = rand(1, 4) !== 1;
+        if ($isPaymentSuccessful) {
+            $session->addMessage('success', 'Payment Successful! Your order has been placed.');
+            $product->removeFromWishlist($db, $session->getUsername());
+        } else {
+            $session->addMessage('error', 'Payment Failed! Please try again.');
+        }
     }
 ?>
 
