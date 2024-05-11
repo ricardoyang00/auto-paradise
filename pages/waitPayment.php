@@ -33,7 +33,12 @@
         $isPaymentSuccessful = rand(1, 4) !== 1;
         if ($isPaymentSuccessful) {
             $session->addMessage('success', 'Payment Successful! Your order has been placed.');
-            $product->removeFromWishlist($db, $session->getUsername());
+            $order = new Order(0, $user->username, (int)$productId, (float)$totalToPay, $product->sellerId, date('Y-m-d H:i:s'));
+            if (!$order->saveToOrderTable($db)) {
+                $session->addMessage('error', 'There was a problem processing your order. Please try again.');
+            } else {
+                $product->removeFromWishlist($db, $session->getUsername());
+            }
         } else {
             $session->addMessage('error', 'Payment Failed! Please try again.');
         }

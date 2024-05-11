@@ -88,3 +88,29 @@ function drawProfileContent($user, $address) { ?>
     </form>
     </div>
 <?php } ?>
+
+<?php function drawOrders($db, $orders) { ?>
+    <h2>My Orders</h2>
+    <div id="my-orders" class="account-content">
+        <div class="orders-content">
+            <?php foreach ($orders as $order):
+                $product = Product::getProductById($db, $order->productId);
+                $thumbnail = $product->getProductThumbnail($db);
+            ?>
+            <article>
+                <img src="../database/images/<?= $thumbnail ?>">
+                <div id="product-information">
+                    <h1><?= $product->title ?></h1>
+                    <p><?= $product->description ?></p>
+                </div>
+                <div id="product-price-receipt">
+                    <p>€ <?= $order->totalPrice ?></p>
+                    <div id="actions">
+                        <button class="receipt" data-id="product-id">Receipt <i class="fa-solid fa-file-invoice"></i></i></button>
+                    </div>
+                </div>
+            </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php } ?>

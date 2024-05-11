@@ -189,4 +189,47 @@ class User {
     public function checkPassword($password) {
         return password_verify($password, $this->password);
     }
+} 
+
+class Order {
+    public int $orderId;
+    public string $userUsername;
+    public int $productId;
+    public float $totalPrice;
+    public string $sellerUsername;
+    public string $orderDate;
+
+    public function __construct(int $orderId, string $userUsername, int $productId, float $totalPrice, string $sellerUsername, string $orderDate) {
+        $this->orderId = $orderId;
+        $this->userUsername = $userUsername;
+        $this->productId = $productId;
+        $this->totalPrice = $totalPrice;
+        $this->sellerUsername = $sellerUsername;
+        $this->orderDate = $orderDate;
+    }
+
+    public function saveToOrderTable(PDO $db): bool {
+        $stmt = $db->prepare('INSERT INTO ORDERS (user_username, product_id, total_price, seller_username, order_date) VALUES (?, ?, ?, ?, ?)');
+        $result = $stmt->execute([$this->userUsername, $this->productId, $this->totalPrice, $this->sellerUsername, $this->orderDate]);
+        return $result;
+    }
+
+    public static function getOrdersByUsername(PDO $db, string $userUsername): array {
+        $stmt = $db->prepare('SELECT * FROM ORDERS WHERE user_username = ? ORDER BY order_date DESC');
+        $stmt->execute([$userUsername]);
+
+        $orders = [];
+        while ($order = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $orders[] = new Order(
+                $order['order_id'],
+                $order['user_username'],
+                $order['product_id'],
+                $order['total_price'],
+                $order['seller_username'],
+                $order['order_date']
+            );
+        }
+
+        return $orders;
+    }
 } ?>
