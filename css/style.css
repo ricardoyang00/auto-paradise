@@ -1415,10 +1415,6 @@ footer {
 }
 /*********************************/
 
-.account-content {
-    padding: 20px;
-}
-
 .admin-content {
     .delete-btn {
         background-color: #f44336;
@@ -1431,44 +1427,50 @@ footer {
     .save-btn {
         background-color: #4CAF50;
     }
-}
-.admin-content h3 {
-    margin-bottom: 10px;
-    font-size: 1em;
-    text-transform: uppercase;
+
+    h3 {
+        text-transform: uppercase;
+        padding: 16px 0 0 0;
+        font-size: 1em;
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--text);
+    }
+
+    select {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 5px;
+        border: 1px solid var(--separator);
+    }
+
+    .button-container {
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 8px 15px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 90px);
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: var(--input_background);
+        color: var(--text);
+    }
+
+    .icon-and-button {
+        display: flex;
+        align-items: center;
+    }
 }
 
-.admin-content select {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
-.admin-content .button-container {
-    margin-bottom: 10px;
-}
-
-.admin-content button {
-    padding: 8px 15px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-}
-
-/* Style for form inputs */
-.admin-content input[type="text"] {
-    width: calc(100% - 90px); /* Adjust the width as needed */
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-/* Style for icon-and-button container */
-.admin-content .icon-and-button {
-    display: flex;
-    align-items: center;
-}
