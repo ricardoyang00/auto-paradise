@@ -7,7 +7,7 @@ require_once(__DIR__ . '/../templates/products.tpl.php');
 require_once(__DIR__ . '/../database/product.class.php');
 
 $db = getDatabaseConnection();
-$filters = array();
+$filters = [];
 
 if(isset($_POST['scale']) && is_array($_POST['scale'])) {
     $filters['scale'] = $_POST['scale'];
@@ -19,7 +19,7 @@ if(isset($_POST['brand']) && is_array($_POST['brand'])) {
     $filters['brand'] = $_POST['brand'];
 }
 
-$searchQuery = isset($_POST['search']) ? $_POST['search'] : null;
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
 $productsByName = Product::getProductsByName($db, $searchQuery);
 $filteredProducts = Product::getFilteredProducts($db, $filters);

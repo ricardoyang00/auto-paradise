@@ -17,24 +17,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function submitSearch(event) {
-    event.preventDefault();
-    
-    const searchForm = event.target; 
-    const searchQuery = searchForm.querySelector('input[name="search"]').value.trim(); 
-    console.log("search query is " + searchQuery);
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('search-query').addEventListener('input', function() {
+        const searchQuery = this.value.trim();
+        console.log("search query is " + searchQuery);
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', '../pages/filter.php?search=' + encodeURIComponent(searchQuery)); 
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.getElementById('products').innerHTML = xhr.responseText;
-        } else {
-            console.error('Request failed. Status:', xhr.status);
-        }
-    };
-    xhr.send();
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '../pages/filter.php?search=' + encodeURIComponent(searchQuery)); 
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                document.getElementById('products').innerHTML = xhr.responseText;
+            } else {
+                console.error('Request failed. Status:', xhr.status);
+            }
+        };
+        xhr.onerror = function() {
+            console.error('Request failed');
+        };
+        xhr.send();
+    });
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-query');
