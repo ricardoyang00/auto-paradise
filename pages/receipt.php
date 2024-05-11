@@ -24,10 +24,11 @@
     $db = getDatabaseConnection();
 
     $user = User::getUserByUsername($db, $session->getUsername());
-    $userAddress = Address::getAddressById($db, $user->addressId);
     
     $orderId = $_GET['order_id'];
     $order = Order::getOrderById($db, (int)$orderId);
+    $client = User::getUserByUsername($db, $order->clientUsername);
+    $clientAddress = Address::getAddressById($db, $client->addressId);
     $seller = User::getUserByUsername($db, $order->sellerUsername);
     $sellerAddress = Address::getAddressById($db, $seller->addressId);
     $product = Product::getProductById($db, $order->productId);
@@ -35,7 +36,7 @@
     $brand = Brand::getBrandById($db, $product->brandId);
     $scale = Scale::getScaleById($db, $product->scale);
 
-    drawReceipt($db, $order, $user, $seller, $userAddress, $sellerAddress, $product, $brand, $scale, $category);
-    
+    drawReceipt($db, $order, $client, $seller, $clientAddress, $sellerAddress, $product, $brand, $scale, $category);
+
     drawFooter();
 ?>
