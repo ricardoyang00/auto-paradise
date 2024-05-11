@@ -87,7 +87,6 @@ class Product {
 
     public static function getFilteredProducts(PDO $db, array $filters): array {
         $query = 'SELECT * FROM PRODUCT WHERE 1';
-    
         $params = array();
     
         if (isset($filters['category'])) {
@@ -104,6 +103,8 @@ class Product {
             $query .= ' AND scale IN (' . implode(',', array_fill(0, count($filters['scale']), '?')) . ')';
             $params = array_merge($params, $filters['scale']);
         }
+    
+        $query .= ' ORDER BY LOWER(title) ASC';
     
         $stmt = $db->prepare($query);
         $stmt->execute($params);
@@ -123,7 +124,8 @@ class Product {
         }
     
         return $products;
-    }    
+    }
+    
 
     public function getProductImages(PDO $db): array {
         $stmt = $db->prepare('SELECT image_url FROM PRODUCT_IMAGES WHERE product_id = ?');

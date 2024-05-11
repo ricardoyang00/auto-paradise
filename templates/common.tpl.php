@@ -23,9 +23,7 @@
 
 <?php function drawSearchBar() {?>
     <a class="logo" href="index.php"><img src="../images/logo/auto-paradise-logo.png" height="50" alt="Auto Paradise Logo"></a>
-    <form class="search-form" action="../pages/search.php" method="get">
-        <input type="text" name="search">
-        <button type="submit">Search</button>
+    <input id="search-query" type="text">
     </form>
     <span class="user-actions">
         <section class="icons">
@@ -57,10 +55,10 @@
             <nav id="menu">
                 <ul>
                     <li><a href="../pages/search.php">On Sales!</a></li>
-                    <li><a href="../pages/search.php">DTM</a></li>
-                    <li><a href="../pages/search.php">F1</a></li>
-                    <li><a href="../pages/search.php">Le Mans</a></li>
-                    <li><a href="../pages/search.php">Others</a></li>
+                    <li><a href="../pages/search.php?category=2">DTM</a></li>
+                    <li><a href="../pages/search.php?category=3">F1</a></li>
+                    <li><a href="../pages/search.php?category=6">Le Mans</a></li>
+                    <li><a href="../pages/search.php?category=all">Others</a></li>
                     <li><a href="../pages/search.php">Accessories</a></li>
                 </ul>
             </nav>
