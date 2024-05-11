@@ -22,6 +22,11 @@ $db = getDatabaseConnection();
 $user = User::getUserByUsername($db, $session->getUsername());
 $address = Address::getAddressById($db, $user->addressId);
 
+$isAdmin = false;
+if (User::isAdmin($db, $session->getUsername())) {
+    $isAdmin = true;
+}
+
 ?>
 
 <section id="account">
@@ -29,6 +34,10 @@ $address = Address::getAddressById($db, $user->addressId);
         <a href="#" class="nav-link selected" data-content="profile"><i class="fa-solid fa-user"></i> Profile</a>
         <a href="#" class="nav-link" data-content="my-orders"><i class="fa-solid fa-receipt"></i> My Orders</a>
         <a href="#" class="nav-link" data-content="my-sells"><i class="fa-solid fa-cart-shopping"></i> My Sellings</a>
+        <?php
+            if ($isAdmin) { ?>
+                <a href="#" class="nav-link" data-content="admin"><i class="fa-solid fa-crown"></i> Admin</a>
+        <?php } ?>
     </div>
 
     <div class="account-content">

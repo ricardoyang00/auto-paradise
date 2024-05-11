@@ -465,10 +465,13 @@ footer {
                     margin-top: auto;
                     margin-bottom: 15px;
                 }
-                
+
                 .buy:hover {
                     background-color: var(--orange_primary);
-                    color: white;
+                    a {
+                        color: white;
+                    
+                    }
                 }
             }
         }
@@ -528,6 +531,10 @@ footer {
 
         .price {
             color: var(--orange_primary);
+        }
+
+        a:hoover {
+            cursor: pointer;
         }
     }
 
@@ -779,27 +786,18 @@ footer {
     }
 }
 
-/*
-#change-password {
-    background-color: var(--orange_primary);
-}
-
-#change-password:hover {
-    background-color: var(--orange_secondary);
-}
-*/
-
 #account {
     display: flex;
 
     .account-navbar {
         background-color: var(--article_background);
         width: 175px;
-        height: 9em;
         padding: 20px;
-        margin-top: 10em;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
-
+        margin-top: 1em;
+        margin-bottom: 2em;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+        height: auto;
+    
         .nav-link i {
             display: inline-block;
             vertical-align: middle;
@@ -1469,3 +1467,62 @@ footer {
     margin-bottom: 20px;
 }
 /********************************/
+
+.admin-content {
+    .delete-btn {
+        background-color: #f44336;
+    }
+
+    .rename-btn {
+        background-color: #2196F3; 
+    }
+
+    .save-btn {
+        background-color: #4CAF50;
+    }
+
+    h3 {
+        text-transform: uppercase;
+        padding: 16px 0 0 0;
+        font-size: 1em;
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--text);
+    }
+
+    select {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 5px;
+        border: 1px solid var(--separator);
+    }
+
+    .button-container {
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 8px 15px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 90px);
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: var(--input_background);
+        color: var(--text);
+    }
+
+    .icon-and-button {
+        display: flex;
+        align-items: center;
+    }
+}

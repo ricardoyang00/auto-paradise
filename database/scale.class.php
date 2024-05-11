@@ -21,6 +21,10 @@ class Scale{
             );
         }
 
+        usort($scales, function($a, $b) {
+            return strcasecmp($a->name, $b->name);
+        });
+
         return $scales;
     }
 
@@ -38,6 +42,38 @@ class Scale{
             $scale['scale_id'],
             $scale['scale_name']
         );
+    }
+
+    public static function deleteScale(PDO $db, $scaleId): bool {
+        $db->beginTransaction();
+    
+        try {
+            $stmt = $db->prepare('DELETE FROM PRODUCT WHERE scale = ?');
+            $stmt->execute([$scaleId]);
+    
+            $stmt = $db->prepare('DELETE FROM SCALE WHERE scale_id = ?');
+            $stmt->execute([$scaleId]);
+    
+            $db->commit();
+    
+            return true;
+        } catch (Exception $e) {
+            $db->rollBack();
+    
+            return false;
+        }
+    }
+
+    public static function addScale(PDO $db, string $scaleName): bool {
+        $stmt = $db->prepare('INSERT INTO SCALE (scale_name) VALUES (?)');
+        $result = $stmt->execute([$scaleName]);
+        return $result;
+    }
+
+    public static function renameScale(PDO $db, $scaleId, $scaleName): bool {
+        $stmt = $db->prepare('UPDATE SCALE SET scale_name = ? WHERE scale_id = ?');
+        $result = $stmt->execute([$scaleName, $scaleId]);
+        return $result;
     }
 }
 
