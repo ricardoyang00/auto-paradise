@@ -110,10 +110,15 @@ addMonthValidationListener('expiryMonth');
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form[action="waitPayment.php"]');
+    let selectedPaymentMethodInput = document.getElementById('selectedPaymentMethod');
+    let paymentDetailsInput = document.getElementById('paymentDetails');
+    
     form.addEventListener('submit', function(event) {
         const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
 
         let isValid = true;
+        let selectedPaymentMethod = '';
+        let paymentDetails = '';
 
         if (paymentMethod === 'creditCard') {
             const cardHolder = document.getElementById('cardHolder').value;
@@ -129,6 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!cardHolder.trim() || !cardNumberRegex.test(cardNumber) || !monthYearRegex.test(expiryMonth) || !monthYearRegex.test(expiryYear) || !cvvRegex.test(cvv) ) {
                 alert('Please fill in all the required fields.');
                 isValid = false;
+            }  else {
+                selectedPaymentMethod = 'Credit Card';
+                paymentDetails = cardNumber.replace(/\s+/g, '');
             }
 
         } else if (paymentMethod === 'mbway') {
@@ -138,11 +146,18 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!phoneNumberRegex.test(phoneNumber)) {
                 alert('Phone number must be 9 digits.');
                 isValid = false;
+            } else {
+                selectedPaymentMethod = 'MB WAY';
+                paymentDetails = phoneNumber;
             }
         }
         
-        if (!isValid) {
+        if (isValid) {
+            selectedPaymentMethodInput.value = selectedPaymentMethod;
+            paymentDetailsInput.value = paymentDetails;
+        } else {
             event.preventDefault();
         }
     });
 });
+

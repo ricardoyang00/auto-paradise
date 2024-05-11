@@ -111,6 +111,8 @@ function drawCheckoutPage($db, $user, $address, $product) { ?>
             <form action="waitPayment.php" method="post">
                 <input type="hidden" name="productId" value="<?= $product->id ?>">
                 <input type="hidden" name="totalToPay" id="totalToPayInput">
+                <input type="hidden" name="selectedPaymentMethod" id="selectedPaymentMethod">
+                <input type="hidden" name="paymentDetails" id="paymentDetails">
                 <button type="submit">Checkout</button>
             </form>
         </div>

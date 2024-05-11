@@ -27,13 +27,27 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $productId = isset($_POST['productId']) ? $_POST['productId'] : null;
         $totalToPay = isset($_POST['totalToPay']) ? $_POST['totalToPay'] : null;
-    
+        $selectedPaymentMethod = isset($_POST['selectedPaymentMethod']) ? $_POST['selectedPaymentMethod'] : null;
+        $paymentDetails = isset($_POST['paymentDetails']) ? $_POST['paymentDetails'] : null;
+        
         $product = Product::getProductById($db, $productId);
 
         $isPaymentSuccessful = rand(1, 4) !== 1;
         if ($isPaymentSuccessful) {
             $session->addMessage('success', 'Payment Successful! Your order has been placed.');
-            $order = new Order(0, $user->username, (int)$productId, (float)$totalToPay, $product->sellerId, date('Y-m-d H:i:s'));
+
+            $order = new Order(
+                0, 
+                $user->username, 
+                (int)$productId, 
+                (float)$totalToPay, 
+                $product->sellerId, 
+                date('Y-m-d H:i:s'),
+                $selectedPaymentMethod, 
+                $selectedPaymentMethod === 'MB WAY' ? $paymentDetails : null,
+                $selectedPaymentMethod === 'Credit Card' ? $paymentDetails : null
+            );
+
             if (!$order->saveToOrderTable($db)) {
                 $session->addMessage('error', 'There was a problem processing your order. Please try again.');
             } else {
