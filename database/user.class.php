@@ -270,5 +270,26 @@ class Order {
     
         return $orders;
     }
-    
+
+    public static function getOrderById(PDO $db, int $orderId): ?Order {
+        $stmt = $db->prepare('SELECT * FROM ORDERS WHERE order_id = ?');
+        $stmt->execute([$orderId]);
+        $order = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($order) {
+            return new Order(
+                $order['order_id'],
+                $order['user_username'],
+                $order['product_id'],
+                $order['total_price'],
+                $order['seller_username'],
+                $order['order_date'],
+                $order['payment_method'],
+                $order['phone_number'] ?? null,
+                $order['card_number'] ?? null
+            );
+        } else {
+            return null;
+        }
+    }
 } ?>

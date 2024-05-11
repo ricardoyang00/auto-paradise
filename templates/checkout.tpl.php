@@ -140,3 +140,69 @@ function drawCheckoutPage($db, $user, $address, $product) { ?>
         </div>
     </div>
 <?php } ?>
+
+<?php function drawReceipt($db, $order, $user, $seller, $userAddress, $sellerAddress, $product, $brand, $scale, $category) { ?>
+    <h1 id="checkout-heading">Receipt</h1>
+    <div class="receipt-container">
+        <div id="receipt-header"></div>
+        <div class="receipt-info">
+            <label>Order ID: <?= $orderId?></label>
+            <label>Order Date: <?= $order->orderDate?></label>
+        </div>
+        <div class="receipt-user-info">
+            <label>Client</label>
+            <div class="user-info-box">
+                <p><?= $user->name?></p>
+                <p><?= $user->phoneNumber?></p>
+                <div class="address-line">
+                    <?=$userAddress->address?>,
+                    <?=$userAddress->postalCode?>,
+                    <?=$userAddress->city?>,
+                    <?=$userAddress->country?>
+                </div>
+            </div>
+        </div>
+        <div class="receipt-user-info">
+            <label>Seller</label>
+            <div class="user-info-box">
+                <p><?= $seller->name?></p>
+                <p><?= $seller->phoneNumber?></p>
+                <div class="address-line">
+                    <?=$sellerAddress->address?>,
+                    <?=$sellerAddress->postalCode?>,
+                    <?=$sellerAddress->city?>,
+                    <?=$sellerAddress->country?>
+                </div>
+            </div>
+        </div>
+        <div class="product-info">
+            <label>Product</label>
+            <div class="product-info-box">
+                <p id="product-label">Brand: <span id="product-name"><?= $brand->name?></span></p>
+                <p id="product-label">Name: <span id="product-name"><?= $product->title?></span></p>
+                <p id="product-label">Scale: <span id="product-name"><?= $scale->name?></span></p>
+                <p id="product-label">Category: <span id="product-name"><?= $category->name?></span></p>
+            </div>
+        </div>
+        <div class="payment-info">
+            <label>Payment Method</label>
+            <div class="payment-info-box">
+                <p><?= $order->paymentMethod ?></p>
+                <?php if ($order->paymentMethod == 'Credit Card'): ?>
+                    <p>Card number: <?= $order->cardNumber ?></p>
+                <?php else: ?>
+                    <p>Phone number: <?= $order->phoneNumber ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="cost-stamp-container">
+            <div class="receipt-stamp"></div>
+            <div class="cost-info">
+                <p id="subtotal">Subtotal: <span class="price">€<?= $product->price?></span></p>
+                <p id="shipping">Shipping: <span class="price">€<?= ($order->totalPrice == $product->price) ? '0' : '5.99';?></span></p>
+                <p id="line"></p>
+                <p id="total">Total: <span class="price">€<?= $order->totalPrice?></span></p>
+            </div>
+        </div>
+    </div>
+<?php } ?>
