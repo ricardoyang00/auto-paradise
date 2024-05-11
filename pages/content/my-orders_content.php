@@ -20,6 +20,6 @@
     $address = Address::getAddressById($db, $user->addressId);
     $orders = Order::getOrdersByUsername($db, $username);
 
-    drawOrders($db, $orders);
+    drawTransactions($db, $orders, 'orders');
 ?>
 

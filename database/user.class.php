@@ -232,4 +232,23 @@ class Order {
 
         return $orders;
     }
+
+    public static function getSellings(PDO $db, string $sellerUsername): array {
+        $stmt = $db->prepare('SELECT * FROM ORDERS WHERE seller_username = ? ORDER BY order_date DESC');
+        $stmt->execute([$sellerUsername]);
+    
+        $orders = [];
+        while ($order = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $orders[] = new Order(
+                $order['order_id'],
+                $order['user_username'],
+                $order['product_id'],
+                $order['total_price'],
+                $order['seller_username'],
+                $order['order_date']
+            );
+        }
+    
+        return $orders;
+    }
 } ?>
