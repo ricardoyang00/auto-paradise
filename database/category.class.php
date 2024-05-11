@@ -39,6 +39,38 @@ class Category{
             $category['category_name']
         );
     }
+
+    public static function deleteCategory(PDO $db, $categoryId): bool {
+        $db->beginTransaction();
+    
+        try {
+            $stmt = $db->prepare('DELETE FROM PRODUCTS WHERE category_id = ?');
+            $stmt->execute([$categoryId]);
+    
+            $stmt = $db->prepare('DELETE FROM CATEGORY WHERE category_id = ?');
+            $stmt->execute([$categoryId]);
+    
+            $db->commit();
+    
+            return true;
+        } catch (Exception $e) {
+            $db->rollBack();
+    
+            return false;
+        }
+    }
+
+    public static function addCategory(PDO $db, string $categoryName): bool {
+        $stmt = $db->prepare('INSERT INTO CATEGORY (category_name) VALUES (?)');
+        $result = $stmt->execute([$categoryName]);
+        return $result;
+    }
+
+    public static function renameCategory(PDO $db, $categoryId, $categoryName): bool {
+        $stmt = $db->prepare('UPDATE CATEGORY SET category_name = ? WHERE category_id = ?');
+        $result = $stmt->execute([$categoryName, $categoryId]);
+        return $result;
+    }
 }
 
 ?>

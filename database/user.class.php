@@ -189,4 +189,11 @@ class User {
     public function checkPassword($password) {
         return password_verify($password, $this->password);
     }
+
+    public static function isAdmin(PDO $db, string $username): bool {
+        $stmt = $db->prepare('SELECT * FROM ADMIN WHERE username = ?');
+        $stmt->execute([$username]);
+
+        return $stmt->fetch() !== false;
+    }
 } ?>
