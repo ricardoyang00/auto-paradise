@@ -108,7 +108,9 @@ function drawCheckoutPage($db, $user, $address, $product) { ?>
                     </div>
                 </div>
             </div>        
-            <button type="submit">Checkout</button>
+            <form action="waitPayment.php" method="post">
+                <button type="submit">Checkout</button>
+            </form>
         </div>
         <div class="product-box">
             <div class="product-content">

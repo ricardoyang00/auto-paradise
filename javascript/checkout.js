@@ -47,6 +47,19 @@ document.addEventListener('DOMContentLoaded', function() {
     updateShippingCost();
 });
 
+function addNameInputListener(elementId) {
+    document.getElementById(elementId).addEventListener('input', function (e) {
+        var regex = /^[a-zA-Z\s]*$/;
+        var input = e.target.value;
+        
+        if (!regex.test(input)) {
+            e.target.value = input.slice(0, -1);
+        }
+    });
+}
+
+addNameInputListener('cardHolder');
+
 document.getElementById('cardNumber').addEventListener('input', function (e) {
     var target = e.target;
     var value = target.value.replace(/\D/g, '');
@@ -76,3 +89,58 @@ addDigitOnlyListener('expiryMonth');
 addDigitOnlyListener('expiryYear');
 addDigitOnlyListener('cvv');
 addDigitOnlyListener('phoneNumber');
+
+function addMonthValidationListener(elementId) {
+    const inputElement = document.getElementById(elementId);
+
+    inputElement.addEventListener('blur', function (e) {
+        var value = parseInt(e.target.value, 10);
+
+        if (isNaN(value) || value < 1 || value > 12) {
+            e.target.value = '';
+        } else {
+            e.target.value = value.toString().padStart(2, '0');
+        }
+    });
+}
+
+addMonthValidationListener('expiryMonth');
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form[action="waitPayment.php"]');
+    form.addEventListener('submit', function(event) {
+        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+        let isValid = true;
+
+        if (paymentMethod === 'creditCard') {
+            const cardHolder = document.getElementById('cardHolder').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expiryMonth = document.getElementById('expiryMonth').value;
+            const expiryYear = document.getElementById('expiryYear').value;
+            const cvv = document.getElementById('cvv').value;
+        
+            const cardNumberRegex = /^(\d{4} ){3}\d{4}$/;
+            const monthYearRegex = /^\d{2}$/;
+            const cvvRegex = /^\d{3}$/;
+        
+            if (!cardHolder.trim() || !cardNumberRegex.test(cardNumber) || !monthYearRegex.test(expiryMonth) || !monthYearRegex.test(expiryYear) || !cvvRegex.test(cvv) ) {
+                alert('Please fill in all the required fields.');
+                isValid = false;
+            }
+
+        } else if (paymentMethod === 'mbway') {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const phoneNumberRegex = /^\d{9}$/;
+        
+            if (!phoneNumberRegex.test(phoneNumber)) {
+                alert('Phone number must be 9 digits.');
+                isValid = false;
+            }
+        }
+        
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+});
