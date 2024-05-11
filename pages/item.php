@@ -46,7 +46,7 @@
             <h1><?= $product->title ?></h1>
             <h3>€<?= $product->price ?></h3>
             <button class="buy" data-id="<?= $product->id ?>">
-                    <a href="buy.php?product_id=<?= $product->id ?>"> Buy Now </a>
+                <a href="buy.php?product_id=<?= $product->id ?>"> Buy Now </a>
             </button>
             <button class="add-wishlist" onclick="addToWishlist(<?= $product->id ?>)"><i class="fa-regular fa-heart"></i></a></button> 
         </div>

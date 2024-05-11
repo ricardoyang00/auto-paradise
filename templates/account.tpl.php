@@ -108,7 +108,11 @@ function drawProfileContent($user, $address) { ?>
                     <div id="product-price-receipt">
                         <p>€ <?= $transaction->totalPrice ?></p>
                         <div id="actions">
-                            <button class="receipt" data-id="<?= $transaction->productId ?>">Receipt <i class="fa-solid fa-file-invoice"></i></button>
+                            <button class="receipt" data-id="<?= $transaction->orderId ?>">
+                                <a href="receipt.php?order_id=<?= $transaction->orderId ?>">
+                                    Receipt <i class="fa-solid fa-file-invoice"></i>
+                                </a>    
+                            </button>
                         </div>
                     </div>
                 </article>

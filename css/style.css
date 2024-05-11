@@ -1469,3 +1469,116 @@ footer {
     margin-bottom: 20px;
 }
 /********************************/
+
+/***********RECEIPT***************/
+.receipt-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 20%;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    color: var(--text);
+    background-color: var(--article_background);
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    p {
+        margin: 5px 0;
+    }
+    
+    #receipt-header {
+        background-image: url('../images/logo/auto-paradise-logo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 150px;
+    }
+
+    .receipt-info, .receipt-user-info, .product-info, .payment-info {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+
+        .user-info-box, .product-info-box, .payment-info-box {
+            padding: 10px;
+            background-color: var(--input_background);
+            border: 1px solid #eee;
+        
+            .address-line {
+                display: inline;
+            }
+        }
+
+        #product-label {
+            font-weight: 500;
+        }
+
+        #product-name {
+            font-style: italic;
+            font-weight: normal;
+            font-size: 1em;
+        }
+    }
+
+    .cost-stamp-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .cost-info {
+            padding-top: 10%;
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 30%;
+            margin-left: auto;
+            margin-right: 0;
+            
+            .price {
+                margin-left: 60px;
+            }
+    
+            #subtotal {
+                font-style: italic;
+                font-size: 1em;
+            }
+    
+            #shipping {
+                font-style: italic;
+                font-size: 0.9em;
+            }
+    
+            #total {
+                font-weight: bold;
+                font-size: 1.2em;
+                margin-top: 2px;
+                font-style: italic;
+            }
+    
+            #line {
+                display: inline-block;
+                width: 100%;
+                border-top: 1px dashed #ccc;
+                margin: 10px 0;
+            }
+        }
+    
+        .receipt-stamp {
+            width: 200px;
+            height: 200px;
+            background-image: url('../images/logo/stamp.png');
+            background-size: cover; 
+            margin: 20px;
+            transform: rotate(-25deg);
+            opacity: 0.6; 
+        }
+    }
+}
+/********************************/
