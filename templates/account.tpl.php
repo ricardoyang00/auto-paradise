@@ -88,3 +88,31 @@ function drawProfileContent($user, $address) { ?>
     </form>
     </div>
 <?php } ?>
+
+<?php function drawTransactions($db, $transactions, $type) {
+    $title = $type === 'orders' ? 'My Orders' : 'My Sellings';
+    $divId = $type === 'orders' ? 'my-orders' : 'my-sells'; ?>
+    <h2><?= $title ?></h2>
+    <div id="<?= $divId ?>" class="account-content">
+        <div class="<?= $type ?>-content">
+            <?php foreach ($transactions as $transaction):
+                $product = Product::getProductById($db, $transaction->productId);
+                $thumbnail = $product->getProductThumbnail($db); ?>
+                <article>
+                    <img src="../database/images/<?= $thumbnail ?>">
+                    <div id="product-information">
+                        <h1><?= $product->title ?></h1>
+                        <p><?= $product->description ?></p>
+                        <p><?= $transaction->orderDate ?></p>
+                    </div>
+                    <div id="product-price-receipt">
+                        <p>€ <?= $transaction->totalPrice ?></p>
+                        <div id="actions">
+                            <button class="receipt" data-id="<?= $transaction->productId ?>">Receipt <i class="fa-solid fa-file-invoice"></i></button>
+                        </div>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php } ?>

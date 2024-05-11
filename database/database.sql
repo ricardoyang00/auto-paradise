@@ -32,6 +32,21 @@ CREATE TABLE USER (
     FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
 );
 
+CREATE TABLE ORDERS (
+    order_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_username VARCHAR(50) NOT NULL,
+    product_id INT NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL,
+    seller_username VARCHAR(50) NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    payment_method VARCHAR(10) NOT NULL,
+    phone_number VARCHAR(15),
+    card_number VARCHAR(20),
+    FOREIGN KEY (user_username) REFERENCES USER(username),
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
+    FOREIGN KEY (seller_username) REFERENCES USER(username)
+);
+
 CREATE TABLE PRODUCT (
     product_id INTEGER PRIMARY KEY AUTOINCREMENT,
     category INT NOT NULL,

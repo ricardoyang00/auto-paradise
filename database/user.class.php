@@ -189,4 +189,78 @@ class User {
     public function checkPassword($password) {
         return password_verify($password, $this->password);
     }
+} 
+
+class Order {
+    public int $orderId;
+    public string $userUsername;
+    public int $productId;
+    public float $totalPrice;
+    public string $sellerUsername;
+    public string $orderDate;
+    public string $paymentMethod;
+    public ?string $phoneNumber;
+    public ?string $cardNumber;
+
+    public function __construct(int $orderId, string $userUsername, int $productId, float $totalPrice, string $sellerUsername, string $orderDate, string $paymentMethod, ?string $phoneNumber, ?string $cardNumber) {
+        $this->orderId = $orderId;
+        $this->userUsername = $userUsername;
+        $this->productId = $productId;
+        $this->totalPrice = $totalPrice;
+        $this->sellerUsername = $sellerUsername;
+        $this->orderDate = $orderDate;
+        $this->paymentMethod = $paymentMethod;
+        $this->phoneNumber = $phoneNumber;
+        $this->cardNumber = $cardNumber;
+    }
+
+    public function saveToOrderTable(PDO $db): bool {
+        $stmt = $db->prepare('INSERT INTO ORDERS (user_username, product_id, total_price, seller_username, order_date, payment_method, phone_number, card_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        $result = $stmt->execute([$this->userUsername, $this->productId, $this->totalPrice, $this->sellerUsername, $this->orderDate, $this->paymentMethod, $this->phoneNumber, $this->cardNumber]);
+        return $result;
+    }
+
+    public static function getOrdersByUsername(PDO $db, string $userUsername): array {
+        $stmt = $db->prepare('SELECT * FROM ORDERS WHERE user_username = ? ORDER BY order_date DESC');
+        $stmt->execute([$userUsername]);
+
+        $orders = [];
+        while ($order = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $orders[] = new Order(
+                $order['order_id'],
+                $order['user_username'],
+                $order['product_id'],
+                $order['total_price'],
+                $order['seller_username'],
+                $order['order_date'],
+                $order['payment_method'],
+                $order['phone_number'] ?? null,
+                $order['card_number'] ?? null
+            );
+        }
+
+        return $orders;
+    }
+
+    public static function getSellingsByUsername(PDO $db, string $sellerUsername): array {
+        $stmt = $db->prepare('SELECT * FROM ORDERS WHERE seller_username = ? ORDER BY order_date DESC');
+        $stmt->execute([$sellerUsername]);
+    
+        $orders = [];
+        while ($order = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $orders[] = new Order(
+                $order['order_id'],
+                $order['user_username'],
+                $order['product_id'],
+                $order['total_price'],
+                $order['seller_username'],
+                $order['order_date'],
+                $order['payment_method'],
+                $order['phone_number'] ?? null,
+                $order['card_number'] ?? null
+            );
+        }
+    
+        return $orders;
+    }
 } ?>
