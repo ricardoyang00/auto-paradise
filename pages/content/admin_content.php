@@ -38,11 +38,11 @@ $scales = Scale::getAllScales($db);
                 <option value="<?= $category->id ?>"><?= $category->name ?></option>
             <?php } ?>
         </select>
-        <input type="text" name="categoryName" placeholder="Enter category name">
+        <input type="text" id="categoryNameInput" name="categoryName" placeholder="Enter category name">
         <div class="button-container">
-            <button id="delete-category-btn" class="delete-btn">Delete</button>
-            <button id="rename-category-btn" class="rename-btn">Rename</button>
-            <button id="add-category" class="save-btn">Add new category</button>
+            <button onclick="deleteCategory()" id="delete-category-btn" class="delete-btn">Delete</button>
+            <button onclick="renameCategory()" id="rename-category-btn" class="rename-btn">Rename</button>
+            <button onclick="addCategory()" id="add-category" class="save-btn">Add new category</button>
         </div>
 
         <h3>Brands</h3>

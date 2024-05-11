@@ -44,7 +44,7 @@ class Category{
         $db->beginTransaction();
     
         try {
-            $stmt = $db->prepare('DELETE FROM PRODUCTS WHERE category_id = ?');
+            $stmt = $db->prepare('DELETE FROM PRODUCT WHERE category = ?');
             $stmt->execute([$categoryId]);
     
             $stmt = $db->prepare('DELETE FROM CATEGORY WHERE category_id = ?');
