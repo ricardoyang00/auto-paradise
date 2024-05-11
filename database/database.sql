@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS ADDRESS;
 DROP TABLE IF EXISTS USER;
+DROP TABLE IF EXISTS ADMIN;
 DROP TABLE IF EXISTS PRODUCT;
 DROP TABLE IF EXISTS PRODUCT_IMAGES;
 DROP TABLE IF EXISTS SELLS;
@@ -45,6 +46,12 @@ CREATE TABLE ORDERS (
     FOREIGN KEY (user_username) REFERENCES USER(username),
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
     FOREIGN KEY (seller_username) REFERENCES USER(username)
+);
+
+CREATE TABLE ADMIN (
+    admin_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username VARCHAR(50) NOT NULL,
+    FOREIGN KEY (username) REFERENCES USER(username)
 );
 
 CREATE TABLE PRODUCT (
@@ -231,7 +238,8 @@ INSERT INTO ADDRESS (address_id, postal_code, address, city, country) VALUES
     (7, '78901', '404 Walnut St', 'City G', 'Country G'),
     (8, '89012', '505 Birch St', 'City H', 'Country H'),
     (9, '90123', '606 Spruce St', 'City I', 'Country I'),
-    (10, '01234', '707 Fir St', 'City J', 'Country J');
+    (10, '01234', '707 Fir St', 'City J', 'Country J'),
+    (11, '00000', '0 Zero St', 'City K', 'Country K');
 
 INSERT INTO USER (username, name, password, phone_number, address_id) VALUES
     ('user1', 'John Doe', '$2y$12$OAxx8x8115OTpUvqDPSzNeb7PK1uEYRGY3O6Qjos2NbDlFlAkfZFm', '123456789', 1),
@@ -243,7 +251,11 @@ INSERT INTO USER (username, name, password, phone_number, address_id) VALUES
     ('user7', 'Olivia Martinez', '$2y$12$m7TiTsj4PR2DLgR2ZNRueeNndfdnlgUKgSYbDg4y9VJwSX9tTR2z2', '789012345', 7),
     ('user8', 'William Anderson', '$2y$12$6Ig4AsBkrYKMFqu1O/ZnveKlvFFWZsQugSqktYS1DOv.9CcMihJ8S', '890123456', 8),
     ('user9', 'Sophia Taylor', '$2y$12$sJaIYaVlEtACnmicsaDngOET2nTaV1sKpiSTw6mev/5YpH925s85.', '901234567', 9),
-    ('user10', 'Michael Thomas', '$2y$12$dmEa4APx2d397jli.B2bgul29i59wIKMq0WGkY71zIch1o4k4txli', '012345678', 10);
+    ('user10', 'Michael Thomas', '$2y$12$dmEa4APx2d397jli.B2bgul29i59wIKMq0WGkY71zIch1o4k4txli', '012345678', 10),
+    ('admin', 'Admin', '$2y$12$AHXcZyJTi/uKoI.zAmTaQOUPl3GetpcQ3HqOX6zBTMs1miS/Zzqdi', '0', 11);
+
+INSERT INTO ADMIN (username) VALUES
+    ('admin');
 
 INSERT INTO PRODUCT (product_id, category, title, description, price, seller_id, brand, scale) VALUES
     (1, 1, 'Acura NSX', 'Description for Acura NSX', 50.00, 'user1', 1, 1),

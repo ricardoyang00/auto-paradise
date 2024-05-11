@@ -28,7 +28,6 @@ function drawProductList($db, $products, $searchQuery) {
             </a>
             <a class="price"><p>€<?= $product->price ?></p></a>
             <?php $product_id = $product->id; ?>
-            <?php $product_id = $product->id; ?>
             <button class="add-wishlist" onclick="addToWishlist(<?= $product_id ?>)">Add to Wishlist</button>
         </article>
         <?php } ?>

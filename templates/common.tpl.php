@@ -18,6 +18,7 @@
         <script src="../javascript/profile.js" defer></script>
         <script src="../javascript/checkout.js" defer></script>
         <script src="../javascript/waitPayment.js" defer></script>
+        <script src="../javascript/admin.js" defer></script>
     </head>
 <?php } ?>
 
