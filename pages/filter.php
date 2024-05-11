@@ -20,8 +20,20 @@ if(isset($_POST['brand']) && is_array($_POST['brand'])) {
 }
 
 $searchQuery = isset($_POST['search']) ? $_POST['search'] : null;
-$filteredProducts = Product::getFilteredProducts($db, $filters, $searchQuery);
 
-drawProductList($db, $filteredProducts, $searchQuery ?? null);
+$productsByName = Product::getProductsByName($db, $searchQuery);
+$filteredProducts = Product::getFilteredProducts($db, $filters);
+
+$intersectedProducts = [];
+foreach ($productsByName as $productByName) {
+    foreach ($filteredProducts as $filteredProduct) {
+        if ($productByName->id === $filteredProduct->id) {
+            $intersectedProducts[] = $productByName;
+            break;
+        }
+    }
+}
+
+drawProductList($db, $intersectedProducts, $searchQuery ?? null);
 
 ?>

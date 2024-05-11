@@ -85,14 +85,9 @@ class Product {
         return $products;
     }
 
-    public static function getFilteredProducts(PDO $db, array $filters, $productName = null): array {
+    public static function getFilteredProducts(PDO $db, array $filters): array {
         $query = 'SELECT * FROM PRODUCT WHERE 1';
         $params = array();
-    
-        if (!empty($productName)) {
-            $query .= ' AND title LIKE ?';
-            $params[] = "%$productName%";
-        }
     
         if (isset($filters['category'])) {
             $query .= ' AND category IN (' . implode(',', array_fill(0, count($filters['category']), '?')) . ')';
