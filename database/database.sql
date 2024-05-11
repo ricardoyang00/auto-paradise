@@ -219,16 +219,16 @@ INSERT INTO ADDRESS (address_id, postal_code, address, city, country) VALUES
     (10, '01234', '707 Fir St', 'City J', 'Country J');
 
 INSERT INTO USER (username, name, password, phone_number, address_id) VALUES
-    ('user1', 'John Doe', '$2a$12$3mRPBHS3oteGGuYRqDgSeOHRSd8HaC66ut7vI1dXWbriTutxKDeva', '123456789', 1),
-    ('user2', 'Jane Smith', '$2a$12$3mRPBHS3oteGGuYRqDgSeOHRSd8HaC66ut7vI1dXWbriTutxKDeva', '234567890', 2),
-    ('user3', 'Alice Johnson', '$2a$12$1DPx6mgdBLXMQsfkwPCOCuW/ecay4XJ1eZZX09hzN5cqH6Ydzzsu.', '345678901', 3),
-    ('user4', 'Bob Brown', '$2a$12$ZvPLp/2AcqD9DAIHx9HYBO/vJfLzg5dB6k0vdgS8H37/eg6I7P7S2', '456789012', 4),
-    ('user5', 'Emma Davis', '$2a$12$riE3QbjdYZ3kISjFzDDHcO5lhOVt84e2dLJuS1RGAVj0DXG/pweIO', '567890123', 5),
-    ('user6', 'James Wilson', '$2a$12$FsgBfyLQnoEHIklJhnKIGOlu63s/roZvbcH6fKhLZh1y/bs2cFd/6', '678901234', 6),
-    ('user7', 'Olivia Martinez', '$2a$12$gEBkkhV.SnFMsd97HnA2P.tYS5ML/BIDxpSbv5pOFfdOavzhmDiVS', '789012345', 7),
-    ('user8', 'William Anderson', '$2a$12$ZM3Qry9i6ofKIc9Cke5lS.Sv8aEgi2bB8oWE6/w2CTj53DYx.Y0KG', '890123456', 8),
-    ('user9', 'Sophia Taylor', '$2a$12$DN7QR6W1HL6gLv0FTEd5Mu//4urXQiMfFrAQrg06i9k6NZaRu2L7K', '901234567', 9),
-    ('user10', 'Michael Thomas', '$2a$12$2gVFLs9MyLb99orLxrx5V./ijErXFpuQtECJwEsX0QMcwOY3fcqam', '012345678', 10);
+    ('user1', 'John Doe', '$2y$12$OAxx8x8115OTpUvqDPSzNeb7PK1uEYRGY3O6Qjos2NbDlFlAkfZFm', '123456789', 1),
+    ('user2', 'Jane Smith', '$2y$12$vkeecxf8upaqp9F.B5kcWOHN/jpUSbidFvVvRBhEzdpVSv.A8BePK', '234567890', 2),
+    ('user3', 'Alice Johnson', '$2y$12$RbTqk21koVz5N/amgPYxh.DNJ5TOrZgYNLe8gpfTrbgrUzfi82/yu', '345678901', 3),
+    ('user4', 'Bob Brown', '$2y$12$RbkHXgCUAfys/5b.qz/oXefIVTc8i2xMrjFEDzZsDoAJW2.Z2kpdW', '456789012', 4),
+    ('user5', 'Emma Davis', '$2y$12$v4kE2GooFKmc3HJreLkg/eSm1JGkeXqn2KGGKC7Rjx7.Dd6p.QlDq', '567890123', 5),
+    ('user6', 'James Wilson', '$2y$12$YBTTrLwsjjd8OPvjWpMl.uY6.dtGFOpLHtU3qNdG68RoUMkqL2gwi', '678901234', 6),
+    ('user7', 'Olivia Martinez', '$2y$12$m7TiTsj4PR2DLgR2ZNRueeNndfdnlgUKgSYbDg4y9VJwSX9tTR2z2', '789012345', 7),
+    ('user8', 'William Anderson', '$2y$12$6Ig4AsBkrYKMFqu1O/ZnveKlvFFWZsQugSqktYS1DOv.9CcMihJ8S', '890123456', 8),
+    ('user9', 'Sophia Taylor', '$2y$12$sJaIYaVlEtACnmicsaDngOET2nTaV1sKpiSTw6mev/5YpH925s85.', '901234567', 9),
+    ('user10', 'Michael Thomas', '$2y$12$dmEa4APx2d397jli.B2bgul29i59wIKMq0WGkY71zIch1o4k4txli', '012345678', 10);
 
 INSERT INTO PRODUCT (product_id, category, title, description, price, seller_id, brand, scale) VALUES
     (1, 1, 'Acura NSX', 'Description for Acura NSX', 50.00, 'user1', 1, 1),
