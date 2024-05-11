@@ -102,6 +102,7 @@ function drawProfileContent($user, $address) { ?>
                 <div id="product-information">
                     <h1><?= $product->title ?></h1>
                     <p><?= $product->description ?></p>
+                    <p><?= $order->orderDate ?></p>
                 </div>
                 <div id="product-price-receipt">
                     <p>€ <?= $order->totalPrice ?></p>

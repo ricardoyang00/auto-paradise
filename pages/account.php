@@ -28,7 +28,7 @@ $address = Address::getAddressById($db, $user->addressId);
     <div class="account-navbar">
         <a href="#" class="nav-link selected" data-content="profile"><i class="fa-solid fa-user"></i> Profile</a>
         <a href="#" class="nav-link" data-content="my-orders"><i class="fa-solid fa-receipt"></i> My Orders</a>
-        <a href="#" class="nav-link" data-content="my-sells"><i class="fa-solid fa-cart-shopping"></i> My Sells/Solds</a>
+        <a href="#" class="nav-link" data-content="my-sells"><i class="fa-solid fa-cart-shopping"></i> My Sellings</a>
     </div>
 
     <div class="account-content">
