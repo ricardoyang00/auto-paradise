@@ -53,10 +53,10 @@
             <nav id="menu">
                 <ul>
                     <li><a href="../pages/search.php">On Sales!</a></li>
-                    <li><a href="../pages/search.php">DTM</a></li>
-                    <li><a href="../pages/search.php">F1</a></li>
-                    <li><a href="../pages/search.php">Le Mans</a></li>
-                    <li><a href="../pages/search.php">Others</a></li>
+                    <li><a href="../pages/search.php?category=2">DTM</a></li>
+                    <li><a href="../pages/search.php?category=3">F1</a></li>
+                    <li><a href="../pages/search.php?category=6">Le Mans</a></li>
+                    <li><a href="../pages/search.php?category=all">Others</a></li>
                     <li><a href="../pages/search.php">Accessories</a></li>
                 </ul>
             </nav>
