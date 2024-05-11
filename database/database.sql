@@ -34,7 +34,7 @@ CREATE TABLE USER (
 
 CREATE TABLE ORDERS (
     order_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_username VARCHAR(50) NOT NULL,
+    client_username VARCHAR(50) NOT NULL,
     product_id INT NOT NULL,
     total_price DECIMAL(10, 2) NOT NULL,
     seller_username VARCHAR(50) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE ORDERS (
     payment_method VARCHAR(10) NOT NULL,
     phone_number VARCHAR(15),
     card_number VARCHAR(20),
-    FOREIGN KEY (user_username) REFERENCES USER(username),
+    FOREIGN KEY (client_username) REFERENCES USER(username),
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
     FOREIGN KEY (seller_username) REFERENCES USER(username)
 );

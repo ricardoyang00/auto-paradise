@@ -193,7 +193,7 @@ class User {
 
 class Order {
     public int $orderId;
-    public string $userUsername;
+    public string $clientUsername;
     public int $productId;
     public float $totalPrice;
     public string $sellerUsername;
@@ -202,9 +202,9 @@ class Order {
     public ?string $phoneNumber;
     public ?string $cardNumber;
 
-    public function __construct(int $orderId, string $userUsername, int $productId, float $totalPrice, string $sellerUsername, string $orderDate, string $paymentMethod, ?string $phoneNumber, ?string $cardNumber) {
+    public function __construct(int $orderId, string $clientUsername, int $productId, float $totalPrice, string $sellerUsername, string $orderDate, string $paymentMethod, ?string $phoneNumber, ?string $cardNumber) {
         $this->orderId = $orderId;
-        $this->userUsername = $userUsername;
+        $this->clientUsername = $clientUsername;
         $this->productId = $productId;
         $this->totalPrice = $totalPrice;
         $this->sellerUsername = $sellerUsername;
@@ -215,20 +215,20 @@ class Order {
     }
 
     public function saveToOrderTable(PDO $db): bool {
-        $stmt = $db->prepare('INSERT INTO ORDERS (user_username, product_id, total_price, seller_username, order_date, payment_method, phone_number, card_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-        $result = $stmt->execute([$this->userUsername, $this->productId, $this->totalPrice, $this->sellerUsername, $this->orderDate, $this->paymentMethod, $this->phoneNumber, $this->cardNumber]);
+        $stmt = $db->prepare('INSERT INTO ORDERS (client_username, product_id, total_price, seller_username, order_date, payment_method, phone_number, card_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        $result = $stmt->execute([$this->clientUsername, $this->productId, $this->totalPrice, $this->sellerUsername, $this->orderDate, $this->paymentMethod, $this->phoneNumber, $this->cardNumber]);
         return $result;
     }
 
-    public static function getOrdersByUsername(PDO $db, string $userUsername): array {
-        $stmt = $db->prepare('SELECT * FROM ORDERS WHERE user_username = ? ORDER BY order_date DESC');
-        $stmt->execute([$userUsername]);
+    public static function getOrdersByUsername(PDO $db, string $clientUsername): array {
+        $stmt = $db->prepare('SELECT * FROM ORDERS WHERE client_username = ? ORDER BY order_date DESC');
+        $stmt->execute([$clientUsername]);
 
         $orders = [];
         while ($order = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $orders[] = new Order(
                 $order['order_id'],
-                $order['user_username'],
+                $order['client_username'],
                 $order['product_id'],
                 $order['total_price'],
                 $order['seller_username'],
@@ -250,7 +250,7 @@ class Order {
         while ($order = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $orders[] = new Order(
                 $order['order_id'],
-                $order['user_username'],
+                $order['client_username'],
                 $order['product_id'],
                 $order['total_price'],
                 $order['seller_username'],
@@ -272,7 +272,7 @@ class Order {
         if ($order) {
             return new Order(
                 $order['order_id'],
-                $order['user_username'],
+                $order['client_username'],
                 $order['product_id'],
                 $order['total_price'],
                 $order['seller_username'],
@@ -286,3 +286,4 @@ class Order {
         }
     }
 } ?>
+

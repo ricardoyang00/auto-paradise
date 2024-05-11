@@ -146,7 +146,7 @@ function drawCheckoutPage($db, $user, $address, $product) { ?>
     <div class="receipt-container">
         <div id="receipt-header"></div>
         <div class="receipt-info">
-            <label>Order ID: <?= $orderId?></label>
+            <label>Order ID: <?= $order->orderId?></label>
             <label>Order Date: <?= $order->orderDate?></label>
         </div>
         <div class="receipt-user-info">
