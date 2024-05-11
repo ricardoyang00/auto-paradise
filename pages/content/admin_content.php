@@ -52,11 +52,11 @@ $scales = Scale::getAllScales($db);
                 <option value="<?= $brand->id ?>"><?= $brand->name ?></option>
             <?php } ?>
         </select>
-        <input type="text" name="brandName" placeholder="Enter brand name">
+        <input type="text" id="brandNameInput" name="brandName" placeholder="Enter brand name">
         <div class="button-container">
-            <button id="delete-brand-btn" class="delete-btn">Delete</button>
-            <button id="rename-brand-btn" class="rename-btn">Rename</button>
-            <button id="add-brand" class="save-btn">Add new brand</button>
+            <button onclick="deleteBrand()" id="delete-brand-btn" class="delete-btn">Delete</button>
+            <button onclick="renameBrand()" id="rename-brand-btn" class="rename-btn">Rename</button>
+            <button onclick="addBrand()" id="add-brand" class="save-btn">Add new brand</button>
         </div>
 
         <h3>Scales</h3>
@@ -66,11 +66,11 @@ $scales = Scale::getAllScales($db);
                 <option value="<?= $scale->id ?>"><?= $scale->name ?></option>
             <?php } ?>
         </select>
-        <input type="text" name="scaleName" placeholder="Enter scale name">
+        <input type="text" id="scaleNameInput" name="scaleName" placeholder="Enter scale name">
         <div class="button-container">
-            <button id="delete-scale-btn" class="delete-btn">Delete</button>
-            <button id="rename-scale-btn" class="rename-btn">Rename</button>
-            <button id="add-scale" class="save-btn">Add new scale</button>
+            <button onclick="deleteScale()" id="delete-scale-btn" class="delete-btn">Delete</button>
+            <button onclick="renameScale()" id="rename-scale-btn" class="rename-btn">Rename</button>
+            <button onclick="addScale()" id="add-scale" class="save-btn">Add new scale</button>
         </div>
     </div>
 </div>

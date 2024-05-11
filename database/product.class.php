@@ -82,6 +82,10 @@ class Product {
             );
         }
 
+        usort($products, function($a, $b) {
+            return strcasecmp($a->title, $b->title);
+        });
+
         return $products;
     }
 
@@ -122,6 +126,10 @@ class Product {
                 $product['scale']
             );
         }
+
+        usort($products, function($a, $b) {
+            return strcasecmp($a->title, $b->title);
+        });
     
         return $products;
     }

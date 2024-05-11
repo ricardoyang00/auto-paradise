@@ -21,6 +21,16 @@ class Category{
             );
         }
 
+        usort($categories, function($a, $b) {
+            if ($a->name === 'Other') {
+                return 1;
+            } elseif ($b->name === 'Other') {
+                return -1;
+            } else {
+                return strcasecmp($a->name, $b->name);
+            }
+        });
+
         return $categories;
     }
 
