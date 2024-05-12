@@ -5,14 +5,9 @@ DROP TABLE IF EXISTS PRODUCT;
 DROP TABLE IF EXISTS PRODUCT_IMAGES;
 DROP TABLE IF EXISTS PRODUCT_STATE;
 DROP TABLE IF EXISTS ORDERS;
-DROP TABLE IF EXISTS SELLS;
-DROP TABLE IF EXISTS REVIEWS;
-DROP TABLE IF EXISTS EVENT;
 DROP TABLE IF EXISTS BRANDS;
 DROP TABLE IF EXISTS CATEGORY;
 DROP TABLE IF EXISTS SCALE;
-DROP TABLE IF EXISTS ACCESSORIES;
-DROP TABLE IF EXISTS ACCESSORY_CATEGORY;
 DROP TABLE IF EXISTS WISHLIST;
 DROP TABLE IF EXISTS QA;
 DROP TABLE IF EXISTS BAN;
@@ -85,22 +80,6 @@ CREATE TABLE PRODUCT_STATE (
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id) ON DELETE CASCADE
 );
 
-CREATE TABLE REVIEWS (
-    review_id INTEGER PRIMARY KEY,
-    seller_evaluation INTEGER NOT NULL CHECK (seller_evaluation >= 1 AND seller_evaluation <= 5),
-    logistics_evaluation INTEGER NOT NULL CHECK (logistics_evaluation >= 1 AND logistics_evaluation <= 5),
-    overall_evaluation INTEGER NOT NULL CHECK (overall_evaluation >= 1 AND overall_evaluation <= 5),
-    platform_evaluation INTEGER NOT NULL CHECK (platform_evaluation >= 1 AND platform_evaluation <= 5),
-    comment TEXT
-);
-
-CREATE TABLE EVENT (
-    event_id INTEGER PRIMARY KEY,
-    event_type TEXT CHECK (event_type IN ('flash_sale', 'holiday_discount')),
-    discount_percentage DECIMAL(5,2) NOT NULL,
-    sell_event TEXT
-);
-
 CREATE TABLE BRANDS (
     brand_id INTEGER PRIMARY KEY,
     brand_name TEXT NOT NULL
@@ -114,19 +93,6 @@ CREATE TABLE CATEGORY (
 CREATE TABLE SCALE (
     scale_id INTEGER PRIMARY KEY,
     scale_name TEXT NOT NULL
-);
-
-CREATE TABLE ACCESSORIES (
-    accessory_id INTEGER PRIMARY KEY,
-    accessory_name TEXT NOT NULL,
-    accessory_category INTEGER NOT NULL,
-    price DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (accessory_category) REFERENCES ACCESSORY_CATEGORY(accessory_category_id)
-);
-
-CREATE TABLE ACCESSORY_CATEGORY (
-    accessory_category_id INTEGER PRIMARY KEY,
-    accessory_category_name TEXT NOT NULL
 );
 
 CREATE TABLE WISHLIST (
@@ -408,34 +374,6 @@ INSERT INTO PRODUCT_STATE (product_id, status) VALUES
     (41, 'Sold'),
     (42, 'Available'),
     (43, 'Available');
-
-INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall_evaluation, platform_evaluation, comment) VALUES
-    (1, 5, 5, 5, 5, 'Great transaction, highly recommended seller!'),
-    (2, 4, 5, 4, 4, 'Good product, fast shipping.'),
-    (3, 5, 4, 4, 5, 'Beautiful car, minor delay in delivery.'),
-    (4, 4, 4, 4, 4, 'Nice car, smooth transaction.'),
-    (5, 3, 5, 3, 3, 'Decent car, delayed shipping.'),
-    (6, 5, 5, 5, 5, 'Excellent car, fast shipping.'),
-    (7, 4, 5, 4, 4, 'Good car, no issues.'),
-    (8, 5, 5, 5, 5, 'Perfect car, smooth transaction.'),
-    (9, 3, 4, 3, 3, 'Okay car, shipping took a while.'),
-    (10, 4, 5, 4, 4, 'Satisfactory car, fast shipping.');
-
-INSERT INTO EVENT (event_id, event_type, discount_percentage, sell_event) VALUES
-    (1, 'flash_sale', 10.00, 'Flash sale event for selected products.'),
-    (2, 'holiday_discount', 20.00, 'Holiday discount event for all products.');
-
-INSERT INTO ACCESSORIES (accessory_id, accessory_name, accessory_category, price) VALUES
-    (1, 'Racing Helmet', 1, 100.00),
-    (2, 'Champion Trophy', 2, 50.00),
-    (3, 'Team Shirt', 3, 30.00),
-    (4, 'Logo Cap', 4, 20.00),
-    (5, 'Model Car', 5, 15.00),
-    (6, 'Racing Helmet', 1, 100.00),
-    (7, 'Champion Trophy', 2, 50.00),
-    (8, 'Team Shirt', 3, 30.00),
-    (9, 'Logo Cap', 4, 20.00),
-    (10, 'Model Car', 5, 15.00);
 
 INSERT INTO QA (user_id, product_id, question, answer) VALUES
     ('user1', 5, 'How many colors does this product come in?', 'This product comes in three colors: red, blue, and green.'),
