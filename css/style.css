@@ -190,7 +190,7 @@ footer {
     }
 }
 
-#sell {
+#sell, #edit-product {
     color: var(--text);
     background-color: var(--article_background);
     padding: 20px;
@@ -263,7 +263,7 @@ footer {
         justify-content: flex-end;
     }
 
-    button[type="upload"] {
+    button[type="upload"], button[type="submit"] {
         float: right; 
         padding: 5px 8px;
         font-size: 14px; 
@@ -274,6 +274,11 @@ footer {
         width: 120px;
         align-self: flex-end;
         margin: 0 20px;
+        cursor: pointer;
+    }
+
+    button[type="submit"] {
+        background-color: #4CAF50;
     }
 
     #image::-webkit-file-upload-button {
@@ -1023,7 +1028,7 @@ footer {
                         height: 100%;
                         margin-right: 10px;
                         
-                        .receipt, .remove {
+                        .receipt, .remove, .edit {
                             width: 7em;
                             height: 2em;
                             border-radius: 5px;
@@ -1033,12 +1038,19 @@ footer {
                             font-weight: normal;
                             margin-top: auto;
                             margin-bottom: 15px;
+
+                            &:hover {
+                                border: none;
+                                background-color: var(--orange_primary);
+                                color: white;
+                            }
                         }
-                        
-                        .receipt:hover, .remove:hover {
+
+                        .remove:hover {
                             border: none;
-                            background-color: var(--orange_primary);
+                            background-color: #f44336;
                             color: white;
+                            cursor: pointer;
                         }
 
                         i {

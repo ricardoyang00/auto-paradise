@@ -248,5 +248,41 @@ class Product {
 
         return $stmt->rowCount() > 0;
     }
+
+    public function updateProduct(PDO $db): void {
+        $fields = [];
+        $values = [];
+
+        if ($this->title !== null) {
+            $fields[] = 'title = ?';
+            $values[] = $this->title;
+        }
+        if ($this->description !== null) {
+            $fields[] = 'description = ?';
+            $values[] = $this->description;
+        }
+        if ($this->category !== null) {
+            $fields[] = 'category = ?';
+            $values[] = $this->category;
+        }
+        if ($this->brandId !== null) {
+            $fields[] = 'brand = ?';
+            $values[] = $this->brandId;
+        }
+        if ($this->scale !== null) {
+            $fields[] = 'scale = ?';
+            $values[] = $this->scale;
+        }
+        if ($this->price !== null) {
+            $fields[] = 'price = ?';
+            $values[] = $this->price;
+        }
+
+        $values[] = $this->id;
+
+        $stmt = $db->prepare('UPDATE PRODUCT SET ' . implode(', ', $fields) . ' WHERE product_id = ?');
+        $stmt->execute($values);
+    }
+
 }
 ?>

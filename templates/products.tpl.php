@@ -126,3 +126,58 @@ function drawProductItem(Product $product, $isAdmin) {
         </div>
     </div>
 <?php } ?>
+
+<?php function drawEditProductForm($db, $categories, $brands, $scales, $product, $productId, $productCategory, $productBrand, $productScale) { ?>
+    <section id="edit-product">
+        <h2>Edit product</h2>
+        <form action="../../actions/action_update_product.php" method="post">
+            <input type="hidden" name="product_id" value="<?= htmlspecialchars($productId) ?>">
+            <div class="input-container">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="<?= $product->title ?>" required>
+            </div>
+            <div class="input-container">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" required><?= $product->description ?></textarea>
+            </div>
+            <div class="input-container">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled>Select a category</option>
+                    <?php foreach($categories as $category): ?>
+                        <option value="<?= $category->id ?>" <?= ($category->id == $productCategory->id) ? 'selected' : '' ?>>
+                            <?= $category->name ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="input-container">
+                <label for="brand">Brand</label>
+                <select id="brand" name="brand" required>
+                    <option value="" disabled>Select a brand</option>
+                    <?php foreach($brands as $brand): ?>
+                        <option value="<?= $brand->id ?>" <?= ($brand->id == $productBrand->id) ? 'selected' : '' ?>>
+                            <?= $brand->name ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>  
+            </div>
+            <div class="input-container">
+                <label for="scale">Scale</label>
+                <select id="scale" name="scale" required>
+                    <option value="" disabled>Select a scale</option>
+                    <?php foreach($scales as $scale): ?>
+                        <option value="<?= $scale->id ?>" <?= ($scale->id == $productScale->id) ? 'selected' : '' ?>>
+                            <?= $scale->name ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>  
+            </div>
+            <div class="input-container">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" value="<?= $product->price ?>" required>
+            </div>
+            <button type="submit">Save</button>
+        </form>
+    </section>
+<?php } ?>
