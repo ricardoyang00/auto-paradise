@@ -100,20 +100,19 @@ function drawProductItem(Product $product, $isAdmin) {
                 <h2>Q&A</h2>
                 <form>
                     <textarea placeholder="Ask a question..."></textarea>
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="submit-question">Submit</button>
                 </form>
-                <div class="qa-item">
-                    <p><strong>Q:</strong> Question text?</p>
-                    <p><strong>A:</strong> Answer text...</p>
-                </div>
-                <div class="qa-item">
-                    <p><strong>Q:</strong> Question text?</p>
-                    <p><strong>A:</strong> Answer text...</p>
-                </div>
-                <div class="qa-item">
-                    <p><strong>Q:</strong> Question text?</p>
-                    <p><strong>A:</strong> Answer text...</p>
-                </div>
+                <?php
+                $questions = Questions::getProductQuestions($db, $product->id);
+                foreach($questions as $question) { 
+                    // Check if $question->answer is set and not null
+                    if (isset($question->answer) && $question->answer !== null) { ?>
+                        <div class="qa-item">
+                            <p><strong>Q: </strong><?=$question->question?></p>
+                            <p><strong>A: </strong><?=$question->answer?></p>
+                        </div>
+                    <?php }
+                } ?>                
             </div>
         </div>
     </section>

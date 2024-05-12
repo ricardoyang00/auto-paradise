@@ -436,3 +436,10 @@ INSERT INTO ACCESSORIES (accessory_id, accessory_name, accessory_category, price
     (8, 'Team Shirt', 3, 30.00),
     (9, 'Logo Cap', 4, 20.00),
     (10, 'Model Car', 5, 15.00);
+
+INSERT INTO QA (user_id, product_id, question, answer) VALUES
+    ('user1', 5, 'How many colors does this product come in?', 'This product comes in three colors: red, blue, and green.'),
+    ('user2', 1, 'Is the product in good conditions?', 'Yes, this product almost brand new'),
+    ('user3', 1, 'What is the material of this product?', 'The material of this product is stainless steel.'),
+    ('user6', 1, 'What are the dimensions of this product?', NULL),
+    ('user4', 1, 'Does this product come with a warranty?', NULL);

@@ -249,4 +249,37 @@ class Product {
         return $stmt->rowCount() > 0;
     }
 }
+
+class Questions {
+    public string $sender;
+    public string $question;
+    public ?string $answer;
+    public int $productId;
+
+    public function __construct($sender, $question, $answer, $productId) {
+        $this->sender = $sender;
+        $this->question = $question;
+        $this->answer = $answer;
+        $this->productId = $productId;
+    }
+
+    public static function getProductQuestions(PDO $db, $productId) {
+        $stmt = $db->prepare('SELECT * FROM QA WHERE product_id = ?');
+        $stmt->execute([$productId]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $questions = [];
+        foreach ($results as $result) {
+            $questions[] = new Questions(
+                $result['user_id'],
+                $result['question'],
+                $result['answer'],
+                $result['product_id']
+            );
+        }
+        return $questions;
+    }
+}
 ?>
+
+
