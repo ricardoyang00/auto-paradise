@@ -120,3 +120,36 @@ function drawProfileContent($user, $address) { ?>
         </div>
     </div>
 <?php } ?>
+
+<?php function drawListings($db, $listings) { ?>
+    <h2>My Listings</h2>
+    <div id="my-listings" class="account-content">
+        <div class="listings-content">
+            <?php foreach ($listings as $product):
+                $thumbnail = $product->getProductThumbnail($db); ?>
+                <article>
+                    <img src="../database/images/<?= $thumbnail ?>">
+                    <div id="product-information">
+                        <h1><?= $product->title ?></h1>
+                        <p><?= $product->description ?></p>
+                    </div>
+                    <div id="product-price-remove">
+                        <p>€ <?= $product->price ?></p>
+                        <div id="actions">
+                            <button class="remove" onclick="deleteListedProduct(<?= $product->id ?>)">
+                                Remove <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+            <div id="confirmationModal" class="modal">
+                <div class="modal-content">
+                    <p>Are you sure you want to remove this product?</p>
+                    <button id="confirmDelete">Yes, remove it</button>
+                    <button id="cancelDelete">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
