@@ -16,24 +16,31 @@
 
     $db = getDatabaseConnection();
     $username = $session->getUsername();
-
+    $listings = Product::getNotSoldProductsBySeller($db, $username);
 ?>
 
 <h2>My Listings</h2>
 <div id="my-listings" class="account-content">
     <div class="listings-content">
-        <article>
-            <img src="../database/images/1.jpg">
-            <div id="product-information">
-                <h1>product bought aldasklj</h1>
-                <p>some description</p>
-            </div>
-            <div id="product-price-edit">
-                <p>€ 941,23</p>
-                <div id="actions">
-                    <button class="edit" data-id="product-id">Edit <i class="fa-solid fa-pen-to-square"></i></i></button>
+        <?php foreach ($listings as $product):
+            $thumbnail = $product->getProductThumbnail($db); ?>
+            <article>
+                <img src="../database/images/<?= $thumbnail ?>">
+                <div id="product-information">
+                    <h1><?= $product->title ?></h1>
+                    <p><?= $product->description ?></p>
                 </div>
-            </div>
-        </article>
+                <div id="product-price-receipt">
+                    <p>€ <?= $product->price ?></p>
+                    <div id="actions">
+                        <button class="edit" data-id="<?= $product->productId ?>">
+                            <a href="#">
+                                Edit <i class="fa-solid fa-pen-to-square"></i>
+                            </a>    
+                        </button>
+                    </div>
+                </div>
+            </article>
+        <?php endforeach; ?>
     </div>
 </div>

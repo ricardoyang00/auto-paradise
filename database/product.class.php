@@ -193,5 +193,49 @@ class Product {
         return $success || $stmt->rowCount() == 0;
     }
     
+    public static function getProductState(PDO $db, int $productId): ?string {
+        $stmt = $db->prepare('SELECT status FROM PRODUCT_STATE WHERE product_id = ?');
+        $stmt->execute([$productId]);
+
+        $state = $stmt->fetch();
+
+        return $state ? $state['status'] : null;
+    }
+
+    public static function setProductState(PDO $db, int $productId, string $state): bool {
+        $checkStmt = $db->prepare('SELECT COUNT(*) FROM PRODUCT_STATE WHERE product_id = ?');
+        $checkStmt->execute([$productId]);
+        $exists = $checkStmt->fetchColumn() > 0;
+
+        if ($exists) {
+            $stmt = $db->prepare('UPDATE PRODUCT_STATE SET status = ? WHERE product_id = ?');
+            $result = $stmt->execute([$state, $productId]);
+        } else {
+            throw new Exception("Product state for product ID $productId does not exist and cannot be updated.");
+        }
+
+        return $result;
+    }
+
+    public static function getNotSoldProductsBySeller(PDO $db, string $sellerId): array {
+        $stmt = $db->prepare('SELECT p.* FROM PRODUCT p INNER JOIN PRODUCT_STATE ps ON p.product_id = ps.product_id WHERE ps.status <> ? AND p.seller_id = ?');
+        $stmt->execute(['Sold', $sellerId]);
+
+        $products = [];
+        while ($product = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $products[] = new Product(
+                $product['product_id'],
+                $product['category'],
+                $product['title'],
+                $product['description'],
+                $product['price'],
+                $product['seller_id'],
+                $product['brand'],
+                $product['scale']
+            );
+        }
+
+        return $products;
+    }
 }
 ?>
