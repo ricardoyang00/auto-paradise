@@ -30,7 +30,7 @@
                     <h1><?= $product->title ?></h1>
                     <p><?= $product->description ?></p>
                 </div>
-                <div id="product-price-receipt">
+                <div id="product-price-edit">
                     <p>€ <?= $product->price ?></p>
                     <div id="actions">
                         <button class="edit" data-id="<?= $product->productId ?>">

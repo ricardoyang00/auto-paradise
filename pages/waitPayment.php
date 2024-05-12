@@ -52,9 +52,7 @@
                 $session->addMessage('error', 'There was a problem processing your order. Please try again.');
             } else {
                 $product->removeFromWishlist($db, $session->getUsername());
-                $product->getProductState($db, (int)$productId);
                 $product->setProductState($db, (int)$productId, 'Sold');
-                $product->getProductState($db, (int)$productId);
             }
         } else {
             $session->addMessage('error', 'Payment Failed! Please try again.');
