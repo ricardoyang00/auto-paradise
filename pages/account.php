@@ -33,7 +33,8 @@ if (User::isAdmin($db, $session->getUsername())) {
     <div class="account-navbar">
         <a href="#" class="nav-link selected" data-content="profile"><i class="fa-solid fa-user"></i> Profile</a>
         <a href="#" class="nav-link" data-content="my-orders"><i class="fa-solid fa-receipt"></i> My Orders</a>
-        <a href="#" class="nav-link" data-content="my-sells"><i class="fa-solid fa-cart-shopping"></i> My Sellings</a>
+        <a href="#" class="nav-link" data-content="my-solds"><i class="fa-solid fa-cart-shopping"></i> My Solds</a>
+        <a href="#" class="nav-link" data-content="my-listings"><i class="fa-solid fa-shop"></i> My Listings</a>
         <?php
             if ($isAdmin) { ?>
                 <a href="#" class="nav-link" data-content="admin"><i class="fa-solid fa-crown"></i> Admin</a>

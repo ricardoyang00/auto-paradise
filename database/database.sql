@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS USER;
 DROP TABLE IF EXISTS ADMIN;
 DROP TABLE IF EXISTS PRODUCT;
 DROP TABLE IF EXISTS PRODUCT_IMAGES;
+DROP TABLE IF EXISTS PRODUCT_STATE;
 DROP TABLE IF EXISTS ORDERS;
 DROP TABLE IF EXISTS SELLS;
 DROP TABLE IF EXISTS REVIEWS;
@@ -75,18 +76,13 @@ CREATE TABLE PRODUCT_IMAGES (
     image_id INTEGER PRIMARY KEY,
     product_id INT NOT NULL,
     image_url TEXT,
-    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id) ON DELETE CASCADE
 );
 
-CREATE TABLE SELLS (
-    sell_id INTEGER PRIMARY KEY,
-    seller_id VARCHAR(50) NOT NULL,
-    buyer_id VARCHAR(50) NOT NULL,
-    product_id INT NOT NULL,
-    order_date DATE NOT NULL,
-    FOREIGN KEY (seller_id) REFERENCES USER(username),
-    FOREIGN KEY (buyer_id) REFERENCES USER(username),
-    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
+CREATE TABLE PRODUCT_STATE (
+    product_id INT PRIMARY KEY,
+    status VARCHAR(16) NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id) ON DELETE CASCADE
 );
 
 CREATE TABLE REVIEWS (
@@ -138,7 +134,7 @@ CREATE TABLE WISHLIST (
     user_id VARCHAR(50) NOT NULL,
     product_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES USER(username),
-    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id) ON DELETE CASCADE
 );
 
 CREATE TABLE QA (
@@ -148,7 +144,7 @@ CREATE TABLE QA (
     question TEXT NOT NULL,
     answer TEXT,
     FOREIGN KEY (user_id) REFERENCES USER(username),
-    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id) ON DELETE CASCADE
 );
 
 CREATE TABLE BAN (
@@ -368,6 +364,51 @@ INSERT INTO ORDERS (order_id, client_username, product_id, total_price, seller_u
     (3, 'user1', 4, 180.99, 'user4', '2024-04-01 03:07:29', 'MBWAY', '965727473', null),
     (4, 'user2', 41, 205.99, 'user1', '2024-04-15 14:45:12', 'MBWAY', '926473827', null);
 
+INSERT INTO PRODUCT_STATE (product_id, status) VALUES
+    (1, 'Available'),
+    (2, 'Sold'),
+    (3, 'Sold'),
+    (4, 'Sold'),
+    (5, 'Available'),
+    (6, 'Available'),
+    (7, 'Available'),
+    (8, 'Available'),
+    (9, 'Available'),
+    (10, 'Available'),
+    (11, 'Available'),
+    (12, 'Available'),
+    (13, 'Available'),
+    (14, 'Available'),
+    (15, 'Available'),
+    (16, 'Available'),
+    (17, 'Available'),
+    (18, 'Available'),
+    (19, 'Available'),
+    (20, 'Available'),
+    (21, 'Available'),
+    (22, 'Available'),
+    (23, 'Available'),
+    (24, 'Available'),
+    (25, 'Available'),
+    (26, 'Available'),
+    (27, 'Available'),
+    (28, 'Available'),
+    (29, 'Available'),
+    (30, 'Available'),
+    (31, 'Available'),
+    (32, 'Available'),
+    (33, 'Available'),
+    (34, 'Available'),
+    (35, 'Available'),
+    (36, 'Available'),
+    (37, 'Available'),
+    (38, 'Available'),
+    (39, 'Available'),
+    (40, 'Available'),
+    (41, 'Sold'),
+    (42, 'Available'),
+    (43, 'Available');
+
 INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall_evaluation, platform_evaluation, comment) VALUES
     (1, 5, 5, 5, 5, 'Great transaction, highly recommended seller!'),
     (2, 4, 5, 4, 4, 'Good product, fast shipping.'),
@@ -379,10 +420,6 @@ INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall
     (8, 5, 5, 5, 5, 'Perfect car, smooth transaction.'),
     (9, 3, 4, 3, 3, 'Okay car, shipping took a while.'),
     (10, 4, 5, 4, 4, 'Satisfactory car, fast shipping.');
-
-INSERT INTO SELLS (sell_id, seller_id, buyer_id, product_id, order_date) VALUES
-    (1, 'user1', 'user2', 1, '2024-05-08'),
-    (2, 'user2', 'user3', 2, '2024-06-18');
 
 INSERT INTO EVENT (event_id, event_type, discount_percentage, sell_event) VALUES
     (1, 'flash_sale', 10.00, 'Flash sale event for selected products.'),
