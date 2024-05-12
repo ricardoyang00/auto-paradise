@@ -105,7 +105,6 @@ function drawProductItem(Product $product, $isAdmin) {
                 <?php
                 $questions = Questions::getProductQuestions($db, $product->id);
                 foreach($questions as $question) { 
-                    // Check if $question->answer is set and not null
                     if (isset($question->answer) && $question->answer !== null) { ?>
                         <div class="qa-item">
                             <p><strong>Q: </strong><?=$question->question?></p>

@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS SCALE;
 DROP TABLE IF EXISTS WISHLIST;
 DROP TABLE IF EXISTS QA;
 DROP TABLE IF EXISTS BAN;
+DROP TABLE IF EXISTS NOTIFICATION;
 
 PRAGMA foreign_keys = ON;
 
@@ -120,6 +121,16 @@ CREATE TABLE BAN (
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
+CREATE TABLE NOTIFICATION (
+    notification_id INTEGER PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    type TEXT NOT NULL CHECK (type IN ('Sold', 'Question', 'Product-banned')),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    extra_info TEXT,
+    is_read BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (username) REFERENCES USER(username)
+);
+
 INSERT INTO BRANDS (brand_id, brand_name) VALUES 
     (1, 'Acura'),
     (2, 'Alfa Romeo'),
@@ -191,13 +202,6 @@ INSERT INTO SCALE (scale_id, scale_name) VALUES
     (6, '1/43'),
     (7, '1/64'),
     (8, 'Other');
-
-INSERT INTO ACCESSORY_CATEGORY (accessory_category_id, accessory_category_name) VALUES
-    (1, 'Helmets'),
-    (2, 'Trophies'),
-    (3, 'Shirts'),
-    (4, 'Caps'),
-    (5, 'Legos');
 
 INSERT INTO ADDRESS (address_id, postal_code, address, city, country) VALUES
     (1, '12345', '123 Main St', 'City A', 'Country A'),
@@ -381,3 +385,14 @@ INSERT INTO QA (user_id, product_id, question, answer) VALUES
     ('user3', 1, 'What is the material of this product?', 'The material of this product is stainless steel.'),
     ('user6', 1, 'What are the dimensions of this product?', NULL),
     ('user4', 1, 'Does this product come with a warranty?', NULL);
+
+INSERT INTO NOTIFICATION (notification_id, username, type, date, extra_info, is_read) VALUES
+    (1, 'user1', 'Sold', '2024-02-08 19:05:36', 'Order ID: 1', FALSE),
+    (2, 'user2', 'Sold', '2024-03-18 10:26:54', 'Order ID: 2', TRUE),
+    (3, 'user3', 'Sold', '2024-04-01 03:07:29', 'Order ID: 3', TRUE),
+    (4, 'user4', 'Sold', '2024-04-15 14:45:12', 'Order ID: 4', FALSE),
+    (5, 'user5', 'Question', '2024-02-08 19:05:36', 'Product ID: 5', TRUE),
+    (6, 'user1', 'Question', '2024-03-18 10:26:54', 'Product ID: 1', TRUE),
+    (7, 'user1', 'Question', '2024-04-01 03:07:29', 'Product ID: 1', TRUE),
+    (8, 'user1', 'Question', '2024-04-15 14:45:12', 'Product ID: 1', FALSE),
+    (9, 'user1', 'Question', '2024-04-15 14:45:12', 'Product ID: 1', FALSE);

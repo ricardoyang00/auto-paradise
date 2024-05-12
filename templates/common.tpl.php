@@ -30,7 +30,7 @@
     </form>
     <span class="user-actions">
         <section class="icons">
-            <a href="#"><i class="fas fa-envelope"></i></a>
+            <a href="../pages/messages.php"><i class="fas fa-envelope"></i></a>
             <a href="../pages/wishList.php"><i class="fa-regular fa-heart"></i></a>
             <a href="../pages/account.php"><i class="fa-regular fa-user"></i></a>
         </section>
@@ -57,12 +57,11 @@
             <?php drawSearchBar() ?>
             <nav id="menu">
                 <ul>
-                    <li><a href="../pages/search.php">On Sales!</a></li>
-                    <li><a href="../pages/search.php?category=2">DTM</a></li>
+                    <li><a href="../pages/search.php">Explore</a></li>
                     <li><a href="../pages/search.php?category=3">F1</a></li>
+                    <li><a href="../pages/search.php?category=2">DTM</a></li>
                     <li><a href="../pages/search.php?category=6">Le Mans</a></li>
                     <li><a href="../pages/search.php?category=all">Others</a></li>
-                    <li><a href="../pages/search.php">Accessories</a></li>
                 </ul>
             </nav>
         </header>
