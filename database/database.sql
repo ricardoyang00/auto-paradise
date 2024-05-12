@@ -354,6 +354,11 @@ INSERT INTO PRODUCT_IMAGES (product_id, image_url) VALUES
     (42, '42.jpg'),
     (43, '43.jpg');
 
+INSERT INTO ORDERS (order_id, client_username, product_id, total_price, seller_username, order_date, payment_method, phone_number, card_number) VALUES
+    (1, 'user1', 2, 50.99, 'user2', '2024-02-08 19:05:36', 'Credit Card', null, '1234567890123456'),
+    (2, 'user1', 3, 150.00, 'user3', '2024-03-18 10:26:54', 'Credit Card', null, '1234567890123456'),
+    (3, 'user1', 4, 180.99, 'user4', '2024-04-01 03:07:29', 'MBWAY', '965727473', null),
+    (4, 'user2', 41, 205.99, 'user1', '2024-04-15 14:45:12', 'MBWAY', '926473827', null);
 
 INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall_evaluation, platform_evaluation, comment) VALUES
     (1, 5, 5, 5, 5, 'Great transaction, highly recommended seller!'),
