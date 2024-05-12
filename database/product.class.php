@@ -237,5 +237,12 @@ class Product {
 
         return $products;
     }
+
+    public static function deleteProductById(PDO $db, int $productId): bool {
+        $stmt = $db->prepare('DELETE FROM PRODUCT WHERE product_id = ?');
+        $success = $stmt->execute([$productId]);
+
+        return $stmt->rowCount() > 0;
+    }
 }
 ?>

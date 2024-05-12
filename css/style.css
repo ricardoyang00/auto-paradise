@@ -992,7 +992,7 @@ footer {
                     }
                 }
         
-                #product-price-receipt, #product-price-edit {
+                #product-price-receipt, #product-price-remove {
                     text-align: center;
                     display: grid;
                     grid-template-rows: 1fr 1.5fr;
@@ -1014,7 +1014,7 @@ footer {
                         height: 100%;
                         margin-right: 10px;
                         
-                        .receipt, .edit {
+                        .receipt, .remove {
                             width: 7em;
                             height: 2em;
                             border-radius: 5px;
@@ -1026,7 +1026,7 @@ footer {
                             margin-bottom: 15px;
                         }
                         
-                        .receipt:hover, .edit:hover {
+                        .receipt:hover, .remove:hover {
                             border: none;
                             background-color: var(--orange_primary);
                             color: white;

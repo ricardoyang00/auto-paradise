@@ -30,13 +30,11 @@
                     <h1><?= $product->title ?></h1>
                     <p><?= $product->description ?></p>
                 </div>
-                <div id="product-price-edit">
+                <div id="product-price-remove">
                     <p>€ <?= $product->price ?></p>
                     <div id="actions">
-                        <button class="edit" data-id="<?= $product->productId ?>">
-                            <a href="#">
-                                Edit <i class="fa-solid fa-pen-to-square"></i>
-                            </a>    
+                        <button class="remove" onclick="deleteListedProduct(<?= $product->id ?>)">
+                            Remove <i class="fa-solid fa-trash"></i>
                         </button>
                     </div>
                 </div>
