@@ -67,14 +67,18 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function deleteListedProduct(productId) {
-    var xhr = new XMLHttpRequest();
+    var userConfirmation = confirm("Are you sure you want to remove this product?");
 
-    xhr.open('GET', '../actions/action_delete_listing_product.php?product_id=' + encodeURIComponent(productId), true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            location.reload();
-        }
-    };
+    if (userConfirmation) {
+        var xhr = new XMLHttpRequest();
 
-    xhr.send();
+        xhr.open('GET', '../actions/action_delete_listing_product.php?product_id=' + encodeURIComponent(productId), true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                location.reload();
+            }
+        };
+
+        xhr.send();
+    }
 }
