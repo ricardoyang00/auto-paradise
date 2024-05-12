@@ -205,4 +205,5 @@ function drawCheckoutPage($db, $user, $address, $product) { ?>
             </div>
         </div>
     </div>
+    <button id="downloadPdf"><i class="fas fa-download"></i> Download Receipt as PDF</button>
 <?php } ?>

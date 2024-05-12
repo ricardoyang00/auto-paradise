@@ -1473,7 +1473,7 @@ footer {
     font-family: 'Arial', sans-serif;
     max-width: 600px;
     margin: auto;
-    margin-bottom: 20%;
+    margin-bottom: 10%;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -1555,7 +1555,7 @@ footer {
     
             #total {
                 font-weight: bold;
-                font-size: 1.2em;
+                font-size: 1em;
                 margin-top: 2px;
                 font-style: italic;
             }
@@ -1577,6 +1577,25 @@ footer {
             transform: rotate(-25deg);
             opacity: 0.6; 
         }
+    }
+}
+
+#downloadPdf {
+    display: block;
+    margin: 20px auto;
+    margin-bottom: 10%;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--orange_primary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        background-color: var(--orange_secondary);
     }
 }
 /********************************/
