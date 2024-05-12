@@ -189,8 +189,12 @@ class Product {
         $stmt = $db->prepare('DELETE FROM WISHLIST WHERE user_id = ? AND product_id = ?');
         $success = $stmt->execute([$username, $this->id]);
     
-        // If the deletion was successful or the product was not in the wishlist to begin with, return true
         return $success || $stmt->rowCount() == 0;
+    }
+
+    public static function banProduct(PDO $db, $productId, $reason) : bool {
+        $stmt = $db->prepare('INSERT INTO BAN (product_id, reason) VALUES (?, ?)');
+        return $stmt->execute([$productId, $reason]);
     }
     
 }

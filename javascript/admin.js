@@ -228,3 +228,32 @@ function renameScale() {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("action=renameScale&scaleId=" + encodeURIComponent(scaleId) + "&scaleName=" + encodeURIComponent(scaleName));
 }
+
+function showBanPopup(productId) {
+    document.getElementById("banPopup").style.display = "block";
+}
+
+function closeBanPopup() {
+    document.getElementById("banPopup").style.display = "none";
+}
+
+function banProduct(productId) {
+    var banReason = document.getElementById("banReason").value;
+
+    console.log("Banning product " + productId + " with reason: " + banReason);
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200 && xhr.responseText === "SUCCESS") {
+                alert("Product banned successfully.");
+            } else {
+                alert("Failed to ban product.");
+            }
+            closeBanPopup(); 
+        }
+    };
+    xhr.open("POST", "../actions/ban_product.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("productId=" + productId + "&banReason=" + encodeURIComponent(banReason));
+}
