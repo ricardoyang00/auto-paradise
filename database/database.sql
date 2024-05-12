@@ -77,14 +77,9 @@ CREATE TABLE PRODUCT_IMAGES (
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
-CREATE TABLE SELLS (
-    sell_id INTEGER PRIMARY KEY,
-    seller_id VARCHAR(50) NOT NULL,
-    buyer_id VARCHAR(50) NOT NULL,
-    product_id INT NOT NULL,
-    order_date DATE NOT NULL,
-    FOREIGN KEY (seller_id) REFERENCES USER(username),
-    FOREIGN KEY (buyer_id) REFERENCES USER(username),
+CREATE TABLE PRODUCT_STATE (
+    product_id INT PRIMARY KEY,
+    status VARCHAR(16) NOT NULL,
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
@@ -354,6 +349,51 @@ INSERT INTO PRODUCT_IMAGES (product_id, image_url) VALUES
     (42, '42.jpg'),
     (43, '43.jpg');
 
+INSERT INTO PRODUCT_STATE (product_id, status) VALUES
+    (1, 'Available'),
+    (2, 'Available'),
+    (3, 'Available'),
+    (4, 'Available'),
+    (5, 'Available'),
+    (6, 'Available'),
+    (7, 'Available'),
+    (8, 'Available'),
+    (9, 'Available'),
+    (10, 'Available'),
+    (11, 'Available'),
+    (12, 'Available'),
+    (13, 'Available'),
+    (14, 'Available'),
+    (15, 'Available'),
+    (16, 'Available'),
+    (17, 'Available'),
+    (18, 'Available'),
+    (19, 'Available'),
+    (20, 'Available'),
+    (21, 'Available'),
+    (22, 'Available'),
+    (23, 'Available'),
+    (24, 'Available'),
+    (25, 'Available'),
+    (26, 'Available'),
+    (27, 'Available'),
+    (28, 'Available'),
+    (29, 'Available'),
+    (30, 'Available'),
+    (31, 'Available'),
+    (32, 'Available'),
+    (33, 'Available'),
+    (34, 'Available'),
+    (35, 'Available'),
+    (36, 'Available'),
+    (37, 'Available'),
+    (38, 'Available'),
+    (39, 'Available'),
+    (40, 'Available'),
+    (41, 'Available'),
+    (42, 'Available'),
+    (43, 'Available');
+    
 INSERT INTO ORDERS (order_id, client_username, product_id, total_price, seller_username, order_date, payment_method, phone_number, card_number) VALUES
     (1, 'user1', 2, 50.99, 'user2', '2024-02-08 19:05:36', 'Credit Card', null, '1234567890123456'),
     (2, 'user1', 3, 150.00, 'user3', '2024-03-18 10:26:54', 'Credit Card', null, '1234567890123456'),
@@ -371,10 +411,6 @@ INSERT INTO REVIEWS (review_id, seller_evaluation, logistics_evaluation, overall
     (8, 5, 5, 5, 5, 'Perfect car, smooth transaction.'),
     (9, 3, 4, 3, 3, 'Okay car, shipping took a while.'),
     (10, 4, 5, 4, 4, 'Satisfactory car, fast shipping.');
-
-INSERT INTO SELLS (sell_id, seller_id, buyer_id, product_id, order_date) VALUES
-    (1, 'user1', 'user2', 1, '2024-05-08'),
-    (2, 'user2', 'user3', 2, '2024-06-18');
 
 INSERT INTO EVENT (event_id, event_type, discount_percentage, sell_event) VALUES
     (1, 'flash_sale', 10.00, 'Flash sale event for selected products.'),
