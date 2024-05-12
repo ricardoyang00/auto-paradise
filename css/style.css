@@ -949,7 +949,7 @@ footer {
             }
         }
 
-        #my-orders, #my-sells {
+        #my-orders, #my-solds, #my-listings {
             display: grid;
             grid-template-columns: 1fr;
             width: 100%;

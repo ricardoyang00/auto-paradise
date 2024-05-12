@@ -18,7 +18,7 @@
     $username = $session->getUsername();
     $user = User::getUserByUsername($db, $username);
     $address = Address::getAddressById($db, $user->addressId);
-    $sellings = Order::getSellingsByUsername($db, $username);
+    $solds = Order::getSoldsByUsername($db, $username);
 
-    drawTransactions($db, $sellings, 'sellings');
+    drawTransactions($db, $solds, 'solds');
 ?>

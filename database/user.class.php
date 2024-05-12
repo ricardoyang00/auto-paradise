@@ -249,7 +249,7 @@ class Order {
         return $orders;
     }
 
-    public static function getSellingsByUsername(PDO $db, string $sellerUsername): array {
+    public static function getSoldsByUsername(PDO $db, string $sellerUsername): array {
         $stmt = $db->prepare('SELECT * FROM ORDERS WHERE seller_username = ? ORDER BY order_date DESC');
         $stmt->execute([$sellerUsername]);
     

@@ -90,8 +90,8 @@ function drawProfileContent($user, $address) { ?>
 <?php } ?>
 
 <?php function drawTransactions($db, $transactions, $type) {
-    $title = $type === 'orders' ? 'My Orders' : 'My Sellings';
-    $divId = $type === 'orders' ? 'my-orders' : 'my-sells'; ?>
+    $title = $type === 'orders' ? 'My Orders' : 'My Solds';
+    $divId = $type === 'orders' ? 'my-orders' : 'my-solds'; ?>
     <h2><?= $title ?></h2>
     <div id="<?= $divId ?>" class="account-content">
         <div class="<?= $type ?>-content">
