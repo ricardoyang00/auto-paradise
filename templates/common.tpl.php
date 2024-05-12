@@ -30,7 +30,7 @@
     </form>
     <span class="user-actions">
         <section class="icons">
-            <a href="../pages/messages.php"><i class="fas fa-envelope"></i></a>
+            <a href="../pages/notifications.php"><i class="fa-regular fa-bell"></i></a>
             <a href="../pages/wishList.php"><i class="fa-regular fa-heart"></i></a>
             <a href="../pages/account.php"><i class="fa-regular fa-user"></i></a>
         </section>

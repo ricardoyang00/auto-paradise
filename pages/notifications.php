@@ -16,7 +16,7 @@
     $db = getDatabaseConnection();
     $wishList = Product::getUserWishList($db, $username);
 
-    drawHeader();
+    drawHeader2();
 ?>
 
 <section id="notifications">

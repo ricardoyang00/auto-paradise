@@ -112,7 +112,7 @@ footer {
             color: var(--icons);
         }
 
-        a:hover .fa-user {
+        a:hover {
             color: var(--orange_primary);
         }
     }
