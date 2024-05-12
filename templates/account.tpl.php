@@ -139,6 +139,11 @@ function drawProfileContent($user, $address) { ?>
                             <button class="remove" onclick="deleteListedProduct(<?= $product->id ?>)">
                                 Remove <i class="fa-solid fa-trash"></i>
                             </button>
+                            <button class="edit">
+                                <a href="../pages/edit-listing-product.php?product_id=<?= $product->id ?>">
+                                    Edit <i class="fa-solid fa-pen"></i>
+                                </a>
+                            </button>
                         </div>
                     </div>
                 </article>
