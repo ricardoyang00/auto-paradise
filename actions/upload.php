@@ -3,6 +3,7 @@
 
   require_once(__DIR__ . '/../database/connection.db.php');
   require_once(__DIR__ . '/../database/user.class.php');
+  require_once(__DIR__ . '/../database/product.class.php');
   require_once(__DIR__ . '/../utils/session.php');
 
   $dbh = getDatabaseConnection();
@@ -55,6 +56,12 @@
         }
     } else {
         die('No image uploaded.');
+    }
+
+    if (addProductState($dbh, $productId, 'Available')) {
+        $session->addMessage('success', 'Product uploaded successfully.');
+    } else {
+        $session->addMessage('error', 'Failed to upload product.');
     }
 
     header("Location: ../pages/index.php");

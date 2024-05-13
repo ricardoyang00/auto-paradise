@@ -197,6 +197,19 @@ class Product {
         return $stmt->execute([$productId, $reason]);
     }
     
+    public static function addProductState(PDO $db, int $productId, string $state): bool {
+        $checkStmt = $db->prepare('SELECT COUNT(*) FROM PRODUCT_STATE WHERE product_id = ?');
+        $checkStmt->execute([$productId]);
+        $exists = $checkStmt->fetchColumn() > 0;
+    
+        if (!$exists) {
+            $stmt = $db->prepare('INSERT INTO PRODUCT_STATE (product_id, status) VALUES (?, ?)');
+            return $stmt->execute([$productId, $state]);
+        } else {
+            throw new Exception("Product state for product ID $productId already exists.");
+        }
+    }
+
     public static function getProductState(PDO $db, int $productId): ?string {
         $stmt = $db->prepare('SELECT status FROM PRODUCT_STATE WHERE product_id = ?');
         $stmt->execute([$productId]);
@@ -248,6 +261,42 @@ class Product {
 
         return $stmt->rowCount() > 0;
     }
+
+    public function updateProduct(PDO $db): void {
+        $fields = [];
+        $values = [];
+
+        if ($this->title !== null) {
+            $fields[] = 'title = ?';
+            $values[] = $this->title;
+        }
+        if ($this->description !== null) {
+            $fields[] = 'description = ?';
+            $values[] = $this->description;
+        }
+        if ($this->category !== null) {
+            $fields[] = 'category = ?';
+            $values[] = $this->category;
+        }
+        if ($this->brandId !== null) {
+            $fields[] = 'brand = ?';
+            $values[] = $this->brandId;
+        }
+        if ($this->scale !== null) {
+            $fields[] = 'scale = ?';
+            $values[] = $this->scale;
+        }
+        if ($this->price !== null) {
+            $fields[] = 'price = ?';
+            $values[] = $this->price;
+        }
+
+        $values[] = $this->id;
+
+        $stmt = $db->prepare('UPDATE PRODUCT SET ' . implode(', ', $fields) . ' WHERE product_id = ?');
+        $stmt->execute($values);
+    }
+
 }
 
 class Questions {
