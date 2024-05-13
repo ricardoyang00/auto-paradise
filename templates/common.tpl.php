@@ -6,7 +6,7 @@ require_once(__DIR__ . '/../utils/session.php');
 
 ?>
 
-<?php function drawHTMLheader() {?>
+<?php function drawHTMLheader($scripts = []) {?>
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -14,7 +14,8 @@ require_once(__DIR__ . '/../utils/session.php');
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" href="../images/logo/auto-paradise-icon.png">
-        <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/style.css" media="screen" rel="stylesheet">
+        <link href="../css/print.css" media="print" rel="stylesheet">
         <script src="https://kit.fontawesome.com/0eb2febe39.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
@@ -23,12 +24,10 @@ require_once(__DIR__ . '/../utils/session.php');
         <script src="../javascript/notification.js"></script>
         <script src="../javascript/images.js" defer></script>
         <script src="../javascript/wishlist.js" defer></script>
-        <script src="../javascript/profile.js" defer></script>
-        <script src="../javascript/checkout.js" defer></script>
-        <script src="../javascript/waitPayment.js" defer></script>
         <script src="../javascript/admin.js" defer></script>
-        <script src="../javascript/notification.js" defer></script>
-        <script src="../javascript/receipt.js" defer></script>
+        <?php foreach ($scripts as $script) { ?>
+            <script src="../javascript/<?=$script?>.js" defer></script>
+        <?php } ?>
     </head>
 <?php } ?>
 
@@ -62,29 +61,22 @@ require_once(__DIR__ . '/../utils/session.php');
     </span>
 <?php } ?>
 
-<?php function drawHeader2() { ?>
-    <?=drawHTMLheader()?>
+<?php function drawHeader($withMenu, $scripts = []) { ?>
+    <?=drawHTMLheader($scripts)?>
     <body>
         <header>
-            <?php drawSearchBar() ?>
-        </header>
-        <main>
-<?php } ?>
-
-<?php function drawHeader() { ?>
-    <?=drawHTMLheader()?>
-    <body>
-        <header>
-            <?php drawSearchBar() ?>
-            <nav id="menu">
-                <ul>
-                    <li><a href="../pages/search.php">Explore</a></li>
-                    <li><a href="../pages/search.php?category=3">F1</a></li>
-                    <li><a href="../pages/search.php?category=2">DTM</a></li>
-                    <li><a href="../pages/search.php?category=6">Le Mans</a></li>
-                    <li><a href="../pages/search.php?category=all">Others</a></li>
-                </ul>
-            </nav>
+            <?php drawSearchBar(); 
+                if ($withMenu) { ?>
+                    <nav id="menu">
+                        <ul>
+                            <li><a href="../pages/search.php">Explore</a></li>
+                            <li><a href="../pages/search.php?category=3">F1</a></li>
+                            <li><a href="../pages/search.php?category=2">DTM</a></li>
+                            <li><a href="../pages/search.php?category=6">Le Mans</a></li>
+                            <li><a href="../pages/search.php?category=all">Others</a></li>
+                        </ul>
+                    </nav>
+            <?php } ?>
         </header>
         <main>
 <?php } ?>

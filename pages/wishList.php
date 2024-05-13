@@ -16,7 +16,8 @@
     $db = getDatabaseConnection();
     $wishList = Product::getUserWishList($db, $username);
 
-    drawHeader();
+    $scripts = [];
+    drawHeader(true, $scripts);
 ?>
 
 <section id="wish-list">

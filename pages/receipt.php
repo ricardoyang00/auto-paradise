@@ -19,7 +19,8 @@
     require_once(__DIR__ . '/../templates/account.tpl.php');
     require_once(__DIR__ . '/../templates/checkout.tpl.php');
 
-    drawHeader2();
+    $scripts = ['receipt'];
+    drawHeader(false, $scripts);
 
     $db = getDatabaseConnection();
 

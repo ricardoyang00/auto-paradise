@@ -9,7 +9,9 @@
     require_once(__DIR__ . '/../database/scale.class.php');
     require_once(__DIR__ . '/../database/brand.class.php');
     require_once(__DIR__ . '/../database/category.class.php');
-    drawHeader();
+    
+    $scripts = [];
+    drawHeader(true, $scripts);
 
     $db = getDatabaseConnection();
     $scales = Scale::getAllScales($db);
