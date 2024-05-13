@@ -27,6 +27,13 @@
     $productId = $_GET['product_id'];
     $product = Product::getProductById($db, $productId);
     
-    drawCheckoutPage($db, $user, $address, $product);
+    if ($product->sellerId == $session->getUsername()) {
+        $session->addMessage('error', 'You cannot buy your own product.');
+        header('Location: /pages/index.php');
+        exit();
+    } else {
+        drawCheckoutPage($db, $user, $address, $product);
+    }
+
     drawFooter();
 ?>
