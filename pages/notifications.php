@@ -24,29 +24,25 @@
 <section id="notifications">
     <h2>Notifications</h2>
     <?php foreach($notifications as $notification) { ?>
-        <article class="<?php echo $notification->isRead ? 'read' : 'unread'; ?>">
-            <div class="notification-details">
-                <div class="notification-title"><?=$notification->title;?></div>
-                <div class="notification-content"><?=$notification->message;?></div>
-                <div class="notification-date"><?=$notification->date->format('d M Y, H:i');?></div>
+        <article <?= $notification->isRead ? "class=\"read\"" : ''; ?>>
+            <div id="notification-details">
+                <div id="notification-title"><?= $notification->title; ?></div>
+                <div id="notification-content"><?= $notification->message; ?></div>
+                <div id="notification-date"><?= $notification->date->format('d M Y, H:i'); ?></div>
             </div>
-            <div class="notification-actions">
-                <button class="read-notification"><i class="fa-brands fa-readme"></i> Read</button>
+            <div id="notification-actions">
+                <?php if ($notification->type !== 'Question') {
+                    if ($notification->isRead) { ?>
+                        <button class="unread-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-brands fa-readme"></i> Unread</button>
+                    <?php } else { ?>
+                        <button class="read-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-brands fa-readme"></i> Read</button>
+                    <?php }
+                } else if ($notification->type === 'Question') { ?>
+                    <button class="reply-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-solid fa-reply"></i> Reply</button>
+                <?php } ?>
             </div>
         </article>
     <?php } ?>
-</section>
-
-  <article>
-    <div id="notification-details">
-      <div id="notification-title">Notificatiocbvbjkdbfjhabdfjkhabdfn title</div>
-      <div id="notification-content">notification cofasdfjshdafl dsfho isadfghoisad iusd fhiousa fiou safiou ahsfiouh dsfiou hsdofiuh sadoifu hsadoifu asido ioas f  aisuhdaio suhd aisudh aiosu iaosuhiaos uhiaus diaous dioaus dhiasu daiosu haios u ntent is there</div>
-      <div id="notification-date">24 May 2024, 22:30</div>
-    </div>
-    <div id="notification-actions">
-      <button class="read-notification"><i class="fa-brands fa-readme"></i> Read</button>
-    </div>
-  </article>
 </section>
 
 <?php drawFooter(); ?>

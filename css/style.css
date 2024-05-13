@@ -543,7 +543,7 @@ footer {
     margin-left: 2em;
   }
   
-  .read-notification {
+  .read-notification, .unread-notification, .reply-notification {
     background-color: #007bff;
     color: #fff;
     border: none;

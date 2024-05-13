@@ -7,7 +7,7 @@ class Notification {
     public string $title;
     public string $message;
     public DateTime $date;
-    public bool $isRead;
+    public int $isRead;
     public string $type;
     public ?int $extra_id;
 
@@ -25,13 +25,14 @@ class Notification {
     }
 
     public static function getUserNotifications(PDO $db, $userId) : array {
-        $stmt = $db->prepare('SELECT * FROM NOTIFICATION WHERE username = ? ORDER BY date DESC');
+        $stmt = $db->prepare('SELECT * FROM NOTIFICATION WHERE username = ? ORDER BY is_read ASC, date DESC');
         $stmt->execute([$userId]);
 
         $notifications = array();
         while ($notification = $stmt->fetch()) {
             $title = '';
             $message = '';
+            $is_read = $notification['is_read'] ? 1 : 0;
             if ($notification['type'] === 'Sold') {
                 $title = 'Congratulations! Your product has been sold!';
                 $message = 'Check in your profile on the sold products section for more details.';
@@ -51,13 +52,30 @@ class Notification {
                 $title,
                 $message,
                 new DateTime($notification['date']),
-                $notification['is_read'],
+                $is_read,
                 $notification['type'],
                 $notification['extra_info']
             );
         }
 
         return $notifications;
+    }
+
+    public static function markAsReaded(PDO $db, $notificationId) {
+        $stmt = $db->prepare('UPDATE NOTIFICATION SET is_read = TRUE WHERE notification_id = ?');
+        $stmt->execute([$notificationId]);
+    }
+
+    public static function markAsUnreaded(PDO $db, $notificationId) {
+        $stmt = $db->prepare('UPDATE NOTIFICATION SET is_read = FALSE WHERE notification_id = ?');
+        $stmt->execute([$notificationId]);
+    }
+
+    public static function getUnreadNotificationsUser(PDO $db, $userId) : int {
+        $stmt = $db->prepare('SELECT COUNT(*) FROM NOTIFICATION WHERE username = ? AND is_read = FALSE');
+        $stmt->execute([$userId]);
+
+        return $stmt->fetchColumn() ?? 0;
     }
 }
 

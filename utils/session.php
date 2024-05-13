@@ -3,7 +3,9 @@
         private array $messages;
 
         public function __construct() {
-            session_start();
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
 
             $this->messages = isset($_SESSION['messages']) ? $_SESSION['messages'] : array();
             unset($_SESSION['messages']);
