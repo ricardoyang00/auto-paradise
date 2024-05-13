@@ -38,7 +38,12 @@ class Questions {
     public static function askQuestion(PDO $db, $productId, $sender, $question) {
         $stmt = $db->prepare('INSERT INTO QA (user_id, question, product_id) VALUES (?, ?, ?)');
         $stmt->execute([$sender, $question, $productId]);
+        
+        $qaId = $db->lastInsertId();
+        
+        return $qaId;
     }
+    
 
     public function answerQuestion(PDO $db, $answer) {
         $stmt = $db->prepare('UPDATE QA SET answer = ? WHERE qa_id = ?');

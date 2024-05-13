@@ -77,6 +77,11 @@ class Notification {
 
         return $stmt->fetchColumn() ?? 0;
     }
+
+    public static function addNotification(PDO $db, $userId, $type, $extra_id = null) {
+        $stmt = $db->prepare('INSERT INTO NOTIFICATION (username, type, extra_info) VALUES (?, ?, ?)');
+        $stmt->execute([$userId, $type, $extra_id]);
+    }
 }
 
 ?>
