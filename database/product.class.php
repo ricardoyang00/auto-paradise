@@ -22,9 +22,13 @@ class Product {
         $this->scale = $scale;
     }
 
-    public static function getAllProducts(PDO $db) : array {
-        $stmt = $db->query('SELECT * FROM PRODUCT ORDER BY LOWER(title) ASC');
-
+    public static function getAllProducts(PDO $db): array {
+        $stmt = $db->query('SELECT p.*, ps.status 
+                            FROM PRODUCT p 
+                            LEFT JOIN PRODUCT_STATE ps ON p.product_id = ps.product_id 
+                            WHERE LOWER(ps.status) = \'available\' 
+                            ORDER BY LOWER(p.title) ASC');
+    
         $products = array();
         while ($product = $stmt->fetch()) {
             $products[] = new Product(
@@ -38,9 +42,9 @@ class Product {
                 $product['scale']
             );
         }
-
+    
         return $products;
-    }
+    }    
 
     public static function getProductById(PDO $db, $productId): ?Product {
         $stmt = $db->prepare('SELECT * FROM PRODUCT WHERE product_id = ?');
@@ -65,9 +69,12 @@ class Product {
     }
 
     public static function getProductsByName(PDO $db, $productName): array {
-        $stmt = $db->prepare('SELECT * FROM PRODUCT WHERE title LIKE ?');
+        $stmt = $db->prepare('SELECT p.*, ps.status 
+                              FROM PRODUCT p 
+                              LEFT JOIN PRODUCT_STATE ps ON p.product_id = ps.product_id 
+                              WHERE p.title LIKE ? AND LOWER(ps.status) = \'available\'');
         $stmt->execute(["%$productName%"]);
-
+    
         $products = array();
         while ($product = $stmt->fetch()) {
             $products[] = new Product(
@@ -81,16 +88,19 @@ class Product {
                 $product['scale']
             );
         }
-
+    
         usort($products, function($a, $b) {
             return strcasecmp($a->title, $b->title);
         });
-
+    
         return $products;
-    }
+    }    
 
     public static function getFilteredProducts(PDO $db, array $filters): array {
-        $query = 'SELECT * FROM PRODUCT WHERE 1';
+        $query = 'SELECT p.*, ps.status 
+              FROM PRODUCT p 
+              LEFT JOIN PRODUCT_STATE ps ON p.product_id = ps.product_id 
+              WHERE 1';
         $params = array();
     
         if (isset($filters['category'])) {
