@@ -32,7 +32,12 @@
         $session->addMessage('error', 'You cannot buy your own product.');
         header('Location: /pages/index.php');
         exit();
-    } else {
+    } else if (Product::getProductState($db, (int)$productId) == 'Sold') {
+        $session->addMessage('error', 'This product has already been sold.');
+        header('Location: /pages/index.php');
+        exit();
+    }
+        else {
         drawCheckoutPage($db, $user, $address, $product);
     }
 
