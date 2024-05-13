@@ -14,7 +14,8 @@
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../templates/account.tpl.php');
     
-    drawHeader(false);
+    $scripts = [];
+    drawHeader(false, $scripts);
     drawMessages($session);
     drawLoginForm();
     drawFooter();

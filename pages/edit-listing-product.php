@@ -18,7 +18,8 @@
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../templates/products.tpl.php');
 
-    drawHeader(false);
+    $scripts = [];
+    drawHeader(false, $scripts);
 
     $db = getDatabaseConnection();
     $categories = Category::getAllCategories($db);

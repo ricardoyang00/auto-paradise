@@ -6,7 +6,7 @@ require_once(__DIR__ . '/../utils/session.php');
 
 ?>
 
-<?php function drawHTMLheader() {?>
+<?php function drawHTMLheader($scripts = []) {?>
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -24,12 +24,10 @@ require_once(__DIR__ . '/../utils/session.php');
         <script src="../javascript/notification.js"></script>
         <script src="../javascript/images.js" defer></script>
         <script src="../javascript/wishlist.js" defer></script>
-        <script src="../javascript/profile.js" defer></script>
-        <script src="../javascript/checkout.js" defer></script>
-        <script src="../javascript/waitPayment.js" defer></script>
         <script src="../javascript/admin.js" defer></script>
-        <script src="../javascript/notification.js" defer></script>
-        <script src="../javascript/receipt.js" defer></script>
+        <?php foreach ($scripts as $script) { ?>
+            <script src="../javascript/<?=$script?>.js" defer></script>
+        <?php } ?>
     </head>
 <?php } ?>
 
@@ -63,8 +61,8 @@ require_once(__DIR__ . '/../utils/session.php');
     </span>
 <?php } ?>
 
-<?php function drawHeader($withMenu) { ?>
-    <?=drawHTMLheader()?>
+<?php function drawHeader($withMenu, $scripts = []) { ?>
+    <?=drawHTMLheader($scripts)?>
     <body>
         <header>
             <?php drawSearchBar(); 

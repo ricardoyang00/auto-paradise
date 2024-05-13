@@ -20,7 +20,8 @@
         exit();
     }
     
-    drawHeader(true);
+    $scripts = [];
+    drawHeader(true, $scripts);
     drawSellForm($categories, $brands, $scales);
     drawFooter();
 ?>
