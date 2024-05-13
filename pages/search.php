@@ -11,7 +11,7 @@
     require_once(__DIR__ . '/../database/category.class.php');
     
     $scripts = [];
-    drawHeader(true, $scripts);
+    drawHeader(true, $scripts, false);
 
     $db = getDatabaseConnection();
     $scales = Scale::getAllScales($db);

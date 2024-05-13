@@ -20,7 +20,7 @@
     require_once(__DIR__ . '/../templates/checkout.tpl.php');
 
     $scripts = ['receipt'];
-    drawHeader(false, $scripts);
+    drawHeader(false, $scripts, true);
 
     $db = getDatabaseConnection();
 

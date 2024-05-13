@@ -17,7 +17,7 @@
     require_once(__DIR__ . '/../templates/checkout.tpl.php');
 
     $scripts = ['checkout'];
-    drawHeader(false, $scripts);
+    drawHeader(false, $scripts, false);
     drawMessages($session);
 
     $db = getDatabaseConnection();

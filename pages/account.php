@@ -15,7 +15,7 @@
     }
 
     $scripts = ['profile'];
-    drawHeader(false, $scripts);
+    drawHeader(false, $scripts, false);
     drawMessages($session);
 
     $db = getDatabaseConnection();

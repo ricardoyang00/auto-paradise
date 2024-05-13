@@ -22,7 +22,7 @@
     }
 
     $scripts = [];
-    drawHeader(true, $scripts);
+    drawHeader(true, $scripts, false);
     drawProductItem($product, $isAdmin);
     drawFooter();
 ?>
