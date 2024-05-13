@@ -2,6 +2,25 @@
 
 declare(strict_types = 1);
 
+function drawNavBar($user, $address, $isAdmin) { ?>
+<section id="account">
+    <div class="account-navbar">
+        <a href="#" class="nav-link selected" data-content="profile"><i class="fa-solid fa-user"></i> Profile</a>
+        <a href="#" class="nav-link" data-content="my-orders"><i class="fa-solid fa-receipt"></i> My Orders</a>
+        <a href="#" class="nav-link" data-content="my-solds"><i class="fa-solid fa-cart-shopping"></i> My Solds</a>
+        <a href="#" class="nav-link" data-content="my-listings"><i class="fa-solid fa-shop"></i> My Listings</a>
+        <?php
+            if ($isAdmin) { ?>
+                <a href="#" class="nav-link" data-content="admin"><i class="fa-solid fa-crown"></i> Admin</a>
+        <?php } ?>
+    </div>
+
+    <div class="account-content">
+        <?php drawProfileContent($user, $address); ?>
+    </div>
+</section>
+<?php } 
+
 function drawProfileContent($user, $address) { ?>
     <h2>Profile</h2>
     <div id="profile" class="account-content">
