@@ -21,7 +21,7 @@
         }
     }
 
-    drawHeader();
+    drawHeader(true);
     drawProductItem($product, $isAdmin);
     drawFooter();
 ?>

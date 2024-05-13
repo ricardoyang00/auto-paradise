@@ -16,7 +16,7 @@
     require_once(__DIR__ . '/../templates/account.tpl.php');
     require_once(__DIR__ . '/../templates/checkout.tpl.php');
 
-    drawHeader2();
+    drawHeader(false);
     drawMessages($session);
     
     $db = getDatabaseConnection();

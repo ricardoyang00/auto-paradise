@@ -18,7 +18,7 @@
     $db = getDatabaseConnection();
     $notifications = Notification::getUserNotifications($db, $username);
 
-    drawHeader2();
+    drawHeader(false);
     drawNotifications($db, $notifications);
     drawFooter();
 ?>

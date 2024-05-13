@@ -20,7 +20,7 @@
         exit();
     }
     
-    drawHeader();
+    drawHeader(true);
     drawSellForm($categories, $brands, $scales);
     drawFooter();
 ?>

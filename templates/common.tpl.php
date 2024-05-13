@@ -63,29 +63,22 @@ require_once(__DIR__ . '/../utils/session.php');
     </span>
 <?php } ?>
 
-<?php function drawHeader2() { ?>
+<?php function drawHeader($withMenu) { ?>
     <?=drawHTMLheader()?>
     <body>
         <header>
-            <?php drawSearchBar() ?>
-        </header>
-        <main>
-<?php } ?>
-
-<?php function drawHeader() { ?>
-    <?=drawHTMLheader()?>
-    <body>
-        <header>
-            <?php drawSearchBar() ?>
-            <nav id="menu">
-                <ul>
-                    <li><a href="../pages/search.php">Explore</a></li>
-                    <li><a href="../pages/search.php?category=3">F1</a></li>
-                    <li><a href="../pages/search.php?category=2">DTM</a></li>
-                    <li><a href="../pages/search.php?category=6">Le Mans</a></li>
-                    <li><a href="../pages/search.php?category=all">Others</a></li>
-                </ul>
-            </nav>
+            <?php drawSearchBar(); 
+                if ($withMenu) { ?>
+                    <nav id="menu">
+                        <ul>
+                            <li><a href="../pages/search.php">Explore</a></li>
+                            <li><a href="../pages/search.php?category=3">F1</a></li>
+                            <li><a href="../pages/search.php?category=2">DTM</a></li>
+                            <li><a href="../pages/search.php?category=6">Le Mans</a></li>
+                            <li><a href="../pages/search.php?category=all">Others</a></li>
+                        </ul>
+                    </nav>
+            <?php } ?>
         </header>
         <main>
 <?php } ?>
