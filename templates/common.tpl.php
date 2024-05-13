@@ -33,6 +33,7 @@ require_once(__DIR__ . '/../utils/session.php');
 
 <?php function drawSearchBar() {
     $session = new Session();
+    $numberOfUnreadNotifications = 0;
     if ($session->isLoggedIn()) {
         $username = $session->getUsername();
         $db = getDatabaseConnection();
