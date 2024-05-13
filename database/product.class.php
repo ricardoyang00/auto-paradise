@@ -197,6 +197,19 @@ class Product {
         return $stmt->execute([$productId, $reason]);
     }
     
+    public static function addProductState(PDO $db, int $productId, string $state): bool {
+        $checkStmt = $db->prepare('SELECT COUNT(*) FROM PRODUCT_STATE WHERE product_id = ?');
+        $checkStmt->execute([$productId]);
+        $exists = $checkStmt->fetchColumn() > 0;
+    
+        if (!$exists) {
+            $stmt = $db->prepare('INSERT INTO PRODUCT_STATE (product_id, status) VALUES (?, ?)');
+            return $stmt->execute([$productId, $state]);
+        } else {
+            throw new Exception("Product state for product ID $productId already exists.");
+        }
+    }
+
     public static function getProductState(PDO $db, int $productId): ?string {
         $stmt = $db->prepare('SELECT status FROM PRODUCT_STATE WHERE product_id = ?');
         $stmt->execute([$productId]);
