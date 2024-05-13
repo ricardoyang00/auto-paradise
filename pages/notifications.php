@@ -19,7 +19,7 @@
     $notifications = Notification::getUserNotifications($db, $username);
 
     $scripts = [];
-    drawHeader(false, $scripts);
+    drawHeader(false, $scripts, false);
     drawNotifications($db, $notifications);
     drawFooter();
 ?>

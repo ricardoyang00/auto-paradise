@@ -19,7 +19,7 @@
     require_once(__DIR__ . '/../templates/products.tpl.php');
 
     $scripts = [];
-    drawHeader(false, $scripts);
+    drawHeader(false, $scripts, false);
 
     $db = getDatabaseConnection();
     $categories = Category::getAllCategories($db);

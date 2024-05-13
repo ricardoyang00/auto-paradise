@@ -17,7 +17,7 @@
     $wishList = Product::getUserWishList($db, $username);
 
     $scripts = [];
-    drawHeader(true, $scripts);
+    drawHeader(true, $scripts, false);
 ?>
 
 <section id="wish-list">

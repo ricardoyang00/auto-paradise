@@ -1,8 +1,8 @@
-@page {
-    margin: 1cm;
-}
-
 @media print {
+    @page {
+        margin: 1cm;
+    }
+
     .receipt-container {
         font-family: 'Arial', sans-serif;
         
@@ -23,6 +23,7 @@
             background-position: center;
             height: 150px;  
             -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
             -webkit-filter: grayscale(100%);
             filter: grayscale(100%);
         }
@@ -104,6 +105,7 @@
                 transform: rotate(-25deg);
                 opacity: 0.6; 
                 -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
                 -webkit-filter: grayscale(100%);
                 filter: grayscale(100%);
             }
