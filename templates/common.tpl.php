@@ -28,6 +28,7 @@ require_once(__DIR__ . '/../utils/session.php');
         <script src="../javascript/waitPayment.js" defer></script>
         <script src="../javascript/admin.js" defer></script>
         <script src="../javascript/notification.js" defer></script>
+        <script src="../javascript/receipt.js" defer></script>
     </head>
 <?php } ?>
 
