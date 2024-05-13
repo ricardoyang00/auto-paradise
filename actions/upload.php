@@ -58,7 +58,7 @@
         die('No image uploaded.');
     }
 
-    if (addProductState($dbh, $productId, 'Available')) {
+    if (Product::addProductState($dbh, (int)$productId, 'Available')) {
         $session->addMessage('success', 'Product uploaded successfully.');
     } else {
         $session->addMessage('error', 'Failed to upload product.');
