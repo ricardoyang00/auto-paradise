@@ -620,6 +620,7 @@ footer {
         .add-wishlist:hover {
             background-color: var(--orange_primary);
             color: white;
+            border-color: var(--orange_primary);
         }
 
         .price {
@@ -1130,7 +1131,9 @@ footer {
                             &:hover {
                                 border: none;
                                 background-color: var(--orange_primary);
-                                color: white;
+                                a {
+                                    color: white;
+                                }
                             }
                         }
 

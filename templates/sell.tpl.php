@@ -52,7 +52,4 @@ function drawSellForm($categories, $brands, $scales) {?>
       <button type="upload">Upload</button>
   </form>
 </section>
-
 <?php } ?>
-
-?>
