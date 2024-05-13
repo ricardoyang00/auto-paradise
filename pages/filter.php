@@ -19,7 +19,7 @@
         $filters['brand'] = $_POST['brand'];
     }
 
-    $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+    $searchQuery = isset($_POST['search-name']) ? $_POST['search-name'] : null;
 
     $productsByName = Product::getProductsByName($db, $searchQuery);
     $filteredProducts = Product::getFilteredProducts($db, $filters);
@@ -34,5 +34,6 @@
         }
     }
 
+    $searchQuery = $searchQuery ?? '';
     drawProductList($db, $intersectedProducts, $searchQuery ?? null);
 ?>
