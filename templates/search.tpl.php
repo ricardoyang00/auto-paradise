@@ -5,6 +5,9 @@ function drawFilter($scales, $categories, $brands) {?>
 <aside id="filter">
     <h1>Filter by</h1>
     <form id="filter-form" action="#" method="get">
+        <div class="search-name">
+            <input type="text" id="search-name" name="search-name">
+        </div>
         <div class="filter-scale">
             <h2>Scale</h2>
             <ul>

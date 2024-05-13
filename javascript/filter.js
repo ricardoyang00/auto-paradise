@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const filterForm = document.getElementById('filter-form');
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedCategory = urlParams.get('category');
 
     function handleCheckboxSelection(selectedCategory) {
         if (selectedCategory === 'all') {
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleFormChange() {
         const formData = new FormData(filterForm);
-        
+    
         const formDataObject = {};
         formData.forEach(function(value, key){
             formDataObject[key] = value;
@@ -38,8 +40,16 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.send(formData);
     }
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedCategory = urlParams.get('category');
+    let clearCheckboxTimer;
+    function clearCheckboxes() {
+        clearTimeout(clearCheckboxTimer);
+        clearCheckboxTimer = setTimeout(function() {
+            const checkboxes = filterForm.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = false;
+            });
+        }, 750);
+    }
 
     if (selectedCategory) {
         handleCheckboxSelection(selectedCategory);
@@ -47,32 +57,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     filterForm.addEventListener('change', handleFormChange);
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('search-query').addEventListener('input', function() {
-        const searchQuery = this.value.trim();
-        console.log("search query is " + searchQuery);
-
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', '../pages/filter.php?search=' + encodeURIComponent(searchQuery)); 
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                document.getElementById('products').innerHTML = xhr.responseText;
-            } else {
-                console.error('Request failed. Status:', xhr.status);
-            }
-        };
-        xhr.onerror = function() {
-            console.error('Request failed');
-        };
-        xhr.send();
+    const searchInput = document.getElementById('search-query');
+    searchInput.addEventListener('input', function() {
+        clearCheckboxes();
     });
 });
 
-
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-query');
+    const searchNameInput = document.getElementById('search-name');
     let typingTimer;
     const typingDelay = 750;
 
@@ -93,6 +87,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return window.location.pathname.includes('search.php');
     }
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+
+    if (searchQuery && isSearchPage()) {
+        searchNameInput.value = searchQuery;
+        updateContent(searchQuery);
+    }
+
     searchInput.addEventListener('input', function() {
         clearTimeout(typingTimer);
 
@@ -102,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isSearchPage()) {
                 window.location.href = '../pages/search.php?search=' + encodeURIComponent(searchQuery);
             } else {
+                searchNameInput.value = searchQuery;
                 if (searchQuery !== '') {
                     updateContent(searchQuery);
                 }
@@ -109,3 +112,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }, typingDelay);
     });
 });
+
