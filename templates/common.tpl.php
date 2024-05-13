@@ -1,4 +1,10 @@
-<?php declare(strict_types = 1); ?>
+<?php 
+declare(strict_types = 1); 
+require_once(__DIR__ . '/../database/connection.db.php');
+require_once(__DIR__ . '/../database/notification.class.php');
+require_once(__DIR__ . '/../utils/session.php');
+
+?>
 
 <?php function drawHTMLheader() {?>
 <!DOCTYPE html>
@@ -21,16 +27,29 @@
         <script src="../javascript/checkout.js" defer></script>
         <script src="../javascript/waitPayment.js" defer></script>
         <script src="../javascript/admin.js" defer></script>
+        <script src="../javascript/notification.js" defer></script>
     </head>
 <?php } ?>
 
-<?php function drawSearchBar() {?>
+<?php function drawSearchBar() {
+    $session = new Session();
+    if ($session->isLoggedIn()) {
+        $username = $session->getUsername();
+        $db = getDatabaseConnection();
+        $numberOfUnreadNotifications = Notification::getUnreadNotificationsUser($db, $username);
+    }?>
     <a class="logo" href="index.php"><img src="../images/logo/auto-paradise-logo.png" height="50" alt="Auto Paradise Logo"></a>
     <input id="search-query" type="text">
     </form>
     <span class="user-actions">
         <section class="icons">
-            <a href="#"><i class="fas fa-envelope"></i></a>
+            <a href="../pages/notifications.php" class="notification-icon">
+                <i class="fa-regular fa-bell"></i>
+                <?php 
+                if ($numberOfUnreadNotifications > 0) { ?>
+                    <span class="notification-badge"><?=$numberOfUnreadNotifications?></span>
+                <?php } ?>
+            </a>
             <a href="../pages/wishList.php"><i class="fa-regular fa-heart"></i></a>
             <a href="../pages/account.php"><i class="fa-regular fa-user"></i></a>
         </section>
@@ -57,12 +76,11 @@
             <?php drawSearchBar() ?>
             <nav id="menu">
                 <ul>
-                    <li><a href="../pages/search.php">On Sales!</a></li>
-                    <li><a href="../pages/search.php?category=2">DTM</a></li>
+                    <li><a href="../pages/search.php">Explore</a></li>
                     <li><a href="../pages/search.php?category=3">F1</a></li>
+                    <li><a href="../pages/search.php?category=2">DTM</a></li>
                     <li><a href="../pages/search.php?category=6">Le Mans</a></li>
                     <li><a href="../pages/search.php?category=all">Others</a></li>
-                    <li><a href="../pages/search.php">Accessories</a></li>
                 </ul>
             </nav>
         </header>
