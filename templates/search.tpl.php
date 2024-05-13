@@ -34,8 +34,6 @@ function drawFilter($scales, $categories, $brands) {?>
         </div>
     </form>
 </aside> 
-
-
 <?php }
 
 ?>

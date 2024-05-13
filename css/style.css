@@ -356,6 +356,10 @@ footer {
             font-weight: 300;
         }
     }
+
+    #search-name {
+        display: none;
+    }
 }
 
 #wish-list {

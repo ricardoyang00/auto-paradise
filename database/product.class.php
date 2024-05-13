@@ -72,8 +72,16 @@ class Product {
         $stmt = $db->prepare('SELECT p.*, ps.status 
                               FROM PRODUCT p 
                               LEFT JOIN PRODUCT_STATE ps ON p.product_id = ps.product_id 
-                              WHERE p.title LIKE ? AND LOWER(ps.status) = \'available\'');
-        $stmt->execute(["%$productName%"]);
+                              LEFT JOIN CATEGORY c ON p.category = c.category_id
+                              LEFT JOIN SCALE s ON p.scale = s.scale_id
+                              LEFT JOIN BRANDS b ON p.brand = b.brand_id
+                              WHERE (p.title LIKE ? 
+                                 OR c.category_name LIKE ?
+                                 OR s.scale_name LIKE ?
+                                 OR b.brand_name LIKE ?)
+                                 AND LOWER(ps.status) = \'available\'');
+        $searchTerm = "%$productName%";
+        $stmt->execute([$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
     
         $products = array();
         while ($product = $stmt->fetch()) {
@@ -143,7 +151,6 @@ class Product {
     
         return $products;
     }
-    
 
     public function getProductImages(PDO $db): array {
         $stmt = $db->prepare('SELECT image_url FROM PRODUCT_IMAGES WHERE product_id = ?');
