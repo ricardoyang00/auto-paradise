@@ -1,4 +1,7 @@
-<?php declare(strict_types = 1); ?>
+<?php 
+declare(strict_types = 1); 
+require_once(__DIR__ . '/../database/connection.db.php');
+?>
 
 <?php function drawHTMLheader() {?>
 <!DOCTYPE html>
@@ -25,12 +28,16 @@
 <?php } ?>
 
 <?php function drawSearchBar() {?>
+
     <a class="logo" href="index.php"><img src="../images/logo/auto-paradise-logo.png" height="50" alt="Auto Paradise Logo"></a>
     <input id="search-query" type="text">
     </form>
     <span class="user-actions">
         <section class="icons">
-            <a href="../pages/notifications.php"><i class="fa-regular fa-bell"></i></a>
+            <a href="../pages/notifications.php" class="notification-icon">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </a>
             <a href="../pages/wishList.php"><i class="fa-regular fa-heart"></i></a>
             <a href="../pages/account.php"><i class="fa-regular fa-user"></i></a>
         </section>
