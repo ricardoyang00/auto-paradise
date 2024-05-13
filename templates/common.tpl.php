@@ -14,7 +14,8 @@ require_once(__DIR__ . '/../utils/session.php');
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" href="../images/logo/auto-paradise-icon.png">
-        <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/style.css" media="screen" rel="stylesheet">
+        <link href="../css/print.css" media="print" rel="stylesheet">
         <script src="https://kit.fontawesome.com/0eb2febe39.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>

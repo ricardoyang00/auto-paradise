@@ -1226,7 +1226,7 @@ footer {
 /********************************/
 
 /***************BUY***************/
-#checkout-heading {
+#checkout-heading, #receipt-heading {
     position: relative;
     text-transform: uppercase;
     color: var(--text);

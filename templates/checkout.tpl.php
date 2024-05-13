@@ -142,7 +142,7 @@ function drawCheckoutPage($db, $user, $address, $product) { ?>
 <?php } ?>
 
 <?php function drawReceipt($db, $order, $user, $seller, $userAddress, $sellerAddress, $product, $brand, $scale, $category) { ?>
-    <h1 id="checkout-heading">Receipt</h1>
+    <h1 id="receipt-heading">Receipt</h1>
     <div class="receipt-container">
         <div id="receipt-header"></div>
         <div class="receipt-info">
