@@ -1162,14 +1162,20 @@ footer {
     }
 }
 
+
 .checkout-container {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: start;
+    gap: 20px;
 
     .product-box {
+        flex: 1;
+        min-width: 200px;
         margin: 20px;
-        margin-left: auto;
+        margin-left: 60px; /*auto before, overlapping*/
         display: grid;
         grid-template-rows: auto auto;
         grid-gap: 2em;
@@ -1246,8 +1252,11 @@ footer {
     }
 
     .checkout-steps {
+        flex: 2;
+        min-width: 300px;
         width: 60%;
-
+        position: relative;
+        
         .checkout-user-info {
             max-height: 30px;
             overflow: hidden;
@@ -1458,7 +1467,7 @@ footer {
             }
             
             #expiryMonth, #expiryYear {
-                width: 10%;
+                width: 20%;
             }
             
             .cvv-container {
@@ -1468,7 +1477,7 @@ footer {
                 margin-left: auto;
                 
                 #cvv {
-                    width: 20%;
+                    width: 40%;
                 }
             }
         }
@@ -1480,7 +1489,7 @@ footer {
         button[type="submit"] {
             display: block;
             margin: 40px auto;
-            width: 20%;
+            width: 40%;
             background-color: #4CAF50;
             color: white;
             padding: 20px;
@@ -1488,6 +1497,16 @@ footer {
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
         }
+    }
+}
+
+@media (max-width: 768px) { 
+    .checkout-container {
+        flex-direction: column;
+    }
+    .checkout-container .product-box {
+        order: -1; 
+        margin: auto;
     }
 }
 /*********************************/
