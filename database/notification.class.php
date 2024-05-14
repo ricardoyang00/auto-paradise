@@ -59,7 +59,7 @@ class Notification {
                 case 'Unban':
                     $title = 'Your product has been unbanned!';
                     $productID = $notification['extra_info'];
-                    $message = 'Your product has been unbanned. You can now sell it again.';
+                    $message = 'Your product has been unbanned. You can now sell it again. Check in your profile for more details.';
                     break;
                 default:
                     return null;
