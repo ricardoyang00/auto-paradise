@@ -10,14 +10,14 @@
     require_once(__DIR__ . '/../database/brand.class.php');
     require_once(__DIR__ . '/../database/category.class.php');
     
-    $scripts = [];
-    drawHeader(true, $scripts, false);
-
     $db = getDatabaseConnection();
+    
     $scales = Scale::getAllScales($db);
     $categories = Category::getAllCategories($db);
     $brands = Brand::getAllBrands($db);
-
+    
+    $scripts = [];
+    drawHeader(true, $scripts, false);
     drawFilter($scales, $categories, $brands);
 ?>
 

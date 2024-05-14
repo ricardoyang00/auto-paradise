@@ -1,7 +1,7 @@
 <?php
+    require_once(__DIR__ . '/../../templates/products.tpl.php');
     require_once(__DIR__ . '/../../database/connection.db.php');
     require_once(__DIR__ . '/../../database/product.class.php');
-    require_once(__DIR__ . '/../../templates/products.tpl.php');
 
     $db = getDatabaseConnection();
 

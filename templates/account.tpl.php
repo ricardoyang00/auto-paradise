@@ -1,27 +1,25 @@
-<?php
+<?php declare(strict_types = 1); ?>
 
-declare(strict_types = 1);
+<?php function drawNavBar($user, $address, $isAdmin) { ?>
+    <section id="account">
+        <div class="account-navbar">
+            <a href="#" class="nav-link selected" data-content="profile"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="#" class="nav-link" data-content="my-orders"><i class="fa-solid fa-receipt"></i> My Orders</a>
+            <a href="#" class="nav-link" data-content="my-solds"><i class="fa-solid fa-cart-shopping"></i> My Solds</a>
+            <a href="#" class="nav-link" data-content="my-listings"><i class="fa-solid fa-shop"></i> My Listings</a>
+            <?php
+                if ($isAdmin) { ?>
+                    <a href="#" class="nav-link" data-content="admin"><i class="fa-solid fa-crown"></i> Admin</a>
+            <?php } ?>
+        </div>
+        
+        <div class="account-content">
+            <?php drawProfileContent($user, $address); ?>
+        </div>
+    </section>
+<?php } ?>
 
-function drawNavBar($user, $address, $isAdmin) { ?>
-<section id="account">
-    <div class="account-navbar">
-        <a href="#" class="nav-link selected" data-content="profile"><i class="fa-solid fa-user"></i> Profile</a>
-        <a href="#" class="nav-link" data-content="my-orders"><i class="fa-solid fa-receipt"></i> My Orders</a>
-        <a href="#" class="nav-link" data-content="my-solds"><i class="fa-solid fa-cart-shopping"></i> My Solds</a>
-        <a href="#" class="nav-link" data-content="my-listings"><i class="fa-solid fa-shop"></i> My Listings</a>
-        <?php
-            if ($isAdmin) { ?>
-                <a href="#" class="nav-link" data-content="admin"><i class="fa-solid fa-crown"></i> Admin</a>
-        <?php } ?>
-    </div>
-
-    <div class="account-content">
-        <?php drawProfileContent($user, $address); ?>
-    </div>
-</section>
-<?php } 
-
-function drawProfileContent($user, $address) { ?>
+<?php function drawProfileContent($user, $address) { ?>
     <h2>Profile</h2>
     <div id="profile" class="account-content">
         <div class="profile-content">
@@ -53,6 +51,78 @@ function drawProfileContent($user, $address) { ?>
                 <button type="submit" class="profile-button" id="logout">Logout</button>
             </form>
         </div>
+    </div>
+<?php } ?>
+
+<?php function drawProfileEdit($user, $address) { ?>
+    <h2>Profile &nbsp;&nbsp;(editing)</h2>
+    <div id="profile" class="account-content">
+        <form action="../../actions/action_update_profile.php" method="post">
+            <div class="profile-content">
+                <h3>Username</h3>
+                <div class="data-container">
+                    <p id="username"><?=$user->username?></p>
+                </div>
+
+                <h3>Name</h3>
+                <div class="data-container">
+                    <input type="text" id="name" name="name" value="<?=$user->name?>">
+                </div>
+
+                <h3>Phone Number</h3>
+                <div class="data-container">
+                    <input type="text" id="phoneNumber" name="phoneNumber" value="<?=$user->phoneNumber?>">
+                </div>
+
+                <h3>Address</h3>
+                <div class="data-container">
+                    <input type="text" id="address" name="address" value="<?=$address->address?>">
+                </div>
+
+                <h3>Postal Code</h3>
+                <div class="data-container">
+                    <input type="text" id="postalCode" name="postalCode" value="<?=$address->postalCode?>">
+                </div>
+
+                <h3>City</h3>
+                <div class="data-container">
+                    <input type="text" id="city" name="city" value="<?=$address->city?>">
+                </div>
+
+                <h3>Country</h3>
+                <div class="data-container">
+                    <input type="text" id="country" name="country" value="<?=$address->country?>">
+                </div>
+            </div>
+            <div class="icon-and-button">
+                <button type="submit" class="profile-button" id="save">Save</button>
+            </div>
+        </form>
+    </div>
+<?php } ?>
+
+<?php function drawChangePasswordForm() { ?>
+    <h2>Profile &nbsp;&nbsp;(password)</h2>
+    <div id="profile" class="account-content">
+        <form method="post" action="../actions/action_change_password.php">
+            <div class="profile-content">
+                <h3>Current Password</h3>
+                <div class="data-container">
+                    <input type="password" id="oldPassword" name="oldPassword" required>
+                </div>
+                <h3>New Password</h3>
+                <div class="data-container">
+                    <input type="password" id="newPassword" name="newPassword" required>
+                </div>
+                <h3>Confirm New Password</h3>
+                    <div class="data-container">
+                <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+            </div>
+            </div>
+            <div class="icon-and-button">
+                <button type="submit" class="profile-button" id="change-password">Change Password</button>
+            </div>
+        </form>
     </div>
 <?php } ?>
 
@@ -176,4 +246,32 @@ function drawProfileContent($user, $address) { ?>
             </div>
         </div>
     </div>
+<?php } ?>
+
+<?php function drawWishList($db, $wishList) { ?>
+    <section id="wish-list">
+    <h2>wishlist</h2>
+        <?php foreach ($wishList as $product) { ?>
+        <article>
+            <img src="../database/images/<?= $product->getProductThumbnail($db) ?>">
+            <div id="product-information">
+                <h1><?= $product->title ?></h1>
+                <p><?= $product->description ?></p>
+            </div>
+            <div id="product-price-buy">
+                <p>€ <?= $product->price ?></p>
+                <div id="actions">
+                    <button class="remove-wishlist" onclick="removeFromWishlist(<?= $product->id ?>)">
+                        <i class="fa-solid fa-x"></i> Remove
+                    </button>
+                    <button class="buy" data-id="<?= $product->id ?>">
+                        <a href="buy.php?product_id=<?= $product->id ?>">
+                            Buy <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </article>
+        <?php } ?>
+    </section>
 <?php } ?>
