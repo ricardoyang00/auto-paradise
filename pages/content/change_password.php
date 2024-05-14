@@ -13,7 +13,7 @@
     require_once(__DIR__ . '/../../database/user.class.php');
 
     $db = getDatabaseConnection();
-    $user = User::getUserByUsername($db, $section->getUsername());
+    $user = User::getUserByUsername($db, $session->getUsername());
 
     drawChangePasswordForm();
 ?>
