@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    function sendQuestionData(productId, sender, questionText) {
+    function sendQuestionData(productId, questionText) {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', '../actions/action_questions.php');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Failed to submit question. Please try again later.');
             }
         };        
-
+        console.log(questionText);
         const requestBody = `question=${encodeURIComponent(questionText)}&productId=${productId}`;
         xhr.send(requestBody);
     }

@@ -66,6 +66,11 @@ class Questions {
 
         return null;
     }
+
+    public static function deleteQuestion(PDO $db, $questionId) {
+        $stmt = $db->prepare('DELETE FROM QA WHERE qa_id = ?');
+        $stmt->execute([$questionId]);
+    }
 }
 
 ?>

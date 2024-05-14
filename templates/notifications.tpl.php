@@ -48,6 +48,7 @@ function drawNotifications(PDO $db, $notifications) {
                 <textarea id="reply-text" placeholder="Your reply..."></textarea>
                 <button id="submit-reply">Submit Reply</button>
             </div>
+            <button id="dismiss-question"><i class="fa-solid fa-trash"></i></button>
         </div>
     </div>
 <?php } ?>

@@ -100,6 +100,11 @@ class Notification {
         $stmt = $db->prepare('INSERT INTO NOTIFICATION (username, type, extra_info) VALUES (?, ?, ?)');
         $stmt->execute([$userId, $type, $extra_id]);
     }
+
+    public static function deleteNotification(PDO $db, $notificationId) {
+        $stmt = $db->prepare('DELETE FROM NOTIFICATION WHERE notification_id = ?');
+        $stmt->execute([$notificationId]);
+    }
 }
 
 ?>

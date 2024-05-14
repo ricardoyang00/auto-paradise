@@ -135,6 +135,30 @@ document.addEventListener('DOMContentLoaded', function() {
         var params = 'reply=' + encodeURIComponent(replyText) + '&question_id=' + encodeURIComponent(questionId) + '&notification_id=' + encodeURIComponent(notificationId);
         xhr.send(params);
     });
+
+    document.getElementById('dismiss-question').addEventListener('click', function() {
+        var questionId = this.getAttribute('data-question-id');
+        var notificationId = document.getElementById('notification-id').innerText;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../actions/action_dismiss_question.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                console.log('Parsed JSON data:', response);
+                if (response.success) {
+                    document.getElementById('popup-reply').style.display = 'none';
+                    location.reload();
+                } else {
+                    console.error('Reply submission failed:', response.error);
+                    console.log('Raw response text:', xhr.responseText);
+                }
+            }
+        };
+        var params = '&question_id=' + encodeURIComponent(questionId) + '&notification_id=' + encodeURIComponent(notificationId);
+        xhr.send(params);
+    });
 });
 
 
