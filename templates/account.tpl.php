@@ -151,28 +151,28 @@
     <div class="loginRegister">
     <form id="register-form" class="user-form" action="../actions/action_register.php" method="post">
         <label for="registerUsername">Username</label>
-        <input type="text" id="registerUsername" name="registerUsername" required>
+        <input type="text" id="registerUsername" name="registerUsername" pattern="[A-Za-z0-9_]{3,20}" title="Username should be 3-20 characters long and can only contain letters, numbers, and underscores." required>
 
         <label for="registerName">Name</label>
-        <input type="text" id="registerName" name="registerName" required>
+        <input type="text" id="registerName" name="registerName" pattern="[A-Za-z ]+" title="Name can only contain letters and spaces." maxlength="50" required>
     
         <label for="registerPassword">Password</label>
-        <input type="password" id="registerPassword" name="registerPassword" required>
+        <input type="password" id="registerPassword" name="registerPassword" minlength="8" title="Password must be at least 8 characters long." maxlength="30" required>
     
         <label for="registerPhoneNumber">Phone number</label>
-        <input type="text" id="registerPhoneNumber" name="registerPhoneNumber" required>
+        <input type="text" id="registerPhoneNumber" name="registerPhoneNumber" pattern="\d{9}" title="Phone number must be 9 digits long." maxlength="9" required>
 
         <label for="registerAddress">Address</label>
-        <input type="text" id="registerAddress" name="registerAddress" required>
+        <input type="text" id="registerAddress" name="registerAddress" pattern="[A-Za-z0-9 ]+" title="Address can only contain letters, numbers, and spaces." maxlength="60" required>
 
         <label for="registerPostalCode">Postal Code</label>
-        <input type="text" id="registerPostalCode" name="registerPostalCode" required>
-
+        <input type="text" id="registerPostalCode" name="registerPostalCode" pattern="\d{4}-\d{3}" title="Postal Code must be in the format 1234-123." required>
+        
         <label for="registerCity">City</label>
-        <input type="text" id="registerCity" name="registerCity" required>
+        <input type="text" id="registerCity" name="registerCity" pattern="[A-Za-z ]+" title="City can only contain letters and spaces." maxlength="30" required>
 
         <label for="registerCountry">Country</label>
-        <input type="text" id="registerCountry" name="registerCountry" required>
+        <input type="text" id="registerCountry" name="registerCountry" pattern="[A-Za-z ]+" title="Country can only contain letters and spaces." maxlength="30" required>
 
         <input type="submit" value="Register">
         <div class="account-link">

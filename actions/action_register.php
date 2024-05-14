@@ -10,14 +10,19 @@
     $db = getDatabaseConnection();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $username = $_POST['registerUsername'] ?? '';
-        $name = $_POST['registerName'] ?? '';
-        $password = $_POST['registerPassword'] ?? '';
-        $phoneNumber = $_POST['registerPhoneNumber'] ?? '';
-        $address = $_POST['registerAddress'] ?? '';
-        $postalCode = $_POST['registerPostalCode'] ?? '';
-        $city = $_POST['registerCity'] ?? '';
-        $country = $_POST['registerCountry'] ?? '';
+        $username = $_POST['registerUsername'];
+        $name = filter_input(INPUT_POST, 'registerName', FILTER_SANITIZE_STRING);
+        if (!preg_match("/^[a-zA-Z\s]+$/", $name)) {
+            $session->addMessage('error', 'Name can only contain letters and spaces.');
+            header('Location: /pages/register.php');
+            exit();
+        }
+        $password = $_POST['registerPassword'];
+        $phoneNumber = filter_input(INPUT_POST, 'registerPhoneNumber', FILTER_SANITIZE_STRING);
+        $address = filter_input(INPUT_POST, 'registerAddress', FILTER_SANITIZE_STRING);
+        $postalCode = $_POST['registerPostalCode'];
+        $city = filter_input(INPUT_POST, 'registerCity', FILTER_SANITIZE_STRING);
+        $country = filter_input(INPUT_POST, 'registerCountry', FILTER_SANITIZE_STRING);
 
         if (empty($username) || empty($name) || empty($password) || empty($phoneNumber) || 
             empty($address) || empty($postalCode) || empty($city) || empty($country)) {
