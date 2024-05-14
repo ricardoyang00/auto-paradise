@@ -6,8 +6,8 @@
         <?php foreach($notifications as $notification) { ?>
             <article <?= $notification->isRead ? "class=\"read\"" : ''; ?>>
                 <div id="notification-details">
-                    <div id="notification-title"><?= $notification->title; ?></div>
-                    <div id="notification-content"><?= $notification->message; ?></div>
+                    <div id="notification-title"><?= htmlspecialchars($notification->title, ENT_QUOTES, 'UTF-8') ?></div>
+                    <div id="notification-content"><?= htmlspecialchars($notification->message, ENT_QUOTES, 'UTF-8') ?></div>
                     <div id="notification-date"><?= $notification->date->format('d M Y, H:i'); ?></div>
                 </div>
                 <div id="notification-actions">

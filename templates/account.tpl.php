@@ -27,22 +27,26 @@
 
             <h3>Username</h3>
             <div class="data-container">
-                <p id="username"><?=$user->username?></p>
+                <p id="username"><?=htmlspecialchars($user->username, ENT_QUOTES, 'UTF-8')?></p>
             </div>
 
             <h3>Name</h3>
             <div class="data-container">
-                <p><?=$user->name?></p>
+                <p><?=htmlspecialchars($user->name, ENT_QUOTES, 'UTF-8')?></p>
             </div>
 
             <h3>Phone Number</h3>
             <div class="data-container">
-                <p><?=$user->phoneNumber?></p>
+                <p><?=htmlspecialchars($user->phoneNumber, ENT_QUOTES, 'UTF-8')?></p>
             </div>
 
             <h3>Address</h3>
             <div class="data-container">
-                <p><?=$address->address?>, <?=$address->postalCode?>, <?=$address->city?>, <?=$address->country?></p>
+                <p>
+                    <?=htmlspecialchars($address->address, ENT_QUOTES, 'UTF-8')?>, 
+                    <?=htmlspecialchars($address->postalCode, ENT_QUOTES, 'UTF-8')?>, 
+                    <?=htmlspecialchars($address->city, ENT_QUOTES, 'UTF-8')?>, 
+                    <?=htmlspecialchars($address->country, ENT_QUOTES, 'UTF-8')?></p>
             </div>
         </div>
         <div class="icon-and-button">
@@ -61,37 +65,37 @@
             <div class="profile-content">
                 <h3>Username</h3>
                 <div class="data-container">
-                    <p id="username"><?=$user->username?></p>
+                    <p id="username"><?=htmlspecialchars($user->username, ENT_QUOTES, 'UTF-8')?></p>
                 </div>
 
                 <h3>Name</h3>
                 <div class="data-container">
-                    <input type="text" id="name" name="name" value="<?=$user->name?>">
+                    <input type="text" id="name" name="name" value="<?=htmlspecialchars($user->name, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>Phone Number</h3>
                 <div class="data-container">
-                    <input type="text" id="phoneNumber" name="phoneNumber" value="<?=$user->phoneNumber?>">
+                    <input type="text" id="phoneNumber" name="phoneNumber" value="<?=htmlspecialchars($user->phoneNumber, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>Address</h3>
                 <div class="data-container">
-                    <input type="text" id="address" name="address" value="<?=$address->address?>">
+                    <input type="text" id="address" name="address" value="<?=htmlspecialchars($address->address, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>Postal Code</h3>
                 <div class="data-container">
-                    <input type="text" id="postalCode" name="postalCode" value="<?=$address->postalCode?>">
+                    <input type="text" id="postalCode" name="postalCode" value="<?=htmlspecialchars($address->postalCode, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>City</h3>
                 <div class="data-container">
-                    <input type="text" id="city" name="city" value="<?=$address->city?>">
+                    <input type="text" id="city" name="city" value="<?=htmlspecialchars($address->city, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>Country</h3>
                 <div class="data-container">
-                    <input type="text" id="country" name="country" value="<?=$address->country?>">
+                    <input type="text" id="country" name="country" value="<?=htmlspecialchars($address->country, ENT_QUOTES, 'UTF-8')?>">
                 </div>
             </div>
             <div class="icon-and-button">
@@ -179,25 +183,25 @@
 <?php } ?>
 
 <?php function drawTransactions($db, $transactions, $type) {
-    $title = $type === 'orders' ? 'My Orders' : 'My Solds';
-    $divId = $type === 'orders' ? 'my-orders' : 'my-solds'; ?>
+    $title = htmlspecialchars($type === 'orders' ? 'My Orders' : 'My Solds', ENT_QUOTES, 'UTF-8');
+    $divId = htmlspecialchars($type === 'orders' ? 'my-orders' : 'my-solds', ENT_QUOTES, 'UTF-8'); ?>
     <h2><?= $title ?></h2>
     <div id="<?= $divId ?>" class="account-content">
-        <div class="<?= $type ?>-content">
+        <div class="<?= htmlspecialchars($type, ENT_QUOTES, 'UTF-8') ?> ?>-content">
             <?php foreach ($transactions as $transaction):
                 $product = Product::getProductById($db, $transaction->productId);
-                $thumbnail = $product->getProductThumbnail($db); ?>
+                $thumbnail = htmlspecialchars($product->getProductThumbnail($db), ENT_QUOTES, 'UTF-8'); ?>
                 <article>
                     <img src="../database/images/<?= $thumbnail ?>">
                     <div id="product-information">
-                        <h1><?= $product->title ?></h1>
-                        <p><?= $product->description ?></p>
-                        <p><?= $transaction->orderDate ?></p>
+                        <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
+                        <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
+                        <p><?= htmlspecialchars($transaction->orderDate, ENT_QUOTES, 'UTF-8') ?></p>
                     </div>
                     <div id="product-price-receipt">
                         <p>€ <?= $transaction->totalPrice ?></p>
                         <div id="actions">
-                            <button class="receipt" data-id="<?= $transaction->orderId ?>">
+                        <button class="receipt" data-id="<?= $transaction->orderId ?>">
                                 <a href="receipt.php?order_id=<?= $transaction->orderId ?>">
                                     Receipt <i class="fa-solid fa-file-invoice"></i>
                                 </a>    
@@ -215,12 +219,12 @@
     <div id="my-listings" class="account-content">
         <div class="listings-content">
             <?php foreach ($listings as $product):
-                $thumbnail = $product->getProductThumbnail($db); ?>
+                $thumbnail = htmlspecialchars($product->getProductThumbnail($db), ENT_QUOTES, 'UTF-8'); ?>
                 <article>
                     <img src="../database/images/<?= $thumbnail ?>">
                     <div id="product-information">
-                        <h1><?= $product->title ?></h1>
-                        <p><?= $product->description ?></p>
+                        <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
+                        <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
                     </div>
                     <div id="product-price-remove">
                         <p>€ <?= $product->price ?></p>
@@ -255,8 +259,8 @@
         <article>
             <img src="../database/images/<?= $product->getProductThumbnail($db) ?>">
             <div id="product-information">
-                <h1><?= $product->title ?></h1>
-                <p><?= $product->description ?></p>
+                <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
+                <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
             </div>
             <div id="product-price-buy">
                 <p>€ <?= $product->price ?></p>

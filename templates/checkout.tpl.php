@@ -16,15 +16,15 @@
                 <h2>1. User Information</h2>
                 <div class="info-box">
                     <label>Username</label>
-                    <p class="info-rectangle"><?= $user->username ?></p>
+                    <p class="info-rectangle"><?= htmlspecialchars($user->username, ENT_QUOTES, 'UTF-8') ?></p>
                 </div>
                 <div class="info-box">
                     <label>Name</label>
-                    <p class="info-rectangle"><?= $user->name ?></p>
+                    <p class="info-rectangle"><?= htmlspecialchars($user->name, ENT_QUOTES, 'UTF-8') ?></p>
                 </div>
                 <div class="info-box">
                     <label>Phone Number</label>
-                    <p class="info-rectangle"><?= $user->phoneNumber ?></p>
+                    <p class="info-rectangle"><?= htmlspecialchars($user->phoneNumber, ENT_QUOTES, 'UTF-8') ?></p>
                 </div>
                 <div class="info-box">
                     <label>Address</label>
@@ -121,8 +121,8 @@
                 </div>
                 <div class="product-details">
                     <h2>€ <?= $product->price ?></h2>
-                    <h2><?= $product->title ?></h2>
-                    <p><?= $product->description ?></p>
+                    <h2><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h2>
+                    <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
                 </div>
                 <div class="line"></div>
             </div>
@@ -191,46 +191,46 @@
         <div class="receipt-user-info">
             <label>Client</label>
             <div class="user-info-box">
-                <p><?= $user->name?></p>
-                <p><?= $user->phoneNumber?></p>
+                <p><?= htmlspecialchars($user->name, ENT_QUOTES, 'UTF-8') ?></p>
+                <p><?= htmlspecialchars($user->phoneNumber, ENT_QUOTES, 'UTF-8') ?></p>
                 <div class="address-line">
-                    <?=$userAddress->address?>,
-                    <?=$userAddress->postalCode?>,
-                    <?=$userAddress->city?>,
-                    <?=$userAddress->country?>
+                    <?=htmlspecialchars($userAddress->address, ENT_QUOTES, 'UTF-8')?>,
+                    <?=htmlspecialchars($userAddress->postalCode, ENT_QUOTES, 'UTF-8')?>,
+                    <?=htmlspecialchars($userAddress->city, ENT_QUOTES, 'UTF-8')?>,
+                    <?=htmlspecialchars($userAddress->country, ENT_QUOTES, 'UTF-8')?>
                 </div>
             </div>
         </div>
         <div class="receipt-user-info">
             <label>Seller</label>
             <div class="user-info-box">
-                <p><?= $seller->name?></p>
-                <p><?= $seller->phoneNumber?></p>
+                <p><?= htmlspecialchars($seller->name, ENT_QUOTES, 'UTF-8')?></p>
+                <p><?= htmlspecialchars($seller->phoneNumber, ENT_QUOTES, 'UTF-8')?></p>
                 <div class="address-line">
-                    <?=$sellerAddress->address?>,
-                    <?=$sellerAddress->postalCode?>,
-                    <?=$sellerAddress->city?>,
-                    <?=$sellerAddress->country?>
+                    <?=htmlspecialchars($sellerAddress->address, ENT_QUOTES, 'UTF-8')?>,
+                    <?=htmlspecialchars($sellerAddress->postalCode, ENT_QUOTES, 'UTF-8')?>,
+                    <?=htmlspecialchars($sellerAddress->city, ENT_QUOTES, 'UTF-8')?>,
+                    <?=htmlspecialchars($sellerAddress->country, ENT_QUOTES, 'UTF-8')?>
                 </div>
             </div>
         </div>
         <div class="product-info">
             <label>Product</label>
             <div class="product-info-box">
-                <p id="product-label">Brand: <span id="product-name"><?= $brand->name?></span></p>
-                <p id="product-label">Name: <span id="product-name"><?= $product->title?></span></p>
-                <p id="product-label">Scale: <span id="product-name"><?= $scale->name?></span></p>
-                <p id="product-label">Category: <span id="product-name"><?= $category->name?></span></p>
+                <p id="product-label">Brand: <span id="product-name"><?= htmlspecialchars($brand->name, ENT_QUOTES, 'UTF-8')?></span></p>
+                <p id="product-label">Name: <span id="product-name"><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8')?></span></p>
+                <p id="product-label">Scale: <span id="product-name"><?= htmlspecialchars($scale->name, ENT_QUOTES, 'UTF-8')?></span></p>
+                <p id="product-label">Category: <span id="product-name"><?= htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8')?></span></p>
             </div>
         </div>
         <div class="payment-info">
             <label>Payment Method</label>
             <div class="payment-info-box">
-                <p><?= $order->paymentMethod ?></p>
+                <p><?= htmlspecialchars($order->paymentMethod, ENT_QUOTES, 'UTF-8') ?></p>
                 <?php if ($order->paymentMethod == 'Credit Card'): ?>
-                    <p>Card number: <?= $order->cardNumber ?></p>
+                    <p>Card number: <?= htmlspecialchars($order->cardNumber, ENT_QUOTES, 'UTF-8') ?></p>
                 <?php else: ?>
-                    <p>Phone number: <?= $order->phoneNumber ?></p>
+                    <p>Phone number: <?= htmlspecialchars($order->phoneNumber, ENT_QUOTES, 'UTF-8') ?></p>
                 <?php endif; ?>
             </div>
         </div>

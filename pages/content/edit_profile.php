@@ -15,7 +15,7 @@
 
     $db = getDatabaseConnection();
     
-    $user = User::getUserByUsername($db, $section->getUsername());
+    $user = User::getUserByUsername($db, $session->getUsername());
     $address = Address::getAddressById($db, $user->addressId);
 
     drawProfileEdit($user, $address);

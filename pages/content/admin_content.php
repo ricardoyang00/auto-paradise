@@ -17,7 +17,7 @@
 
     $db = getDatabaseConnection();
     
-    $username = $section->getUsername();
+    $username = $session->getUsername();
     $user = User::getUserByUsername($db, $username);
 
     if (!User::isAdmin($db, $username)) {

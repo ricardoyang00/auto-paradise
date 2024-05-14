@@ -73,11 +73,11 @@
             <?php
             }?>
                 <section id="tags">
-                    <h2><?= $category->name ?></h2>
-                    <h2><?= $scale->name ?></h2>
-                    <h2><?= $brand->name ?></h2>
+                    <h2><?= htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8') ?></h2>
+                    <h2><?= htmlspecialchars($scale->name, ENT_QUOTES, 'UTF-8') ?></h2>
+                    <h2><?= htmlspecialchars($brand->name, ENT_QUOTES, 'UTF-8') ?></h2>
                 </section>
-                <h1><?= $product->title ?></h1>
+                <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
                 <h3>€<?= $product->price ?></h3>
                 <button class="buy" data-id="<?= $product->id ?>">
                     <a href="buy.php?product_id=<?= $product->id ?>"> Buy Now </a>
@@ -86,12 +86,12 @@
             </div>
             <div class="seller-info">
                 <h2>Seller Information</h2>
-                <p class="user-name"><i class="fa-solid fa-user"></i><?= $seller->name ?></p>
+                <p class="user-name"><i class="fa-solid fa-user"></i><?= htmlspecialchars($seller->name, ENT_QUOTES, 'UTF-8') ?></p>
                 <p class="location"><i class="fa-solid fa-location-dot"></i><?=$seller->getUserAddress($db)->city?>, <?=$seller->getUserAddress($db)->country?></p>
             </div>
             <div class="description">
                 <h2>Description</h2>
-                <p><?= $product->description ?></p>
+                <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
             </div>
             <div class="qna">
                 <h2>Q&A</h2>
@@ -126,14 +126,14 @@
     <section id="edit-product">
         <h2>Edit product</h2>
         <form action="../../actions/action_update_product.php" method="post">
-            <input type="hidden" name="product_id" value="<?= htmlspecialchars($productId) ?>">
+            <input type="hidden" name="product_id" value="<?= htmlspecialchars($productId, ENT_QUOTES, 'UTF-8') ?>">
             <div class="input-container">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" value="<?= $product->title ?>" required>
+                <input type="text" id="title" name="title" value="<?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?>" required>
             </div>
             <div class="input-container">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" required><?= $product->description ?></textarea>
+                <textarea id="description" name="description" rows="4" required><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></textarea>
             </div>
             <div class="input-container">
                 <label for="category">Category</label>
