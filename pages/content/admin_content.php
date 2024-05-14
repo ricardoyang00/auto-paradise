@@ -14,10 +14,11 @@
     require_once(__DIR__ . '/../../database/category.class.php');
     require_once(__DIR__ . '/../../database/brand.class.php');
     require_once(__DIR__ . '/../../database/scale.class.php');
+    require_once(__DIR__ . '/../../templates/admin.tpl.php');
 
     $db = getDatabaseConnection();
     
-    $username = $section->getUsername();
+    $username = $session->getUsername();
     $user = User::getUserByUsername($db, $username);
 
     if (!User::isAdmin($db, $username)) {
@@ -28,6 +29,7 @@
     $categories = Category::getAllCategories($db);
     $brands = Brand::getAllBrands($db);
     $scales = Scale::getAllScales($db);
+    $bannedProducts = Product::getBannedProducts($db);
     
-    drawAdminSection($categories, $brands, $scales);
+    drawAdminSection($categories, $brands, $scales, $bannedProducts);
 ?>

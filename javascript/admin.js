@@ -229,7 +229,7 @@ function renameScale() {
     xhr.send("action=renameScale&scaleId=" + encodeURIComponent(scaleId) + "&scaleName=" + encodeURIComponent(scaleName));
 }
 
-function showBanPopup(productId) {
+function showBanPopup() {
     document.getElementById("banPopup").style.display = "block";
 }
 
@@ -245,7 +245,7 @@ function banProduct(productId) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200 && xhr.responseText === "SUCCESS") {
+            if (xhr.status === 200) {
                 alert("Product banned successfully.");
             } else {
                 alert("Failed to ban product.");
@@ -256,4 +256,23 @@ function banProduct(productId) {
     xhr.open("POST", "../actions/ban_product.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("productId=" + productId + "&banReason=" + encodeURIComponent(banReason));
+}
+
+function unbanProduct(productId) {
+    console.log("Unbanning product " + productId);
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                alert("Product unbanned successfully.");
+            } else {
+                alert("Failed to unban product.");
+            }
+            location.reload();
+        }
+    };
+    xhr.open("POST", "../actions/unban_product.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("productId=" + productId);
 }

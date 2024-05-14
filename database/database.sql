@@ -118,13 +118,14 @@ CREATE TABLE BAN (
     ban_id INTEGER PRIMARY KEY, 
     product_id INT NOT NULL,
     reason TEXT NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
 CREATE TABLE NOTIFICATION (
     notification_id INTEGER PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
-    type TEXT NOT NULL CHECK (type IN ('Sold', 'Question', 'Reply', 'Product-banned')),
+    type TEXT NOT NULL CHECK (type IN ('Sold', 'Question', 'Reply', 'Ban', 'Unban')),
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     extra_info INTEGER,
     is_read BOOLEAN DEFAULT FALSE,

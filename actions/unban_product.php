@@ -10,7 +10,7 @@
         exit();
     }
 
-    if (!isset($_POST['productId']) || !isset($_POST['banReason'])) {
+    if (!isset($_POST['productId'])) {
         http_response_code(400);
         exit();
     }
@@ -18,18 +18,9 @@
     $db = getDatabaseConnection();
     $productId = $_POST['productId'];
     $product = Product::getProductById($db, $productId);
-    $banReason = $_POST['banReason'];
 
-    if (Product::isBanned($db, $productId)) {
-        http_response_code(400);
-        exit();
-    }
-
-    if (Product::banProduct($db, $productId, $banReason)) {
-        Notification::addNotification($db, $product->sellerId, "Ban", $productId);
-        echo "SUCCESS";
-    } else {
-        http_response_code(500);
-    }
+    Product::unbanProduct($db, $productId);
+    Notification::addNotification($db, $product->sellerId, "Unban", $productId);
+    exit();
 
 ?>
