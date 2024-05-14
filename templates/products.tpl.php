@@ -9,11 +9,9 @@
     require_once(__DIR__ . '/../database/user.class.php');
 
     $db = getDatabaseConnection();
-
 ?>
 
-<?php
-function drawProductList($db, $products, $searchQuery) {
+<?php function drawProductList($db, $products, $searchQuery) {
     if (!empty($products)) {
         foreach ($products as $product) {?>
         <article>
@@ -44,8 +42,7 @@ function drawProductList($db, $products, $searchQuery) {
     <?php } 
 }?>
 
-<?php
-function drawProductItem(Product $product, $isAdmin) {
+<?php function drawProductItem(Product $product, $isAdmin) {
     $db = getDatabaseConnection();
     $seller = User::getUserByUsername($db, $product->sellerId);
     $category = Category::getCategoryById($db, $product->category);

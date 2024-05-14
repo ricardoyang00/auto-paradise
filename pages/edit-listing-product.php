@@ -18,10 +18,8 @@
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../templates/products.tpl.php');
 
-    $scripts = [];
-    drawHeader(false, $scripts, false);
-
     $db = getDatabaseConnection();
+    
     $categories = Category::getAllCategories($db);
     $brands = Brand::getAllBrands($db);
     $scales = Scale::getAllScales($db);
@@ -34,8 +32,9 @@
     $productCategory = Category::getCategoryById($db, $product->category);
     $productBrand = Brand::getBrandById($db, $product->brandId);
     $productScale = Scale::getScaleById($db, $product->scale);
-
+    
+    $scripts = [];
+    drawHeader(false, $scripts, false);
     drawEditProductForm($db, $categories, $brands, $scales, $product, $productId, $productCategory, $productBrand, $productScale);
-
     drawFooter();
 ?>
