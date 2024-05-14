@@ -22,6 +22,18 @@ class Product {
         $this->scale = $scale;
     }
 
+    public static function addProduct(PDO $db, $category, $title, $description, $price, $sellerId, $brandId, $scale) {
+        $stmt = $db->prepare('INSERT INTO PRODUCT (category, title, description, price, seller_id, brand, scale) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$category, $title, $description, $price, $sellerId, $brandId, $scale]);
+
+        return $db->lastInsertId();
+    }
+
+    public static function addProductImage(PDO $db, $productId, $imageUrl) {
+        $stmt = $db->prepare('INSERT INTO PRODUCT_IMAGES (product_id, image_url) VALUES (?, ?)');
+        $stmt->execute([$productId, $imageUrl]);
+    }
+
     public static function getAllProducts(PDO $db): array {
         $stmt = $db->query('SELECT p.*, ps.status 
                             FROM PRODUCT p 
