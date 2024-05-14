@@ -8,7 +8,7 @@
             <select id="category-update" name="category-update" required>
                 <option value="" disabled>Select a category</option>
                 <?php foreach($categories as $category){ ?>
-                    <option value="<?= $category->id ?>"><?= $category->name ?></option>
+                    <option value="<?= $category->id ?>"><?= htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8') ?></option>
                 <?php } ?>
             </select>
             <input type="text" id="categoryNameInput" name="categoryName" placeholder="Enter category name">
@@ -22,7 +22,7 @@
             <select id="brand-update" name="brand-update" required>
                 <option value="" disabled>Select a Brand</option>
                 <?php foreach($brands as $brand){ ?>
-                    <option value="<?= $brand->id ?>"><?= $brand->name ?></option>
+                    <option value="<?= $brand->id ?>"><?= htmlspecialchars($brand->name, ENT_QUOTES, 'UTF-8') ?></option>
                 <?php } ?>
             </select>
             <input type="text" id="brandNameInput" name="brandName" placeholder="Enter brand name">
@@ -36,7 +36,7 @@
             <select id="scale-update" name="scale-update" required>
                 <option value="" disabled>Select a Scale</option>
                 <?php foreach($scales as $scale){ ?>
-                    <option value="<?= $scale->id ?>"><?= $scale->name ?></option>
+                    <option value="<?= $scale->id ?>"><?= htmlspecialchars($scale->name, ENT_QUOTES, 'UTF-8') ?></option>
                 <?php } ?>
             </select>
             <input type="text" id="scaleNameInput" name="scaleName" placeholder="Enter scale name">
