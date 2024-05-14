@@ -24,12 +24,12 @@ class Notification {
         $this->extra_id = $extra_id;
     }
 
-    public static function getUserNotifications(PDO $db, $userId) : array {
-        $stmt = $db->prepare('SELECT * FROM NOTIFICATION WHERE username = ? ORDER BY is_read ASC, date DESC');
-        $stmt->execute([$userId]);
+    public static function getNotificationById(PDO $db, $notificationId) : ?Notification{
+        $stmt = $db->prepare('SELECT * FROM NOTIFICATION WHERE notification_id = ? LIMIT 1');
+        $stmt->execute([$notificationId]);
 
-        $notifications = array();
-        while ($notification = $stmt->fetch()) {
+        $notification = $stmt->fetch();
+        if ($notification) {
             $title = '';
             $message = '';
             $is_read = $notification['is_read'] ? 1 : 0;
@@ -42,20 +42,38 @@ class Notification {
             } else if ($notification['type'] === 'Product-banned') {
                 $title = 'Your product has been banned :(';
                 $message = 'Unfortunately, your product has been banned due to a violation of our terms and conditions. Please check the reason.';
+            } else if ($notification['type'] === 'Reply') {
+                $title = 'You have a new reply!';
+                $message = 'The seller has replied to your question. Check it out!';
             } else {
-                continue;
+                return null;
             }
 
-            $notifications[] = new Notification(
+            return new Notification(
                 $notification['notification_id'],
                 $notification['username'],
                 $title,
                 $message,
-                new DateTime($notification['date']),
+                (new DateTime($notification['date']))->modify('+1 hour'),
                 $is_read,
                 $notification['type'],
                 $notification['extra_info']
             );
+        }
+        
+        return null;
+    }
+
+    public static function getUserNotifications(PDO $db, $userId) : array {
+        $stmt = $db->prepare('SELECT notification_id FROM NOTIFICATION WHERE username = ? ORDER BY is_read ASC, date DESC');
+        $stmt->execute([$userId]);
+
+        $notifications = array();
+        while ($notificationIDs = $stmt->fetch()) {
+            $notification = self::getNotificationById($db, $notificationIDs['notification_id']);
+            if ($notification) {
+                $notifications[] = $notification;
+            }
         }
 
         return $notifications;
@@ -76,6 +94,16 @@ class Notification {
         $stmt->execute([$userId]);
 
         return $stmt->fetchColumn() ?? 0;
+    }
+
+    public static function addNotification(PDO $db, $userId, $type, $extra_id = null) {
+        $stmt = $db->prepare('INSERT INTO NOTIFICATION (username, type, extra_info) VALUES (?, ?, ?)');
+        $stmt->execute([$userId, $type, $extra_id]);
+    }
+
+    public static function deleteNotification(PDO $db, $notificationId) {
+        $stmt = $db->prepare('DELETE FROM NOTIFICATION WHERE notification_id = ?');
+        $stmt->execute([$notificationId]);
     }
 }
 

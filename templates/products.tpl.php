@@ -7,6 +7,7 @@
     require_once(__DIR__ . '/../database/brand.class.php');
     require_once(__DIR__ . '/../database/category.class.php');
     require_once(__DIR__ . '/../database/user.class.php');
+    require_once(__DIR__ . '/../database/question.class.php');
 
     $db = getDatabaseConnection();
 ?>
@@ -95,10 +96,10 @@
             </div>
             <div class="qna">
                 <h2>Q&A</h2>
-                <form>
-                    <textarea placeholder="Ask a question..."></textarea>
-                    <button type="submit" id="submit-question">Submit</button>
-                </form>
+                <div id="question-form">
+                    <textarea id="question-text" placeholder="Ask a question..."></textarea>
+                    <button type="button" id="submit-question">Submit</button>
+                </div>
                 <?php
                 $questions = Questions::getProductQuestions($db, $product->id);
                 foreach($questions as $question) { 

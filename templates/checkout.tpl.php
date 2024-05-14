@@ -130,7 +130,6 @@
                 Subtotal: <span class="checkout-price">€ <?= $product->price ?></span>
             </div>
             <div id="shippingCost" class="subtotal">
-                <!-- This is filled in by checkout.js -->
             </div>
             <div class="total">
                 TOTAL TO PAY: <span class="checkout-price">€ <?= $product->price ?></span>

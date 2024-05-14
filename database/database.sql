@@ -124,7 +124,7 @@ CREATE TABLE BAN (
 CREATE TABLE NOTIFICATION (
     notification_id INTEGER PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
-    type TEXT NOT NULL CHECK (type IN ('Sold', 'Question', 'Product-banned')),
+    type TEXT NOT NULL CHECK (type IN ('Sold', 'Question', 'Reply', 'Product-banned')),
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     extra_info INTEGER,
     is_read BOOLEAN DEFAULT FALSE,
@@ -391,8 +391,8 @@ INSERT INTO NOTIFICATION (notification_id, username, type, date, extra_info, is_
     (2, 'user2', 'Sold', '2024-03-18 10:26:54', 2, TRUE),
     (3, 'user3', 'Sold', '2024-04-01 03:07:29', 3, TRUE),
     (4, 'user4', 'Sold', '2024-04-15 14:45:12', 4, FALSE),
-    (5, 'user5', 'Question', '2024-02-08 19:05:36', 5, TRUE),
-    (6, 'user1', 'Question', '2024-03-18 10:26:54', 1, TRUE),
-    (7, 'user1', 'Question', '2024-04-01 03:07:29', 1, TRUE),
-    (8, 'user1', 'Question', '2024-04-15 14:45:12', 1, FALSE),
-    (9, 'user1', 'Question', '2024-04-15 14:45:12', 1, FALSE);
+    (5, 'user5', 'Question', '2024-02-08 19:05:36', 1, TRUE),
+    (6, 'user1', 'Question', '2024-03-18 10:26:54', 2, TRUE),
+    (7, 'user1', 'Question', '2024-04-01 03:07:29', 3, TRUE),
+    (8, 'user1', 'Question', '2024-04-15 14:45:12', 4, FALSE),
+    (9, 'user1', 'Question', '2024-04-15 14:45:12', 5, FALSE);
