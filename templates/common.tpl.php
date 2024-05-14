@@ -65,7 +65,7 @@ require_once(__DIR__ . '/../utils/session.php');
 <?php } ?>
 
 <?php function drawHeader($withMenu, $scripts = [], $receiptPage) { ?>
-    <?=drawHTMLheader($scripts, $receiptPage)?>
+    <?=drawHTMLheader($receiptPage, $scripts)?>
     <body>
         <header>
             <?php drawSearchBar(); 
