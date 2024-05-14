@@ -44,9 +44,9 @@ class Questions {
         return $qaId;
     }
 
-    public function answerQuestion(PDO $db, $answer) {
+    public static function answerQuestion(PDO $db, $answer, $questionId) {
         $stmt = $db->prepare('UPDATE QA SET answer = ? WHERE qa_id = ?');
-        $stmt->execute([$answer, $this->id]);
+        $stmt->execute([$answer, $questionId]);
     }
 
     public static function getQuestionById(PDO $db, $questionId) : ?Questions {

@@ -31,6 +31,11 @@ if (isset($_GET['id'])) {
                     'id' => $product->id,
                     'image' => $productImage,
                     'title' => $product->title
+                ],
+                'notification' => [
+                    'id' => $notification->id,
+                    'type' => $notification->type,
+                    'extra_id' => $notification->extra_id,
                 ]
             ]);
             exit;

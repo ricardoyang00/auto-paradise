@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('product-title').innerText = data.product.title;
         document.getElementById('question-content').innerText = data.question.question;
         document.getElementById('submit-reply').setAttribute('data-question-id', data.question.id);
-        document.getElementById('question-id').innerText = data.question.id;
+        document.getElementById('notification-id').innerText = data.notification.id;
     }
 
     document.querySelector('.close-popup').addEventListener('click', function() {
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('submit-reply').addEventListener('click', function() {
         var replyText = document.getElementById('reply-text').value;
         var questionId = this.getAttribute('data-question-id');
-        var notificationId = document.getElementById('question-id').innerText;
+        var notificationId = document.getElementById('notification-id').innerText;
         
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '../actions/action_reply.php', true);
@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Parsed JSON data:', response);
                 if (response.success) {
                     document.getElementById('popup-reply').style.display = 'none';
+                    location.reload();
                 } else {
                     console.error('Reply submission failed:', response.error);
                     console.log('Raw response text:', xhr.responseText);
@@ -135,5 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.send(params);
     });
 });
+
 
 

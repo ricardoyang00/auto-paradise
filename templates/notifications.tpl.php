@@ -36,7 +36,7 @@ function drawNotifications(PDO $db, $notifications) {
     </section>
 
     <div id="popup-reply" class="popup-reply">
-        <div id="question-id"></div>
+        <div id="notification-id"></div>
         <div class="popup-content">
             <span class="close-popup">&times;</span>
             <div id="product-details">
