@@ -161,5 +161,73 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var answerButtons = document.querySelectorAll('.answer-notification');
+
+    answerButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var notificationId = button.getAttribute('data-notification-id');
+            fetchQuestionAnswer(notificationId);
+        });
+    });
+
+    function fetchQuestionAnswer(notificationId) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '../actions/fetch_answer_product.php?id=' + notificationId, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    try {
+                        var data = JSON.parse(xhr.responseText);
+                        console.log('Parsed JSON data:', data);
+                        populateAnswerPopup(data);
+                        document.getElementById('popup-answer').style.display = 'block';
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e);
+                        console.log('Raw response text:', xhr.responseText);                    
+                    }
+                } else {
+                    console.error('XHR request failed with status:', xhr.status);
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    function populateAnswerPopup(data) {
+        document.getElementById('answer-product-image').src = "../database/images/" + data.product.image;
+        document.getElementById('answer-product-title').innerText = data.product.title;
+        document.getElementById('answer-question-content').innerText = data.question.question;
+        document.getElementById('answer-content').innerText = data.question.answer;
+        document.getElementById('answer-notification-id').innerText = data.notification.id;
+        document.getElementById('product-url').href = '../pages/item.php?id=' + data.product.id;
+    }
+
+    document.querySelector('.answer-close-popup').addEventListener('click', function() {
+        document.getElementById('popup-answer').style.display = 'none';
+    });
+
+    document.getElementById('read-button').addEventListener('click', function() {
+        var notificationId = document.getElementById('answer-notification-id').innerText;
+        markAsRead(notificationId);
+    });
+
+    function markAsRead(notificationId) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '../actions/notification_mark.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                window.location.reload();
+            } else {
+                console.error('Failed to mark the notification as read.');
+            }
+        };
+        xhr.onerror = function() {
+            console.error('Request failed');
+        };
+        xhr.send(`action=read&notification_id=${notificationId}`);
+    }
+});
 
 

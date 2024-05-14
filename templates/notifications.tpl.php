@@ -28,8 +28,13 @@ function drawNotifications(PDO $db, $notifications) {
                                 <?php } else { ?>
                                     <button class="replied-notification"><i class="fa-regular fa-comment-dots"></i> Replied</button>
                                 <?php }
-                        }
-                    ?>
+                                break;
+                            case 'Reply': ?>
+                                <button class="answer-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-regular fa-circle-question"></i> Details</button>
+                                <?php break;
+                            default:
+                                break;
+                        } ?>
                 </div>
             </article>
         <?php } ?>
@@ -49,6 +54,23 @@ function drawNotifications(PDO $db, $notifications) {
                 <button id="submit-reply">Submit Reply</button>
             </div>
             <button id="dismiss-question"><i class="fa-solid fa-trash"></i></button>
+        </div>
+    </div>
+
+    <div id="popup-answer" class="popup-answer">
+        <div id="answer-notification-id"></div>
+        <div class="popup-content">
+            <span class="answer-close-popup">&times;</span>
+            <div id="product-details">
+                <img id="answer-product-image" src="" alt="Product Image">
+                <h3 id="answer-product-title"></h3>
+            </div>
+            <div id="question-details">
+                <p id="answer-question-content"></p>
+                <p id="answer-content"></p>
+            </div>
+            <button id="read-button"><i class="fa-brands fa-readme"></i> Read</button>
+            <a href="" id="product-url" class="button"><i class="fa-solid fa-location-arrow"></i> Go to page</a>
         </div>
     </div>
 <?php } ?>
