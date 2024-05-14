@@ -1,37 +1,37 @@
 <?php 
-declare(strict_types = 1); 
-require_once(__DIR__ . '/../database/connection.db.php');
-require_once(__DIR__ . '/../database/notification.class.php');
-require_once(__DIR__ . '/../utils/session.php');
-
+    declare(strict_types = 1); 
+    
+    require_once(__DIR__ . '/../utils/session.php');
+    require_once(__DIR__ . '/../database/connection.db.php');
+    require_once(__DIR__ . '/../database/notification.class.php');
 ?>
 
 <?php function drawHTMLheader($receiptPage, $scripts = []) {?>
-<!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <title>Auto Paradise</title>    
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="../images/logo/auto-paradise-icon.png">
-        <link href="../css/style.css" rel="stylesheet" media="<?php echo $receiptPage ? 'screen' : 'all'; ?>">
-        <?php if ($receiptPage) { ?>
-            <link href="../css/print.css" media="print" rel="stylesheet">
-        <?php } ?>
-        <script src="https://kit.fontawesome.com/0eb2febe39.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-        <script src="../javascript/theme.js" defer></script>
-        <script src="../javascript/filter.js"></script>
-        <script src="../javascript/notification.js"></script>
-        <script src="../javascript/images.js" defer></script>
-        <script src="../javascript/wishlist.js" defer></script>
-        <script src="../javascript/admin.js" defer></script>
-        <script src="../javascript/questions.js" defer></script>
-        <?php foreach ($scripts as $script) { ?>
-            <script src="../javascript/<?=$script?>.js" defer></script>
-        <?php } ?>
-    </head>
+    <!DOCTYPE html>
+    <html lang="en-US">
+        <head>
+            <title>Auto Paradise</title>    
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="icon" type="image/png" href="../images/logo/auto-paradise-icon.png">
+            <link href="../css/style.css" rel="stylesheet" media="<?php echo $receiptPage ? 'screen' : 'all'; ?>">
+            <?php if ($receiptPage) { ?>
+                <link href="../css/print.css" media="print" rel="stylesheet">
+            <?php } ?>
+            <script src="https://kit.fontawesome.com/0eb2febe39.js" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+            <script src="../javascript/theme.js" defer></script>
+            <script src="../javascript/filter.js"></script>
+            <script src="../javascript/notification.js"></script>
+            <script src="../javascript/images.js" defer></script>
+            <script src="../javascript/wishlist.js" defer></script>
+            <script src="../javascript/admin.js" defer></script>
+            <script src="../javascript/questions.js" defer></script>
+            <?php foreach ($scripts as $script) { ?>
+                <script src="../javascript/<?=$script?>.js" defer></script>
+            <?php } ?>
+        </head>
 <?php } ?>
 
 <?php function drawSearchBar() {

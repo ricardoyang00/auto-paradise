@@ -1,15 +1,14 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types = 1); ?>
 
-function calculateDeliveryDate($startDay, $endDay) {
+<?php function calculateDeliveryDate($startDay, $endDay) {
     $date1 = new DateTime();
     $date1->modify('+' . $startDay . ' day');
     $date2 = new DateTime();
     $date2->modify('+' . $endDay . ' days');
     return '<p>Estimated delivery ' . $date1->format('l, j F') . ' - ' . $date2->format('l, j F') . '</p>';
-}
+} ?>
 
-
-function drawCheckoutPage($db, $user, $address, $product) { ?>
+<?php function drawCheckoutPage($db, $user, $address, $product) { ?>
     <h1 id="checkout-heading">Checkout</h1>
     <div class="checkout-container">
         <div class="checkout-steps">
@@ -86,7 +85,6 @@ function drawCheckoutPage($db, $user, $address, $product) { ?>
                                         <input type="text" id="expiryYear" name="expiryYear" placeholder="YY" maxlength="2">
                                     </div>
                                 </div>
-                            
                                 <div>
                                     <div class="cvv-container">
                                         <label for="cvv">CVC/CVV</label>
@@ -140,6 +138,47 @@ function drawCheckoutPage($db, $user, $address, $product) { ?>
         </div>
     </div>
 <?php } ?>
+
+<?php function processPayment($db, $session, $user) { 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $productId = isset($_POST['productId']) ? $_POST['productId'] : null;
+        $totalToPay = isset($_POST['totalToPay']) ? $_POST['totalToPay'] : null;
+        $selectedPaymentMethod = isset($_POST['selectedPaymentMethod']) ? $_POST['selectedPaymentMethod'] : null;
+        $paymentDetails = isset($_POST['paymentDetails']) ? $_POST['paymentDetails'] : null;
+        
+        $product = Product::getProductById($db, $productId);
+
+        $isPaymentSuccessful = rand(1, 4) !== 1;
+        if ($isPaymentSuccessful) {
+            $session->addMessage('success', 'Payment Successful! Your order has been placed.');
+
+            $order = new Order(
+                0, 
+                $user->username, 
+                (int)$productId, 
+                (float)$totalToPay, 
+                $product->sellerId, 
+                date('Y-m-d H:i:s'),
+                $selectedPaymentMethod, 
+                $selectedPaymentMethod === 'MB WAY' ? $paymentDetails : null,
+                $selectedPaymentMethod === 'Credit Card' ? $paymentDetails : null
+            );
+
+            if (!$order->saveToOrderTable($db)) {
+                $session->addMessage('error', 'There was a problem processing your order. Please try again.');
+            } else {
+                $product->removeFromWishlist($db, $session->getUsername());
+                $product->setProductState($db, (int)$productId, 'Sold');
+            }
+        } else {
+            $session->addMessage('error', 'Payment Failed! Please try again.');
+        }
+    } ?>
+    <div id="waitingAnimationContainer">
+        <div class="loader"></div>
+        <div id="waitingAnimationText">Processing your payment...</div>    
+    </div>
+<?php }?>
 
 <?php function drawReceipt($db, $order, $user, $seller, $userAddress, $sellerAddress, $product, $brand, $scale, $category) { ?>
     <h1 id="receipt-heading">Receipt</h1>
