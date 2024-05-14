@@ -51,7 +51,7 @@ class Notification {
                 $notification['username'],
                 $title,
                 $message,
-                new DateTime($notification['date']),
+                (new DateTime($notification['date']))->modify('+1 hour'),   // Add 1 hour to the date to fix timezone issue
                 $is_read,
                 $notification['type'],
                 $notification['extra_info']
