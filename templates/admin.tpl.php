@@ -1,6 +1,10 @@
-<?php declare(strict_types = 1); ?>
+<?php 
+declare(strict_types = 1); 
+require_once(__DIR__ . '/../database/connection.db.php');
+require_once(__DIR__ . '/../database/product.class.php');
+?>
 
-<?php function drawAdminSection($categories, $brands, $scales) { ?>
+<?php function drawAdminSection($categories, $brands, $scales, $bannedProducts) { ?>
     <h2>Admin Section</h2>
     <div id="admin" class="account-content">
         <div class="admin-content">
@@ -45,6 +49,23 @@
                 <button onclick="renameScale()" id="rename-scale-btn" class="rename-btn">Rename</button>
                 <button onclick="addScale()" id="add-scale" class="save-btn">Add new scale</button>
             </div>
+        </div>
+
+        <div class="banned-products">
+            <?php 
+                $db = getDatabaseConnection();
+                if (!empty($bannedProducts)) { ?>
+                    <h3>Banned Products</h3>
+            <?php }    
+            foreach($bannedProducts as $product) { ?>
+                <div class="banned-product">
+                    <a href="../pages/item.php?id=<?=$product->id;?>"><?=$product->title;?></a>
+                    <p><?= Product::getBannedReason($db, $product->id); ?></p>
+                    <div id="banned-date"><?= Product::getBannedDate($db, $product->id); ?></div>
+                    <button onclick="unbanProduct(<?= $product->id ?>)" class="save-btn">Unban</button>
+                </div>
+            <?php } ?>
+            
         </div>
     </div>
 <?php } ?>

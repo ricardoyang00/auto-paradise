@@ -15,7 +15,7 @@ function drawNotifications(PDO $db, $notifications) {
                 <div id="notification-actions">
                     <?php 
                         switch ($notification->type) {
-                            case 'Sold':
+                            case 'Sold' || 'Ban' || 'Unban':
                                 if ($notification->isRead) { ?>
                                     <button class="unread-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-brands fa-readme"></i> Unread</button>
                                 <?php } else { ?>

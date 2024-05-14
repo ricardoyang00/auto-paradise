@@ -33,20 +33,36 @@ class Notification {
             $title = '';
             $message = '';
             $is_read = $notification['is_read'] ? 1 : 0;
-            if ($notification['type'] === 'Sold') {
-                $title = 'Congratulations! Your product has been sold!';
-                $message = 'Check in your profile on the sold products section for more details.';
-            } else if ($notification['type'] === 'Question') {
-                $title = 'You have a new question!';
-                $message = 'Someone is interested in your product. Reply to the question as soon as possible.';
-            } else if ($notification['type'] === 'Product-banned') {
-                $title = 'Your product has been banned :(';
-                $message = 'Unfortunately, your product has been banned due to a violation of our terms and conditions. Please check the reason.';
-            } else if ($notification['type'] === 'Reply') {
-                $title = 'You have a new reply!';
-                $message = 'The seller has replied to your question. Check it out!';
-            } else {
-                return null;
+
+            switch ($notification['type']) {
+                case 'Sold':
+                    $title = 'Congratulations! Your product has been sold!';
+                    $message = 'Check in your profile on the sold products section for more details.';
+                    break;
+                case 'Question':
+                    $title = 'You have a new question!';
+                    $message = 'Someone is interested in your product. Reply to the question as soon as possible.';
+                    break;
+                case 'Product-banned':
+                    $title = 'Your product has been banned :(';
+                    $message = 'Unfortunately, your product has been banned due to a violation of our terms and conditions. Please check the reason.';
+                    break;
+                case 'Reply':
+                    $title = 'You have a new reply!';
+                    $message = 'The seller has replied to your question. Check it out!';
+                    break;
+                case 'Ban':
+                    $title = 'Your product has been banned :(';
+                    $productID = $notification['extra_info'];
+                    $message = 'Unfortunately, your product has been banned due to a violation of our terms and conditions. Check the reason in your profile.';
+                    break;
+                case 'Unban':
+                    $title = 'Your product has been unbanned!';
+                    $productID = $notification['extra_info'];
+                    $message = 'Your product has been unbanned. You can now sell it again. Check in your profile for more details.';
+                    break;
+                default:
+                    return null;
             }
 
             return new Notification(

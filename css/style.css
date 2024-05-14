@@ -1071,6 +1071,7 @@ footer {
             margin-bottom: 50px;
 
             article {
+                position: relative;
                 display: grid;
                 grid-template-columns: auto 1fr auto;
                 background-color: var(--article_background);
@@ -1160,6 +1161,17 @@ footer {
                             margin-left: 5px;
                         }
                     }
+                }
+
+                .banned {
+                    position: absolute;
+                    top: 0;
+                    left: 10px;
+                    background-color: red; 
+                    color: white; 
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    font-weight: bold;
                 }
             }
         }
@@ -2025,3 +2037,52 @@ footer {
         font-weight: bold;
     }
 }
+
+.banned-product {
+    position: relative; 
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: var(--article_background);
+
+    h3 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    p {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        color: var(--text);
+    }
+
+    #banned-date {
+        position: absolute;
+        bottom: 5px;
+        right: 10px;
+        color: #999;
+        font-size: 0.9rem;
+    }
+
+    .save-btn {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 2em;
+    }
+}
+
+  

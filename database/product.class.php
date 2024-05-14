@@ -22,11 +22,24 @@ class Product {
         $this->scale = $scale;
     }
 
+    public static function addProduct(PDO $db, $category, $title, $description, $price, $sellerId, $brandId, $scale) {
+        $stmt = $db->prepare('INSERT INTO PRODUCT (category, title, description, price, seller_id, brand, scale) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$category, $title, $description, $price, $sellerId, $brandId, $scale]);
+
+        return $db->lastInsertId();
+    }
+
+    public static function addProductImage(PDO $db, $productId, $imageUrl) {
+        $stmt = $db->prepare('INSERT INTO PRODUCT_IMAGES (product_id, image_url) VALUES (?, ?)');
+        $stmt->execute([$productId, $imageUrl]);
+    }
+
     public static function getAllProducts(PDO $db): array {
         $stmt = $db->query('SELECT p.*, ps.status 
                             FROM PRODUCT p 
                             LEFT JOIN PRODUCT_STATE ps ON p.product_id = ps.product_id 
                             WHERE LOWER(ps.status) = \'available\' 
+                            AND p.product_id NOT IN (SELECT product_id FROM BAN)
                             ORDER BY LOWER(p.title) ASC');
     
         $products = array();
@@ -70,16 +83,17 @@ class Product {
 
     public static function getProductsByName(PDO $db, $productName): array {
         $stmt = $db->prepare('SELECT p.*, ps.status 
-                              FROM PRODUCT p 
-                              LEFT JOIN PRODUCT_STATE ps ON p.product_id = ps.product_id 
-                              LEFT JOIN CATEGORY c ON p.category = c.category_id
-                              LEFT JOIN SCALE s ON p.scale = s.scale_id
-                              LEFT JOIN BRANDS b ON p.brand = b.brand_id
-                              WHERE (p.title LIKE ? 
-                                 OR c.category_name LIKE ?
-                                 OR s.scale_name LIKE ?
-                                 OR b.brand_name LIKE ?)
-                                 AND LOWER(ps.status) = \'available\'');
+                                      FROM PRODUCT p 
+                                      LEFT JOIN PRODUCT_STATE ps ON p.product_id = ps.product_id 
+                                      LEFT JOIN CATEGORY c ON p.category = c.category_id
+                                      LEFT JOIN SCALE s ON p.scale = s.scale_id
+                                      LEFT JOIN BRANDS b ON p.brand = b.brand_id
+                                      WHERE (p.title LIKE ? 
+                                         OR c.category_name LIKE ?
+                                         OR s.scale_name LIKE ?
+                                         OR b.brand_name LIKE ?)
+                                         AND LOWER(ps.status) = \'available\'
+                                         AND p.product_id NOT IN (SELECT product_id FROM BAN)');
         $searchTerm = "%$productName%";
         $stmt->execute([$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
     
@@ -212,6 +226,54 @@ class Product {
     public static function banProduct(PDO $db, $productId, $reason) : bool {
         $stmt = $db->prepare('INSERT INTO BAN (product_id, reason) VALUES (?, ?)');
         return $stmt->execute([$productId, $reason]);
+    }
+
+    public static function unbanProduct(PDO $db, $productId) {
+        $stmt = $db->prepare('DELETE FROM BAN WHERE product_id = ?');
+        return $stmt->execute([$productId]);
+    }
+
+    public static function isBanned(PDO $db, $productId): bool {
+        $stmt = $db->prepare('SELECT COUNT(*) FROM BAN WHERE product_id = ?');
+        $stmt->execute([$productId]);
+
+        return $stmt->fetchColumn() > 0;
+    }
+
+    public static function getBannedReason(PDO $db, $productId): ?string {
+        $stmt = $db->prepare('SELECT reason FROM BAN WHERE product_id = ?');
+        $stmt->execute([$productId]);
+
+        $reason = $stmt->fetch();
+
+        return $reason ? $reason['reason'] : null;
+    }
+
+    public static function getBannedDate(PDO $db, $productId) {
+        $stmt = $db->prepare('SELECT date FROM BAN WHERE product_id = ?');
+        $stmt->execute([$productId]);
+        $date = $stmt->fetchColumn();
+        return date('F d, Y', strtotime($date));
+    }
+
+    public static function getBannedProducts(PDO $db): array {
+        $stmt = $db->query('SELECT p.*, b.reason FROM PRODUCT p INNER JOIN BAN b ON p.product_id = b.product_id');
+    
+        $products = array();
+        while ($product = $stmt->fetch()) {
+            $products[] = new Product(
+                $product['product_id'],
+                $product['category'],
+                $product['title'],
+                $product['description'],
+                $product['price'],
+                $product['seller_id'],
+                $product['brand'],
+                $product['scale']
+            );
+        }
+    
+        return $products;
     }
     
     public static function addProductState(PDO $db, int $productId, string $state): bool {

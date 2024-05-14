@@ -1,4 +1,8 @@
-<?php declare(strict_types = 1); ?>
+<?php 
+    declare(strict_types = 1); 
+    require_once(__DIR__ . '/../database/product.class.php');
+    require_once(__DIR__ . '/../database/connection.db.php');
+?>
 
 <?php function drawNavBar($user, $address, $isAdmin) { ?>
     <section id="account">
@@ -214,13 +218,20 @@
     </div>
 <?php } ?>
 
-<?php function drawListings($db, $listings) { ?>
+<?php function drawListings($db, $listings) { 
+    $db = getDatabaseConnection(); ?>
     <h2>My Listings</h2>
     <div id="my-listings" class="account-content">
         <div class="listings-content">
             <?php foreach ($listings as $product):
                 $thumbnail = htmlspecialchars($product->getProductThumbnail($db), ENT_QUOTES, 'UTF-8'); ?>
                 <article>
+                    <?php
+                        if (Product::isBanned($db, $product->id)) {
+                            $bannedReason = Product::getBannedReason($db, $product->id);
+                            echo "<p class='banned'>Banned: $bannedReason</p>";
+                        }
+                    ?>
                     <img src="../database/images/<?= $thumbnail ?>">
                     <div id="product-information">
                         <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
