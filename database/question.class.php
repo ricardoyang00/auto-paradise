@@ -43,11 +43,28 @@ class Questions {
         
         return $qaId;
     }
-    
 
     public function answerQuestion(PDO $db, $answer) {
         $stmt = $db->prepare('UPDATE QA SET answer = ? WHERE qa_id = ?');
         $stmt->execute([$answer, $this->id]);
+    }
+
+    public static function getQuestionById(PDO $db, $questionId) : ?Questions {
+        $stmt = $db->prepare('SELECT * FROM QA WHERE qa_id = ?');
+        $stmt->execute([$questionId]);
+
+        $result = $stmt->fetch();
+        if ($result) {
+            return new Questions(
+                $result['qa_id'],
+                $result['user_id'],
+                $result['question'],
+                $result['answer'],
+                $result['product_id']
+            );
+        }
+
+        return null;
     }
 }
 

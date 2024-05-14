@@ -66,4 +66,74 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var replyButtons = document.querySelectorAll('.reply-notification');
+
+    replyButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var notificationId = button.getAttribute('data-notification-id');
+            fetchQuestionAndProduct(notificationId);
+        });
+    });
+
+    function fetchQuestionAndProduct(notificationId) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '../actions/fetch_question_product.php?id=' + notificationId, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    try {
+                        var data = JSON.parse(xhr.responseText);
+                        console.log('Parsed JSON data:', data);
+                        populatePopup(data);
+                        document.getElementById('popup-reply').style.display = 'block';
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e);
+                        console.log('Raw response text:', xhr.responseText);                    
+                    }
+                } else {
+                    console.error('XHR request failed with status:', xhr.status);
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    function populatePopup(data) {
+        document.getElementById('product-image').src = "../database/images/" + data.product.image;
+        document.getElementById('product-title').innerText = data.product.title;
+        document.getElementById('question-content').innerText = data.question.question;
+        document.getElementById('submit-reply').setAttribute('data-question-id', data.question.id);
+        document.getElementById('question-id').innerText = data.question.id;
+    }
+
+    document.querySelector('.close-popup').addEventListener('click', function() {
+        document.getElementById('popup-reply').style.display = 'none';
+    });
+
+    document.getElementById('submit-reply').addEventListener('click', function() {
+        var replyText = document.getElementById('reply-text').value;
+        var questionId = this.getAttribute('data-question-id');
+        var notificationId = document.getElementById('question-id').innerText;
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../actions/action_reply.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                console.log('Parsed JSON data:', response);
+                if (response.success) {
+                    document.getElementById('popup-reply').style.display = 'none';
+                } else {
+                    console.error('Reply submission failed:', response.error);
+                    console.log('Raw response text:', xhr.responseText);
+                }
+            }
+        };
+        var params = 'reply=' + encodeURIComponent(replyText) + '&question_id=' + encodeURIComponent(questionId) + '&notification_id=' + encodeURIComponent(notificationId);
+        xhr.send(params);
+    });
+});
+
 
