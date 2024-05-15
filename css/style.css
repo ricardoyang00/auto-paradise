@@ -372,7 +372,7 @@ footer {
         text-align: center;
         grid-column: 1 / -1;
     }
-    
+
     h1 {
         color: var(--text);
     }
@@ -522,6 +522,12 @@ footer {
     margin-bottom: 15px;
     padding: 15px;
     display: flex;
+
+    #emptyContent {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
   }
   
   #notification-details {
