@@ -2067,7 +2067,7 @@ footer {
     padding: 15px;
     margin-bottom: 20px;
     background-color: var(--article_background);
-    max-width: 40rem;
+    max-width: 30rem;
     word-wrap: break-word;
 
     a {
