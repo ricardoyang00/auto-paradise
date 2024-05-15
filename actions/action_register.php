@@ -11,22 +11,52 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['registerUsername'];
-        $name = filter_input(INPUT_POST, 'registerName', FILTER_SANITIZE_STRING);
-        if (!preg_match("/^[a-zA-Z\s]+$/", $name)) {
+        if (!preg_match("/^(?=.*[A-Za-z0-9])[A-Za-z0-9_]{3,20}$/", $username)) {
+            $session->addMessage('error', 'Username should be 3-20 characters long, it must start with a letter and can only contain letters, numbers, and underscores.');
+            header('Location: /pages/register.php');
+            exit();
+        }
+
+        $name = $_POST['registerName'];
+        if (!preg_match("/^(?=.*[a-zA-Z])[a-zA-Z\s]+$/", $name)) {
             $session->addMessage('error', 'Name can only contain letters and spaces.');
             header('Location: /pages/register.php');
             exit();
         }
+        
         $password = $_POST['registerPassword'];
-        $phoneNumber = filter_input(INPUT_POST, 'registerPhoneNumber', FILTER_SANITIZE_STRING);
-        $address = filter_input(INPUT_POST, 'registerAddress', FILTER_SANITIZE_STRING);
-        $postalCode = $_POST['registerPostalCode'];
-        $city = filter_input(INPUT_POST, 'registerCity', FILTER_SANITIZE_STRING);
-        $country = filter_input(INPUT_POST, 'registerCountry', FILTER_SANITIZE_STRING);
 
-        if (empty($username) || empty($name) || empty($password) || empty($phoneNumber) || 
-            empty($address) || empty($postalCode) || empty($city) || empty($country)) {
-            $session->addMessage('error', 'All fields are required!');
+        $phoneNumber = $_POST['registerPhoneNumber'];
+        if (!preg_match("/^\d{9}$/", $phoneNumber)) {
+            $session->addMessage('error', 'Phone number must be 9 digits long.');
+            header('Location: /pages/register.php');
+            exit();
+        }
+
+        $address = $_POST['registerAddress'];
+        if (!preg_match("/^(?=.*[A-Za-z])[A-Za-z0-9. ]+$/", $address)) {
+            $session->addMessage('error', 'Address must start with a letter and can only contain letters, numbers, spaces, and points.');
+            header('Location: /pages/register.php');
+            exit();
+        }
+
+        $postalCode = $_POST['registerPostalCode'];
+        if (!preg_match("/^\d{4}-\d{3}$/", $postalCode)) {
+            $session->addMessage('error', 'Postal Code must be in the format 1234-123.');
+            header('Location: /pages/register.php');
+            exit();
+        }
+
+        $city = $_POST['registerCity'];
+        if (!preg_match("/^(?=.*[a-zA-Z])[a-zA-Z\s]+$/", $city)) {
+            $session->addMessage('error', 'City must start with a letter and can only contain letters and spaces and cannot be only spaces.');
+            header('Location: /pages/register.php');
+            exit();
+        }
+
+        $country = $_POST['registerCountry'];
+        if (!preg_match("/^(?=.*[a-zA-Z])[a-zA-Z\s]+$/", $country)) {
+            $session->addMessage('error', 'Country must start with a letter and can only contain letters and spaces and cannot be only spaces.');
             header('Location: /pages/register.php');
             exit();
         }
