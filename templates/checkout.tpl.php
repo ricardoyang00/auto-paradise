@@ -1,4 +1,7 @@
-<?php declare(strict_types = 1); ?>
+<?php 
+declare(strict_types = 1); 
+require_once(__DIR__ . '/../database/notification.class.php');
+?>
 
 <?php function calculateDeliveryDate($startDay, $endDay) {
     $date1 = new DateTime();
@@ -168,6 +171,7 @@
             } else {
                 $product->removeFromWishlist($db, $session->getUsername());
                 $product->setProductState($db, (int)$productId, 'Sold');
+                Notification::addNotification($db, $product->sellerId, 'Sold');
             }
         } else {
             $session->addMessage('error', 'Payment Failed! Please try again.');
