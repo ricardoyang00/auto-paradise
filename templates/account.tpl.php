@@ -194,26 +194,7 @@
         <div class="<?= htmlspecialchars($type, ENT_QUOTES, 'UTF-8') ?> ?>-content">
             <?php if (empty($transactions)): ?>
                 <article>
-<<<<<<< HEAD
-                    <img src="../database/images/<?= $thumbnail ?>">
-                    <div id="product-information">
-                        <a href="../pages/item.php?id=<?=$product->id;?>"><h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1></a>
-                        <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
-                        <p><?= htmlspecialchars($transaction->orderDate, ENT_QUOTES, 'UTF-8') ?></p>
-                    </div>
-                    <div id="product-price-receipt">
-                        <p>€ <?= $transaction->totalPrice ?></p>
-                        <div id="actions">
-                        <button class="receipt" data-id="<?= $transaction->orderId ?>">
-                                <a href="receipt.php?order_id=<?= $transaction->orderId ?>">
-                                    Receipt <i class="fa-solid fa-file-invoice"></i>
-                                </a>    
-                            </button>
-                        </div>
-                    </div>
-=======
                     <p id="emptyContent">You have no <?= $type ?></p>
->>>>>>> empty_content
                 </article>
             <?php else: 
                 foreach ($transactions as $transaction):
@@ -222,7 +203,7 @@
                     <article>
                         <img src="../database/images/<?= $thumbnail ?>">
                         <div id="product-information">
-                            <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
+                            <a href="../pages/item.php?id=<?=$product->id;?>"><h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1></a>
                             <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
                             <p><?= htmlspecialchars($transaction->orderDate, ENT_QUOTES, 'UTF-8') ?></p>
                         </div>
@@ -256,12 +237,12 @@
                 foreach ($listings as $product):
                     $thumbnail = htmlspecialchars($product->getProductThumbnail($db), ENT_QUOTES, 'UTF-8'); ?>
                     <article>
-                        <?php
-                            if (Product::isBanned($db, $product->id)) {
-                                $bannedReason = Product::getBannedReason($db, $product->id);
-                                echo "<p class='banned'>Banned: " . htmlspecialchars($bannedReason, ENT_QUOTES, 'UTF-8') . "</p>";
-                            }
-                        ?>
+                    <?php
+                        if (Product::isBanned($db, $product->id)) {
+                            $bannedReason = Product::getBannedReason($db, $product->id);
+                            echo "<p class='banned'>Banned: " . htmlspecialchars($bannedReason, ENT_QUOTES, 'UTF-8') . "</p>";
+                        }
+                    ?>
                         <img src="../database/images/<?= $thumbnail ?>">
                         <div id="product-information">
                             <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
@@ -306,7 +287,7 @@
             <article>
                 <img src="../database/images/<?= $product->getProductThumbnail($db) ?>">
                 <div id="product-information">
-                    <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
+                    <a href="../pages/item.php?id=<?=$product->id;?>"><h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1></a>
                     <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
                 </div>
                 <div id="product-price-buy">
