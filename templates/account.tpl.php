@@ -167,7 +167,7 @@
         <input type="text" id="registerPhoneNumber" name="registerPhoneNumber" pattern="\d{9}" title="Phone number must be 9 digits long." maxlength="9" required>
 
         <label for="registerAddress">Address</label>
-        <input type="text" id="registerAddress" name="registerAddress" pattern="[A-Za-z0-9 ]+" title="Address can only contain letters, numbers, and spaces." maxlength="60" required>
+        <input type="text" id="registerAddress" name="registerAddress" pattern="[A-Za-z0-9. ]+" title="Address can only contain letters, numbers, spaces and points." maxlength="60" required>
 
         <label for="registerPostalCode">Postal Code</label>
         <input type="text" id="registerPostalCode" name="registerPostalCode" pattern="\d{4}-\d{3}" title="Postal Code must be in the format 1234-123." required>
