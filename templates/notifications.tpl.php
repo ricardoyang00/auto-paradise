@@ -14,27 +14,23 @@ function drawNotifications(PDO $db, $notifications) {
                 </div>
                 <div id="notification-actions">
                     <?php 
-                        switch ($notification->type) {
-                            case 'Sold' || 'Ban' || 'Unban':
-                                if ($notification->isRead) { ?>
-                                    <button class="unread-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-brands fa-readme"></i> Unread</button>
-                                <?php } else { ?>
-                                    <button class="read-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-brands fa-readme"></i> Read</button>
-                                <?php }
-                                break;
-                            case 'Question':
-                                if (!$notification->isRead) { ?>
-                                    <button class="reply-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-solid fa-reply"></i> Reply</button>
-                                <?php } else { ?>
-                                    <button class="replied-notification"><i class="fa-regular fa-comment-dots"></i> Replied</button>
-                                <?php }
-                                break;
-                            case 'Reply': ?>
-                                <button class="answer-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-regular fa-circle-question"></i> Details</button>
-                                <?php break;
-                            default:
-                                break;
-                        } ?>
+                        if ($notification->type==='Sold' || $notification->type==='Ban' || $notification->type==='Unban') {
+                            if ($notification->isRead) { ?>
+                                <button class="unread-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-brands fa-readme"></i> Unread</button>
+                            <?php } else { ?>
+                                <button class="read-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-brands fa-readme"></i> Read</button>
+                            <?php }
+                        } 
+                        else if ($notification->type==='Question') {
+                            if (!$notification->isRead) { ?>
+                                <button class="reply-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-solid fa-reply"></i> Reply</button>
+                            <?php } else { ?>
+                                <button class="replied-notification"><i class="fa-regular fa-comment-dots"></i> Replied</button>
+                            <?php }
+                        }
+                        else if ($notification->type==='Reply') { ?>
+                            <button class="answer-notification" data-notification-id="<?= $notification->id ?>"><i class="fa-regular fa-circle-question"></i> Details</button>
+                        <?php } ?>
                 </div>
             </article>
         <?php } ?>
