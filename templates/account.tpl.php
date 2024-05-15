@@ -192,28 +192,34 @@
     <h2><?= $title ?></h2>
     <div id="<?= $divId ?>" class="account-content">
         <div class="<?= htmlspecialchars($type, ENT_QUOTES, 'UTF-8') ?> ?>-content">
-            <?php foreach ($transactions as $transaction):
-                $product = Product::getProductById($db, $transaction->productId);
-                $thumbnail = htmlspecialchars($product->getProductThumbnail($db), ENT_QUOTES, 'UTF-8'); ?>
+            <?php if (empty($transactions)): ?>
                 <article>
-                    <img src="../database/images/<?= $thumbnail ?>">
-                    <div id="product-information">
-                        <a href="../pages/item.php?id=<?=$product->id;?>"><h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1></a>
-                        <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
-                        <p><?= htmlspecialchars($transaction->orderDate, ENT_QUOTES, 'UTF-8') ?></p>
-                    </div>
-                    <div id="product-price-receipt">
-                        <p>€ <?= $transaction->totalPrice ?></p>
-                        <div id="actions">
-                        <button class="receipt" data-id="<?= $transaction->orderId ?>">
-                                <a href="receipt.php?order_id=<?= $transaction->orderId ?>">
-                                    Receipt <i class="fa-solid fa-file-invoice"></i>
-                                </a>    
-                            </button>
-                        </div>
-                    </div>
+                    <p id="emptyContent">You have no <?= $type ?></p>
                 </article>
-            <?php endforeach; ?>
+            <?php else: 
+                foreach ($transactions as $transaction):
+                    $product = Product::getProductById($db, $transaction->productId);
+                    $thumbnail = htmlspecialchars($product->getProductThumbnail($db), ENT_QUOTES, 'UTF-8'); ?>
+                    <article>
+                        <img src="../database/images/<?= $thumbnail ?>">
+                        <div id="product-information">
+                            <a href="../pages/item.php?id=<?=$product->id;?>"><h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1></a>
+                            <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
+                            <p><?= htmlspecialchars($transaction->orderDate, ENT_QUOTES, 'UTF-8') ?></p>
+                        </div>
+                        <div id="product-price-receipt">
+                            <p>€ <?= $transaction->totalPrice ?></p>
+                            <div id="actions">
+                            <button class="receipt" data-id="<?= $transaction->orderId ?>">
+                                    <a href="receipt.php?order_id=<?= $transaction->orderId ?>">
+                                        Receipt <i class="fa-solid fa-file-invoice"></i>
+                                    </a>    
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 <?php } ?>
@@ -223,41 +229,47 @@
     <h2>My Listings</h2>
     <div id="my-listings" class="account-content">
         <div class="listings-content">
-            <?php foreach ($listings as $product):
-                $thumbnail = htmlspecialchars($product->getProductThumbnail($db), ENT_QUOTES, 'UTF-8'); ?>
+            <?php if (empty($listings)): ?>
                 <article>
+                    <p id="emptyContent">You have no listings</p>
+                </article>
+            <?php else: 
+                foreach ($listings as $product):
+                    $thumbnail = htmlspecialchars($product->getProductThumbnail($db), ENT_QUOTES, 'UTF-8'); ?>
+                    <article>
                     <?php
                         if (Product::isBanned($db, $product->id)) {
-                            $bannedReason = Product::getBannedReason($db, $product->id); ?>
+                            $bannedReason = Product::getBannedReason($db, $product->id);?>
                             <p class='banned'>Banned: <?=htmlspecialchars($bannedReason, ENT_QUOTES, 'UTF-8');?></p>
                     <?php } ?>
-                    <img src="../database/images/<?= $thumbnail ?>">
-                    <div id="product-information">
-                        <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
-                        <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
-                    </div>
-                    <div id="product-price-remove">
-                        <p>€ <?= $product->price ?></p>
-                        <div id="actions">
-                            <button class="remove" onclick="deleteListedProduct(<?= $product->id ?>)">
-                                Remove <i class="fa-solid fa-trash"></i>
-                            </button>
-                            <button class="edit">
-                                <a href="../pages/edit-listing-product.php?product_id=<?= $product->id ?>">
-                                    Edit <i class="fa-solid fa-pen"></i>
-                                </a>
-                            </button>
+                        <img src="../database/images/<?= $thumbnail ?>">
+                        <div id="product-information">
+                            <a href="../pages/item.php?id=<?=$product->id;?>"><h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1></a>
+                            <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
                         </div>
+                        <div id="product-price-remove">
+                            <p>€ <?= $product->price ?></p>
+                            <div id="actions">
+                                <button class="remove" onclick="deleteListedProduct(<?= $product->id ?>)">
+                                    Remove <i class="fa-solid fa-trash"></i>
+                                </button>
+                                <button class="edit">
+                                    <a href="../pages/edit-listing-product.php?product_id=<?= $product->id ?>">
+                                        Edit <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+                <div id="confirmationModal" class="modal">
+                    <div class="modal-content">
+                        <p>Are you sure you want to remove this product?</p>
+                        <button id="confirmDelete">Yes, remove it</button>
+                        <button id="cancelDelete">Cancel</button>
                     </div>
-                </article>
-            <?php endforeach; ?>
-            <div id="confirmationModal" class="modal">
-                <div class="modal-content">
-                    <p>Are you sure you want to remove this product?</p>
-                    <button id="confirmDelete">Yes, remove it</button>
-                    <button id="cancelDelete">Cancel</button>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 <?php } ?>
@@ -265,27 +277,33 @@
 <?php function drawWishList($db, $wishList) { ?>
     <section id="wish-list">
     <h2>wishlist</h2>
-        <?php foreach ($wishList as $product) { ?>
-        <article>
-            <img src="../database/images/<?= $product->getProductThumbnail($db) ?>">
-            <div id="product-information">
-                <a href="../pages/item.php?id=<?=$product->id;?>"><h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1></a>
-                <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
-            </div>
-            <div id="product-price-buy">
-                <p>€ <?= $product->price ?></p>
-                <div id="actions">
-                    <button class="remove-wishlist" onclick="removeFromWishlist(<?= $product->id ?>)">
-                        <i class="fa-solid fa-x"></i> Remove
-                    </button>
-                    <button class="buy" data-id="<?= $product->id ?>">
-                        <a href="buy.php?product_id=<?= $product->id ?>">
-                            Buy <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                    </button>
+        <?php if (empty($wishList)): ?>
+            <article>
+                <p id="emptyContent">Your wishlist is empty</p>
+            </article>
+        <?php else: ?>
+            <?php foreach ($wishList as $product) { ?>
+            <article>
+                <img src="../database/images/<?= $product->getProductThumbnail($db) ?>">
+                <div id="product-information">
+                    <a href="../pages/item.php?id=<?=$product->id;?>"><h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1></a>
+                    <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
                 </div>
-            </div>
-        </article>
-        <?php } ?>
+                <div id="product-price-buy">
+                    <p>€ <?= $product->price ?></p>
+                    <div id="actions">
+                        <button class="remove-wishlist" onclick="removeFromWishlist(<?= $product->id ?>)">
+                            <i class="fa-solid fa-x"></i> Remove
+                        </button>
+                        <button class="buy" data-id="<?= $product->id ?>">
+                            <a href="buy.php?product_id=<?= $product->id ?>">
+                                Buy <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </article>
+            <?php } ?>
+        <?php endif; ?>
     </section>
 <?php } ?>
