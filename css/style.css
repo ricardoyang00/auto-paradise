@@ -2053,6 +2053,8 @@ footer {
     padding: 15px;
     margin-bottom: 20px;
     background-color: var(--article_background);
+    max-width: 500px;
+    word-wrap: break-word;
 
     a {
         text-decoration: none;

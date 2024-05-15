@@ -229,7 +229,7 @@
                     <?php
                         if (Product::isBanned($db, $product->id)) {
                             $bannedReason = Product::getBannedReason($db, $product->id);
-                            echo "<p class='banned'>Banned: $bannedReason</p>";
+                            echo "<p class='banned'>Banned: " . htmlspecialchars($bannedReason, ENT_QUOTES, 'UTF-8') . "</p>";
                         }
                     ?>
                     <img src="../database/images/<?= $thumbnail ?>">

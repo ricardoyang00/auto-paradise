@@ -36,6 +36,10 @@
         $session->addMessage('error', 'This product has already been sold.');
         header('Location: /pages/index.php');
         exit();
+    } else if (Product::isBanned($db, (int)$productId)) {
+        $session->addMessage('error', 'This product has been banned.');
+        header('Location: /pages/index.php');
+        exit();
     } else {
         drawCheckoutPage($db, $user, $address, $product);
     }

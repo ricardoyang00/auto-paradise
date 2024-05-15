@@ -117,7 +117,7 @@
         <div class="popup-content">
             <span class="close" onclick="closeBanPopup()">&times;</span>
             <h2>Ban Product</h2>
-            <textarea id="banReason" rows="4" cols="50" placeholder="Enter ban reason"></textarea>
+            <textarea id="banReason" rows="4" cols="50" placeholder="Enter ban reason" maxlength="200"></textarea>
             <button onclick="banProduct(<?= $product->id ?>)" id="ban-button">Ban</button>
         </div>
     </div>
