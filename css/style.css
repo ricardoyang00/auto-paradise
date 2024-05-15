@@ -1172,6 +1172,10 @@ footer {
                     padding: 5px 10px;
                     border-radius: 5px;
                     font-weight: bold;
+                    max-width: 95%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
         }
@@ -2053,7 +2057,7 @@ footer {
     padding: 15px;
     margin-bottom: 20px;
     background-color: var(--article_background);
-    max-width: 500px;
+    max-width: 40rem;
     word-wrap: break-word;
 
     a {

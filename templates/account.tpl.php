@@ -198,7 +198,7 @@
                 <article>
                     <img src="../database/images/<?= $thumbnail ?>">
                     <div id="product-information">
-                        <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
+                        <a href="../pages/item.php?id=<?=$product->id;?>"><h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1></a>
                         <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
                         <p><?= htmlspecialchars($transaction->orderDate, ENT_QUOTES, 'UTF-8') ?></p>
                     </div>
@@ -270,7 +270,7 @@
         <article>
             <img src="../database/images/<?= $product->getProductThumbnail($db) ?>">
             <div id="product-information">
-                <h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1>
+                <a href="../pages/item.php?id=<?=$product->id;?>"><h1><?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?></h1></a>
                 <p><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></p>
             </div>
             <div id="product-price-buy">
