@@ -368,6 +368,11 @@ footer {
     grid-gap: 20px;
     margin-bottom: 50px;
 
+    #emptyContent {
+        text-align: center;
+        grid-column: 1 / -1;
+    }
+
     h1 {
         color: var(--text);
     }
@@ -517,6 +522,12 @@ footer {
     margin-bottom: 15px;
     padding: 15px;
     display: flex;
+
+    #emptyContent {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
   }
   
   #notification-details {
@@ -942,11 +953,11 @@ footer {
         padding: 20px;
         margin: 0 40px;
         padding: 0;
-    
+        color: var(--text);
+        
         h2 {
             position: relative;
             text-transform: uppercase;
-            color: var(--text);
             font-size: 30px;
             padding-left: 20px;
             margin-bottom: 50px;
@@ -1080,6 +1091,12 @@ footer {
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 align-items: center;
                 margin-bottom: 20px;
+                max-width: 600px;
+
+                #emptyContent {
+                    text-align: center;
+                    grid-column: 1 / -1;
+                }
         
                 img {
                     width: auto;
