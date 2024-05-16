@@ -198,6 +198,14 @@ class User {
     }
 
     public static function promoteUser(PDO $db, string $username): bool {
+        $checkStmt = $db->prepare('SELECT * FROM ADMIN WHERE username = ?');
+        $checkStmt->execute([$username]);
+        $user = $checkStmt->fetch();
+    
+        if ($user) {
+            return false;
+        }
+    
         $stmt = $db->prepare('INSERT INTO ADMIN (username) VALUES (?)');
         return $stmt->execute([$username]);
     }

@@ -68,7 +68,7 @@ Access them via web browser at http://localhost:9000
 
 **Admins**  should be able to:
 
-- [ ] Elevate a user to admin status.
+- [x] Elevate a user to admin status.
 - [x] Introduce new item categories, sizes, conditions, and other pertinent entities.
 - [x] Oversee and ensure the smooth operation of the entire system.
 
