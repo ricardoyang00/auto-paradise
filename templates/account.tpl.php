@@ -74,32 +74,32 @@
 
                 <h3>Name</h3>
                 <div class="data-container">
-                    <input type="text" id="name" name="name" value="<?=htmlspecialchars($user->name, ENT_QUOTES, 'UTF-8')?>">
+                    <input type="text" id="name" name="name" pattern="[A-Za-z][A-Za-z ]*" title="Name must start with a letter and can only contain letters and spaces." maxlength="50" value="<?=htmlspecialchars($user->name, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>Phone Number</h3>
                 <div class="data-container">
-                    <input type="text" id="phoneNumber" name="phoneNumber" value="<?=htmlspecialchars($user->phoneNumber, ENT_QUOTES, 'UTF-8')?>">
+                    <input type="text" id="phoneNumber" name="phoneNumber" pattern="\d{9}" title="Phone number must be 9 digits long." maxlength="9" value="<?=htmlspecialchars($user->phoneNumber, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>Address</h3>
                 <div class="data-container">
-                    <input type="text" id="address" name="address" value="<?=htmlspecialchars($address->address, ENT_QUOTES, 'UTF-8')?>">
+                    <input type="text" id="address" name="address" pattern="[A-Za-z][A-Za-z0-9. ]*" title="Address must start with a letter and can only contain letters, numbers, spaces, and points." maxlength="60" value="<?=htmlspecialchars($address->address, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>Postal Code</h3>
                 <div class="data-container">
-                    <input type="text" id="postalCode" name="postalCode" value="<?=htmlspecialchars($address->postalCode, ENT_QUOTES, 'UTF-8')?>">
+                    <input type="text" id="postalCode" name="postalCode" pattern="\d{4}-\d{3}" title="Postal Code must be in the format 1234-123." value="<?=htmlspecialchars($address->postalCode, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>City</h3>
                 <div class="data-container">
-                    <input type="text" id="city" name="city" value="<?=htmlspecialchars($address->city, ENT_QUOTES, 'UTF-8')?>">
+                    <input type="text" id="city" name="city" pattern="[A-Za-z][A-Za-z ]*" title="City must start with a letter and can only contain letters and spaces." maxlength="30" value="<?=htmlspecialchars($address->city, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>Country</h3>
                 <div class="data-container">
-                    <input type="text" id="country" name="country" value="<?=htmlspecialchars($address->country, ENT_QUOTES, 'UTF-8')?>">
+                    <input type="text" id="country" name="country" pattern="[A-Za-z][A-Za-z ]*" title="Country must start with a letter and can only contain letters and spaces." maxlength="30" value="<?=htmlspecialchars($address->country, ENT_QUOTES, 'UTF-8')?>">
                 </div>
             </div>
             <div class="icon-and-button">
@@ -117,15 +117,15 @@
             <div class="profile-content">
                 <h3>Current Password</h3>
                 <div class="data-container">
-                    <input type="password" id="oldPassword" name="oldPassword" required>
+                    <input type="password" id="oldPassword" name="oldPassword" minlength="8" title="Password must be at least 8 characters long." maxlength="30" required>
                 </div>
                 <h3>New Password</h3>
                 <div class="data-container">
-                    <input type="password" id="newPassword" name="newPassword" required>
+                    <input type="password" id="newPassword" name="newPassword" minlength="8" title="Password must be at least 8 characters long." maxlength="30" required>
                 </div>
                 <h3>Confirm New Password</h3>
                     <div class="data-container">
-                <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+                <input type="password" id="confirmNewPassword" name="confirmNewPassword" minlength="8" title="Password must be at least 8 characters long." maxlength="30" required>
             </div>
             </div>
             <div class="icon-and-button">
