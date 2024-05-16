@@ -276,22 +276,21 @@ INSERT INTO PRODUCT (product_id, category, title, description, price, seller_id,
     (40, 3, 'Sauber C42', 'Description for Sauber C42', 210.00, 'user1', 42, 6),
     (41, 3, 'Lotus E24', 'Description for Lotus E24', 200.00, 'user1', 29, 6),
     (42, 3, 'Caterham CT05', 'Description for Caterham CT05', 190.00, 'user4', 48, 6),
-    (43, 3, 'Marussia MR03', 'Description for Marussia MR03', 180.00, 'user1', 48, 6);
-
-INSERT INTO PRODUCT_IMAGES (image_id, product_id, image_url) VALUES
-    (1, 1, '1.jpg'),
-    (2, 2, '2.jpg'),
-    (3, 3, '3.jpg'),
-    (4, 4, '4.jpg'),
-    (5, 5, '5.jpg'),
-    (6, 6, '6.jpg'),
-    (7, 7, '7.jpg'),
-    (8, 8, '8.jpg'),
-    (9, 9, '9.jpg'),
-    (10, 10, '10.jpg'),
-    (11, 4, '4_1.jpg');
+    (43, 3, 'Marussia MR03', 'Description for Marussia MR03', 180.00, 'user1', 48, 6),
+    (44, 3, 'Aston Martin AMR22', 'Description for Aston Martin AMR22. This product is brand new! NO SCAM', 260.00, 'user1', 4, 6);
 
 INSERT INTO PRODUCT_IMAGES (product_id, image_url) VALUES
+    (1, '1.jpg'),
+    (2, '2.jpg'),
+    (3, '3.jpg'),
+    (4, '4.jpg'),
+    (5, '5.jpg'),
+    (6, '6.jpg'),
+    (7, '7.jpg'),
+    (8, '8.jpg'),
+    (9, '9.jpg'),
+    (10, '10.jpg'),
+    (4, '4_1.jpg'),
     (11, '11.jpg'),
     (11, '11_1.jpg'),
     (12, '12.jpg'),
@@ -327,7 +326,8 @@ INSERT INTO PRODUCT_IMAGES (product_id, image_url) VALUES
     (40, '40.jpg'),
     (41, '41.jpg'),
     (42, '42.jpg'),
-    (43, '43.jpg');
+    (43, '43.jpg'),
+    (44, '44.jpg');
 
 INSERT INTO ORDERS (order_id, client_username, product_id, total_price, seller_username, order_date, payment_method, phone_number, card_number) VALUES
     (1, 'user1', 2, 50.99, 'user2', '2024-02-08 19:05:36', 'Credit Card', null, '1234567890123456'),
@@ -378,7 +378,8 @@ INSERT INTO PRODUCT_STATE (product_id, status) VALUES
     (40, 'Available'),
     (41, 'Sold'),
     (42, 'Available'),
-    (43, 'Available');
+    (43, 'Available'),
+    (44, 'Available');
 
 INSERT INTO QA (user_id, product_id, question, answer) VALUES
     ('user1', 5, 'How many colors does this product come in?', 'This product comes in three colors: red, blue, and green.'),
@@ -396,4 +397,8 @@ INSERT INTO NOTIFICATION (notification_id, username, type, date, extra_info, is_
     (6, 'user1', 'Question', '2024-03-18 10:26:54', 2, TRUE),
     (7, 'user1', 'Question', '2024-04-01 03:07:29', 3, TRUE),
     (8, 'user1', 'Question', '2024-04-15 14:45:12', 4, FALSE),
-    (9, 'user1', 'Question', '2024-04-15 14:45:12', 5, FALSE);
+    (9, 'user1', 'Question', '2024-04-15 14:45:12', 5, FALSE),
+    (10, 'user1', 'Ban', '2024-04-15 14:45:12', 44, FALSE);
+
+INSERT INTO BAN (product_id, reason, date) VALUES
+    (44, 'Scam, false information', '2024-04-15 14:45:12');

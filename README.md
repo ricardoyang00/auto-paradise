@@ -97,6 +97,7 @@ We also implemented the following additional requirements (you can add more):
 - [x] **Shipping Costs**
 - [ ] **Real-Time Messaging System**
 - [x] **Dark Mode**
+- [x] **Admins can ban products**
 
 ## Account Credentials
 Feel free to use the following test account credentials to explore our platform
@@ -115,5 +116,5 @@ Feel free to use the following test account credentials to explore our platform
 | user10   | password10|
 | admin    | admin     |
 
-## Contributors
+<br>
 This project was developed for LTW at @FEUP
