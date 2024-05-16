@@ -65,7 +65,12 @@ require_once(__DIR__ . '/../database/product.class.php');
                     <button onclick="unbanProduct(<?= $product->id ?>)" class="save-btn">Unban</button>
                 </div>
             <?php } ?>
-            
+        </div>
+
+        <div class="promotion-section">
+            <h3><i class="fa-solid fa-crown"></i> Promote user</h3>
+            <input type="text" id="user-id-promotion" name="user-id-promotion" placeholder="Enter user ID">
+            <button onclick="promoteUser()" id="promote-user" class="save-btn">Promote as Admin</button>
         </div>
     </div>
 <?php } ?>

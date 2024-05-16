@@ -2082,12 +2082,16 @@ footer {
     }
 }
 
-.banned-products h3 {
+.banned-products h3, .promotion-section h3 {
     font-size: 1.2em;
     color: var(--text);
     margin-bottom: 10px;
     margin-top: 30px;
     text-transform: uppercase;
+
+    i {
+        color: var(--orange_primary);
+    }
 }
 
 .banned-product {
@@ -2130,6 +2134,43 @@ footer {
         transition: background-color 0.3s;
         margin-top: 2em;
     }
+}
+
+.promotion-section {
+    margin-bottom: 20px;
+
+    input[type="text"] {
+        width: calc(100% - 90px);
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: var(--input_background);
+        color: var(--text);
+    }
+
+    button {
+        padding: 8px 15px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+        background-size: 500% 500%;
+        animation: rainbow 5s linear infinite;
+    }
+    
+    button:hover {
+        filter: brightness(0.9);
+    }
+    
+    @keyframes rainbow {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }    
 }
 
   

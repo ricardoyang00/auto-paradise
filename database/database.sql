@@ -125,7 +125,7 @@ CREATE TABLE BAN (
 CREATE TABLE NOTIFICATION (
     notification_id INTEGER PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
-    type TEXT NOT NULL CHECK (type IN ('Sold', 'Question', 'Reply', 'Ban', 'Unban')),
+    type TEXT NOT NULL CHECK (type IN ('Sold', 'Question', 'Reply', 'Ban', 'Unban', 'Promotion')),
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     extra_info INTEGER,
     is_read BOOLEAN DEFAULT FALSE,

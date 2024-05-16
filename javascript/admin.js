@@ -276,3 +276,25 @@ function unbanProduct(productId) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("productId=" + productId);
 }
+
+function promoteUser() {
+    var userId = document.getElementById("user-id-promotion").value;
+    console.log("Promoting user " + userId);
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            console.log(xhr.responseText);
+            var response = JSON.parse(xhr.responseText);
+            if (xhr.status === 200 && response.status === "SUCCESS") {
+                alert("User promoted successfully.");
+            } else {
+                alert("Failed to promote user.");
+            }
+            location.reload();
+        }
+    };
+    xhr.open("POST", "../actions/promote_user.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("userId=" + userId);
+}

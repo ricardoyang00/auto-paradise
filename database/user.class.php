@@ -196,6 +196,11 @@ class User {
 
         return $stmt->fetch() !== false;
     }
+
+    public static function promoteUser(PDO $db, string $username): bool {
+        $stmt = $db->prepare('INSERT INTO ADMIN (username) VALUES (?)');
+        return $stmt->execute([$username]);
+    }
 } 
 
 class Order {

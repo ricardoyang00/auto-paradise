@@ -61,6 +61,10 @@ class Notification {
                     $productID = $notification['extra_info'];
                     $message = 'Your product has been unbanned. You can now sell it again. Check in your profile for more details.';
                     break;
+                case 'Promotion':
+                    $title = 'Congratulations! You have been promoted!';
+                    $message = 'You have been promoted to a admin. Let\'s contribute to the community!';
+                    break;
                 default:
                     return null;
             }
