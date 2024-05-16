@@ -34,5 +34,19 @@
         public function getMessages() {
             return $this->messages;
         }
+
+        public function generateCsrfToken() {
+            if (!isset($_SESSION['csrf_token'])) {
+                $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+            }
+        }
+
+        public function getCsrfToken(): string {
+            return $_SESSION['csrf_token'];
+        }
+
+        public function validateCsrfToken(string $token): bool {
+            return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
+        }
     }
 ?>

@@ -1,20 +1,22 @@
 <?php
     declare(strict_types = 1);
 
-    require_once(__DIR__ . '/../database/connection.db.php');
-    require_once(__DIR__ . '/../database/user.class.php');
-    require_once(__DIR__ . '/../database/product.class.php');
     require_once(__DIR__ . '/../utils/session.php');
-
-    $dbh = getDatabaseConnection();
-    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     $session = new Session();
+    $session->generateCsrfToken();
+
     if (!$session->isLoggedIn()) {
         header("Location: ../pages/login.php");
         exit();
     }
+    
+    require_once(__DIR__ . '/../database/connection.db.php');
+    require_once(__DIR__ . '/../database/product.class.php');
+    require_once(__DIR__ . '/../database/user.class.php');
+
+    $dbh = getDatabaseConnection();
+    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sellerId = $session->getUsername();

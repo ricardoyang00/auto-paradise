@@ -3,6 +3,8 @@
 
     require_once(__DIR__ . '/../utils/session.php');
     $session = new Session();
+    $session->generateCsrfToken();
+    
     $session->logout();
 
     $session->addMessage('success', 'You have logged out!');
