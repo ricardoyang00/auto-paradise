@@ -11,6 +11,12 @@
     $db = getDatabaseConnection();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $session->getCsrfToken()) {
+            $session->addMessage('error', 'CSRF token mismatch.');
+            header('Location: ../pages/index.php');
+            exit();
+        }
+
         $username = $_POST['loginUsername'] ?? '';
         $password = $_POST['loginPassword'] ?? '';
 

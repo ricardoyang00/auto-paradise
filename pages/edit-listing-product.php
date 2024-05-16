@@ -36,6 +36,6 @@
     
     $scripts = [];
     drawHeader(false, $scripts, false);
-    drawEditProductForm($db, $categories, $brands, $scales, $product, $productId, $productCategory, $productBrand, $productScale);
+    drawEditProductForm($session, $db, $categories, $brands, $scales, $product, $productId, $productCategory, $productBrand, $productScale);
     drawFooter();
 ?>

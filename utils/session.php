@@ -44,9 +44,5 @@
         public function getCsrfToken(): string {
             return $_SESSION['csrf_token'];
         }
-
-        public function validateCsrfToken(string $token): bool {
-            return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
-        }
     }
 ?>

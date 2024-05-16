@@ -9,13 +9,19 @@
         header('Location: ../pages/login.php');
         exit();
     }
-    
+
     require_once(__DIR__ . '/../database/connection.db.php');
     require_once(__DIR__ . '/../database/user.class.php');
 
     $db = getDatabaseConnection();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $session->getCsrfToken()) {
+            $session->addMessage('error', 'CSRF token mismatch.');
+            header('Location: ../pages/account.php');
+            exit();
+        }
+        
         $username = $_POST['registerUsername'];
         if (!preg_match("/^(?=.*[A-Za-z0-9])[A-Za-z0-9_]{3,20}$/", $username)) {
             $session->addMessage('error', 'Username should be 3-20 characters long, it must start with a letter and can only contain letters, numbers, and underscores.');

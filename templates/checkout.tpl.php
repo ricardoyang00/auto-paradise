@@ -11,7 +11,7 @@ require_once(__DIR__ . '/../database/notification.class.php');
     return '<p>Estimated delivery ' . $date1->format('l, j F') . ' - ' . $date2->format('l, j F') . '</p>';
 } ?>
 
-<?php function drawCheckoutPage($db, $user, $address, $product) { ?>
+<?php function drawCheckoutPage($session, $db, $user, $address, $product) { ?>
     <h1 id="checkout-heading">Checkout</h1>
     <div class="checkout-container">
         <div class="checkout-steps">
@@ -114,6 +114,7 @@ require_once(__DIR__ . '/../database/notification.class.php');
                 <input type="hidden" name="totalToPay" id="totalToPayInput">
                 <input type="hidden" name="selectedPaymentMethod" id="selectedPaymentMethod">
                 <input type="hidden" name="paymentDetails" id="paymentDetails">
+                <input type="hidden" name="csrf_token" value="<?php echo $session->getCsrfToken(); ?>">
                 <button type="submit">Checkout</button>
             </form>
         </div>

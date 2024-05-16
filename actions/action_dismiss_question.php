@@ -8,6 +8,12 @@
     $db = getDatabaseConnection();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $session->getCsrfToken()) {
+            $session->addMessage('error', 'CSRF token mismatch.');
+            header('Location: ../pages/index.php');
+            exit();
+        }
+
         $questionId = $_POST['question_id'];
         $notificationId = $_POST['notification_id'];
 

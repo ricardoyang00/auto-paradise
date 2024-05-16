@@ -19,6 +19,12 @@
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $session->getCsrfToken()) {
+            $session->addMessage('error', 'CSRF token mismatch.');
+            header('Location: ../pages/index.php');
+            exit();
+        }
+
         $sellerId = $session->getUsername();
         $productId = Product::addProduct($dbh, $_POST['category'], $_POST['title'], $_POST['description'], $_POST['price'], $sellerId, $_POST['brand'], $_POST['scale']);
         

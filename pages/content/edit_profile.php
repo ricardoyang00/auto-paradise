@@ -19,5 +19,5 @@
     $user = User::getUserByUsername($db, $session->getUsername());
     $address = Address::getAddressById($db, $user->addressId);
 
-    drawProfileEdit($user, $address);
+    drawProfileEdit($session, $user, $address);
 ?>

@@ -42,7 +42,7 @@
         header('Location: /pages/index.php');
         exit();
     } else {
-        drawCheckoutPage($db, $user, $address, $product);
+        drawCheckoutPage($session, $db, $user, $address, $product);
     }
 
     drawFooter();

@@ -25,6 +25,6 @@
     
     $scripts = [];
     drawHeader(true, $scripts, false);
-    drawSellForm($categories, $brands, $scales);
+    drawSellForm($session, $categories, $brands, $scales);
     drawFooter();
 ?>

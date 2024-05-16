@@ -62,7 +62,7 @@
     </div>
 <?php } ?>
 
-<?php function drawProfileEdit($user, $address) { ?>
+<?php function drawProfileEdit($session, $user, $address) { ?>
     <h2>Profile &nbsp;&nbsp;(editing)</h2>
     <div id="profile" class="account-content">
         <form action="../../actions/action_update_profile.php" method="post">
@@ -103,13 +103,14 @@
                 </div>
             </div>
             <div class="icon-and-button">
+                <input type="hidden" name="csrf_token" value="<?php echo $session->getCsrfToken(); ?>">
                 <button type="submit" class="profile-button" id="save">Save</button>
             </div>
         </form>
     </div>
 <?php } ?>
 
-<?php function drawChangePasswordForm() { ?>
+<?php function drawChangePasswordForm($session) { ?>
     <h2>Profile &nbsp;&nbsp;(password)</h2>
     <div id="profile" class="account-content">
         <form method="post" action="../actions/action_change_password.php">
@@ -128,13 +129,14 @@
             </div>
             </div>
             <div class="icon-and-button">
+                <input type="hidden" name="csrf_token" value="<?php echo $session->getCsrfToken(); ?>">
                 <button type="submit" class="profile-button" id="change-password">Change Password</button>
             </div>
         </form>
     </div>
 <?php } ?>
 
-<?php function drawLoginForm() { ?>
+<?php function drawLoginForm($session) { ?>
     <div class="loginRegister">
     <form id="login-form" class="user-form" action="../actions/action_login.php" method="post">
         <label for="loginUsername">Username</label>
@@ -143,6 +145,7 @@
         <label for="loginPassword">Password</label>
         <input type="password" id="loginPassword" name="loginPassword" required>
 
+        <input type="hidden" name="csrf_token" value="<?php echo $session->getCsrfToken(); ?>">
         <input type="submit" value="Log in">
         <div class="account-link">
             Don't have an account? <a href="register.php">Sign up</a>
@@ -151,7 +154,7 @@
     </div>
 <?php } ?>
 
-<?php function drawRegisterForm() { ?>
+<?php function drawRegisterForm($session) { ?>
     <div class="loginRegister">
     <form id="register-form" class="user-form" action="../actions/action_register.php" method="post">
         <label for="registerUsername">Username</label>
@@ -177,6 +180,7 @@
 
         <label for="registerCountry">Country</label>
         <input type="text" id="registerCountry" name="registerCountry" pattern="[A-Za-z][A-Za-z ]*" title="Country must start with a letter and can only contain letters and spaces." maxlength="30" required>
+        
         
         <input type="submit" value="Register">
         <div class="account-link">

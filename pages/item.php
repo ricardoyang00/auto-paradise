@@ -23,6 +23,12 @@
         }
     }
 
+    if (Product::isBanned($db, (int)$id)) {
+        $session->addMessage('error', 'This product has been banned.');
+        header('Location: /pages/index.php');
+        exit();
+    }
+
     $scripts = [];
     drawHeader(true, $scripts, false);
     drawProductItem($product, $isAdmin);

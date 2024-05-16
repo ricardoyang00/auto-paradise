@@ -18,6 +18,6 @@
     $scripts = [];
     drawHeader(false, $scripts, false);
     drawMessages($session);
-    drawLoginForm();
+    drawLoginForm($session);
     drawFooter();
 ?>
