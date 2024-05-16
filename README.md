@@ -1,20 +1,24 @@
-Theme: CAR DIECAST SHOP
+# AutoParadise
 
-Reference:
-- https://hobbysector.com/en/13-diecast
-- https://ck-modelcars.de/en/
+AutoParadise is an marketplace dedicated to buying and selling preloved diecast model cars.
 
-Filters:
-- Brand
-- Scale (1/8, 1/12, 1/18, 1/24, 1/32, 1/43, 1/64)
-- Category (Civil cars, DTM, F1, Le Mans, Other competitions, Rally, HOTWHEELS)
+## Install
 
-Extra sells: (to be determinated)
-Helmets, trophies, racing shirts, caps, LEGOS
+### Download
+```
+git clone git@github.com:FEUP-LTW-2024/ltw-project-2024-ltw06g09.git
 
-Useful sites:
-- https://www.carlogos.org/
+# switch to the correct branch
+git checkout final-delivery-v1
+```
 
-### Mockups
-![](images/mockups/mockup_01.jpg)
-![](images/mockups/mockup_02.jpg)
+### Build and run
+```
+# import SQLite database
+sqlite3 database/database.db < database/database.sql
+
+# start PHP built-in web server
+php -S localhost:9000
+```
+
+Access them via web browser at http://localhost:9000
