@@ -594,6 +594,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
+    min-width: 0;
 
     article {
         height: 360px;
@@ -608,6 +609,13 @@ footer {
         h1 {
             font-size: 18px;
             margin-top: 10px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            word-wrap: break-word;
+            min-width: 10rem;
+            max-width: 13rem;
         }
 
         p {
@@ -850,6 +858,13 @@ footer {
         
         .qa-item {
             margin-bottom: 2em;
+
+            p {
+                max-width: 100%;
+                overflow: hidden;
+                word-wrap: break-word;
+                word-break: break-word;
+            }
         }
     }
 }
@@ -2000,6 +2015,13 @@ footer {
         box-sizing: border-box;
         resize: none;
     }
+
+    #question-content {
+        max-width: 100%;
+        overflow: hidden;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
     
     #submit-reply, #read-button {
         display: block;
@@ -2040,6 +2062,13 @@ footer {
     
     #notification-id, #answer-notification-id {
         display: none;
+    }
+
+    #answer-question-content, #answer-content {
+        max-width: 100%;
+        overflow: hidden;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     #answer-question-content::before {

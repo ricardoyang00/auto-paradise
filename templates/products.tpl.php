@@ -97,7 +97,7 @@
             <div class="qna">
                 <h2>Q&A</h2>
                 <div id="question-form">
-                    <textarea id="question-text" placeholder="Ask a question..."></textarea>
+                    <textarea id="question-text" placeholder="Ask a question..." maxlength="100"></textarea>
                     <button type="button" id="submit-question">Submit</button>
                 </div>
                 <?php
@@ -130,11 +130,11 @@
             <input type="hidden" name="product_id" value="<?= htmlspecialchars($productId, ENT_QUOTES, 'UTF-8') ?>">
             <div class="input-container">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" value="<?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?>" required>
+                <input type="text" id="title" name="title" value="<?= htmlspecialchars($product->title, ENT_QUOTES, 'UTF-8') ?>" maxlength="40" required>
             </div>
             <div class="input-container">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" required><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></textarea>
+                <textarea id="description" name="description" rows="4" maxlength="500" required><?= htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8') ?></textarea>
             </div>
             <div class="input-container">
                 <label for="category">Category</label>
@@ -171,7 +171,7 @@
             </div>
             <div class="input-container">
                 <label for="price">Price</label>
-                <input type="number" id="price" name="price" value="<?= $product->price ?>" required>
+                <input type="number" id="price" name="price" value="<?= $product->price ?>" min="0" step="0.01" max="9999999" required>
             </div>
             <button type="submit">Save</button>
         </form>

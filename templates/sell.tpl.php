@@ -11,11 +11,11 @@
             </div>
             <div class="input-container">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" placeholder="e.g. Ferrari SF90" required>
+                <input type="text" id="title" name="title" placeholder="e.g. Ferrari SF90" maxlength="40" required>
             </div>
             <div class="input-container">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" placeholder="e.g. Scale model 99% new" required></textarea>
+                <textarea id="description" name="description" rows="4" placeholder="e.g. Scale model 99% new" maxlength="500" required></textarea>
             </div>
             <div class="input-container">
                 <label for="category">Category</label>
@@ -46,7 +46,7 @@
             </div>
             <div class="input-container">
                 <label for="price">Price</label>
-                <input type="number" id="price" name="price" placeholder="€0.00" required>
+                <input type="number" id="price" name="price" placeholder="€0.00" min="0" step="0.01" max="9999999" required>
             </div>
             <button type="upload">Upload</button>
         </form>
