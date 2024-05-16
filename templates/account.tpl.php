@@ -181,7 +181,7 @@
         <label for="registerCountry">Country</label>
         <input type="text" id="registerCountry" name="registerCountry" pattern="[A-Za-z][A-Za-z ]*" title="Country must start with a letter and can only contain letters and spaces." maxlength="30" required>
         
-        
+        <input type="hidden" name="csrf_token" value="<?php echo $session->getCsrfToken(); ?>">
         <input type="submit" value="Register">
         <div class="account-link">
             Already have an account? <a href="profile.php">Log in</a>
@@ -214,7 +214,7 @@
                         <div id="product-price-receipt">
                             <p>€ <?= $transaction->totalPrice ?></p>
                             <div id="actions">
-                            <button class="receipt" data-id="<?= $transaction->orderId ?>">
+                                <button class="receipt" data-id="<?= $transaction->orderId ?>">
                                     <a href="receipt.php?order_id=<?= $transaction->orderId ?>">
                                         Receipt <i class="fa-solid fa-file-invoice"></i>
                                     </a>    
