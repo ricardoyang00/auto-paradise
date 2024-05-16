@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1); ?>
 
-<?php function drawSellForm($categories, $brands, $scales) {?>
+<?php function drawSellForm($session, $categories, $brands, $scales) {?>
     <section id="sell">
         <h2>Sell an item</h2>
         <form action="../actions/upload.php" method="post" enctype="multipart/form-data">
@@ -48,6 +48,7 @@
                 <label for="price">Price</label>
                 <input type="number" id="price" name="price" placeholder="€0.00" min="0" step="0.01" max="9999999" required>
             </div>
+            <input type="hidden" name="csrf_token" value="<?php echo $session->getCsrfToken(); ?>">
             <button type="upload">Upload</button>
         </form>
     </section>

@@ -3,6 +3,7 @@
 
     require_once(__DIR__ . '/../utils/session.php');
     $session = new Session();
+    $session->generateCsrfToken();
 
     if (!$session->isLoggedIn()) {
         header('Location: /pages/login.php');
@@ -41,7 +42,7 @@
         header('Location: /pages/index.php');
         exit();
     } else {
-        drawCheckoutPage($db, $user, $address, $product);
+        drawCheckoutPage($session, $db, $user, $address, $product);
     }
 
     drawFooter();

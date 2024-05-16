@@ -3,6 +3,7 @@
 
     require_once(__DIR__ . '/../utils/session.php');
     $session = new Session();
+    $session->generateCsrfToken();
 
     if (!$session->isLoggedIn()) {
         header('Location: /pages/login.php');
@@ -24,6 +25,6 @@
     
     $scripts = [];
     drawHeader(true, $scripts, false);
-    drawSellForm($categories, $brands, $scales);
+    drawSellForm($session, $categories, $brands, $scales);
     drawFooter();
 ?>

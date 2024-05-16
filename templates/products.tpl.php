@@ -123,7 +123,7 @@
     </div>
 <?php } ?>
 
-<?php function drawEditProductForm($db, $categories, $brands, $scales, $product, $productId, $productCategory, $productBrand, $productScale) { ?>
+<?php function drawEditProductForm($session, $db, $categories, $brands, $scales, $product, $productId, $productCategory, $productBrand, $productScale) { ?>
     <section id="edit-product">
         <h2>Edit product</h2>
         <form action="../../actions/action_update_product.php" method="post">
@@ -173,6 +173,7 @@
                 <label for="price">Price</label>
                 <input type="number" id="price" name="price" value="<?= $product->price ?>" min="0" step="0.01" max="9999999" required>
             </div>
+            <input type="hidden" name="csrf_token" value="<?php echo $session->getCsrfToken(); ?>">
             <button type="submit">Save</button>
         </form>
     </section>

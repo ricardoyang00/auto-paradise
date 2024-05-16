@@ -3,6 +3,7 @@
 
     require_once(__DIR__ . '/../utils/session.php');
     $session = new Session();
+    $session->generateCsrfToken();
 
     if (!$session->isLoggedIn()) {
         header('Location: /pages/login.php');
@@ -35,6 +36,6 @@
     
     $scripts = [];
     drawHeader(false, $scripts, false);
-    drawEditProductForm($db, $categories, $brands, $scales, $product, $productId, $productCategory, $productBrand, $productScale);
+    drawEditProductForm($session, $db, $categories, $brands, $scales, $product, $productId, $productCategory, $productBrand, $productScale);
     drawFooter();
 ?>

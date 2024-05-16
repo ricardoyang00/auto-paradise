@@ -3,6 +3,7 @@
 
     require_once(__DIR__ . '/../utils/session.php');
     $session = new Session();
+    $session->generateCsrfToken();
     
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../templates/products.tpl.php');
@@ -20,6 +21,12 @@
         if (User::isAdmin($db, $session->getUsername())) {
             $isAdmin = true;
         }
+    }
+
+    if (Product::isBanned($db, (int)$id)) {
+        $session->addMessage('error', 'This product has been banned.');
+        header('Location: /pages/index.php');
+        exit();
     }
 
     $scripts = [];

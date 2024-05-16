@@ -3,6 +3,7 @@
 
     require_once(__DIR__ . '/../utils/session.php');
     $session = new Session();
+    $session->generateCsrfToken();
 
     if (!$session->isLoggedIn()) {
         header('Location: /pages/login.php');
@@ -13,6 +14,12 @@
     require_once(__DIR__ . '/../database/user.class.php');
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $session->getCsrfToken()) {
+            $session->addMessage('error', 'CSRF token mismatch.');
+            header('Location: ../pages/index.php');
+            exit();
+        }
+
         $db = getDatabaseConnection();
         $user = User::getUserByUsername($db, $session->getUsername());
 

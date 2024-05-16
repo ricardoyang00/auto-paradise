@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 require_once(__DIR__ . '/../database/connection.db.php');
-require_once(__DIR__ . '/../database/question.class.php');
-require_once(__DIR__ . '/../database/product.class.php');
 require_once(__DIR__ . '/../database/notification.class.php');
+require_once(__DIR__ . '/../database/product.class.php');
+require_once(__DIR__ . '/../database/question.class.php');
 
 $db = getDatabaseConnection();
 

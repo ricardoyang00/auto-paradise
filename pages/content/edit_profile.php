@@ -3,6 +3,7 @@
     
     require_once(__DIR__ . '/../../utils/session.php');
     $session = new Session();
+    $session->generateCsrfToken();
 
     if (!$session->isLoggedIn()) {
         header('Location: ../../pages/login.php');
@@ -18,5 +19,5 @@
     $user = User::getUserByUsername($db, $session->getUsername());
     $address = Address::getAddressById($db, $user->addressId);
 
-    drawProfileEdit($user, $address);
+    drawProfileEdit($session, $user, $address);
 ?>

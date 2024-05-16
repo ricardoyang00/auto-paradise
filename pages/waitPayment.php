@@ -3,7 +3,8 @@
 
     require_once(__DIR__ . '/../utils/session.php');
     $session = new Session();
-
+    $session->generateCsrfToken();
+    
     if (!$session->isLoggedIn()) {
         header('Location: /pages/login.php');
         exit();

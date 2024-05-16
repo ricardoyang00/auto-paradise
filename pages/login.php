@@ -3,6 +3,7 @@
 
     require_once(__DIR__ . '/../utils/session.php');
     $session = new Session();
+    $session->generateCsrfToken();
 
     if ($session->isLoggedIn()) {
         header('Location: /pages/account.php');
@@ -17,6 +18,6 @@
     $scripts = [];
     drawHeader(false, $scripts, false);
     drawMessages($session);
-    drawLoginForm();
+    drawLoginForm($session);
     drawFooter();
 ?>
