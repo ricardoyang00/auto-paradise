@@ -23,7 +23,7 @@
     $brands = Brand::getAllBrands($db);
     $scales = Scale::getAllScales($db);
     
-    $scripts = [];
+    $scripts = ['preview'];
     drawHeader(true, $scripts, false);
     drawSellForm($session, $categories, $brands, $scales);
     drawFooter();

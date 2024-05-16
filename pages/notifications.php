@@ -21,7 +21,7 @@
     $username = $session->getUsername();
     $notifications = Notification::getUserNotifications($db, $username);
 
-    $scripts = [];
+    $scripts = ['notification'];
     drawHeader(false, $scripts, false);
     drawNotifications($db, $notifications);
     drawFooter();

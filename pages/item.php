@@ -29,7 +29,7 @@
         exit();
     }
 
-    $scripts = [];
+    $scripts = ['imageItem', 'questions'];
     drawHeader(true, $scripts, false);
     drawProductItem($product, $isAdmin);
     drawFooter();
