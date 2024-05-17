@@ -22,5 +22,4 @@
     Product::unbanProduct($db, $productId);
     Notification::addNotification($db, $product->sellerId, "Unban", $productId);
     exit();
-
 ?>
