@@ -61,7 +61,7 @@
     </span>
 <?php } ?>
 
-<?php function drawHeader($withMenu, $scripts = [], $receiptPage) { ?>
+<?php function drawHeader($withMenu, $scripts, $receiptPage) { ?>
     <?=drawHTMLheader($receiptPage, $scripts)?>
     <body>
         <header>
