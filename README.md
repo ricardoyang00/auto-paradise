@@ -94,7 +94,7 @@ We also implemented the following additional requirements (you can add more):
 - [ ] **API Integration**
 - [ ] **Dynamic Promotions**
 - [ ] **User Preferences**
-- [x] **Shipping Costs**
+- [x] **Shipping Costs (Fixed Amount)**
 - [ ] **Real-Time Messaging System**
 - [x] **Dark Mode**
 - [x] **Admins can ban products**
