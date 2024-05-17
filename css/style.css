@@ -456,6 +456,7 @@ footer {
                     font-weight: 400;
                     margin-top: auto;
                     margin-bottom: 15px;
+                    color: var(--text);
                 }
                 
                 .remove-wishlist:hover {

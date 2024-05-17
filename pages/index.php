@@ -8,7 +8,7 @@
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../templates/index.tpl.php');
 
-    $scripts = ['search'];
+    $scripts = [];
     drawHeader(true, $scripts, false);
     drawMessages($session);
     drawAds();

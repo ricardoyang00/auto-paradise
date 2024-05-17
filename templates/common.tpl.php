@@ -24,6 +24,7 @@
             <script src="../javascript/theme.js" defer></script>
             <script src="../javascript/wishlist.js" defer></script>
             <script src="../javascript/admin.js" defer></script>
+            <script src="../javascript/search.js" defer></script>
             <?php foreach ($scripts as $script) { ?>
                 <script src="../javascript/<?=$script?>.js" defer></script>
             <?php } ?>

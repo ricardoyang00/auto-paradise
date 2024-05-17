@@ -16,7 +16,7 @@
     $categories = Category::getAllCategories($db);
     $brands = Brand::getAllBrands($db);
     
-    $scripts = ['imageSearch', 'filter', 'search'];
+    $scripts = ['imageSearch', 'filter'];
     drawHeader(true, $scripts, false);
     drawFilter($scales, $categories, $brands);
 ?>
