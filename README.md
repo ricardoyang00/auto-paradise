@@ -76,10 +76,10 @@ Access them via web browser at http://localhost:9000
 We have been careful with the following security aspects:
 
 - [x] **SQL injection**
-- [ ] **Cross-Site Scripting (XSS)**
-- [ ] **Cross-Site Request Forgery (CSRF)**
+- [x] **Cross-Site Scripting (XSS)**
+- [x] **Cross-Site Request Forgery (CSRF)**
 
-**Password Storage Mechanism**: md5 / sha1 / sha256 / hash_password&verify_password
+**Password Storage Mechanism**: hash_password&verify_password
 
 **Aditional Requirements**:
 
