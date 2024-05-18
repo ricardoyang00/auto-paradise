@@ -1,6 +1,8 @@
 # AutoParadise
 ## Group ltw06g09
 
+<p align="center"><img src="images/logo/auto-paradise-logo-text.png" width=50% ></p>
+
 AutoParadise is an marketplace dedicated to buying and selling preloved diecast model cars.
 
 - Bruno Huang (up202207517) - 50%
@@ -116,5 +118,13 @@ Feel free to use the following test account credentials to explore our platform
 | user10   | password10|
 | admin    | admin     |
 
+
+## Acknowledgements
+
+This project was developed for the "Laboratório de Tecnologia Web" (LTW) course at @FEUP
+
+Special thanks to Professor [André Restivo](https://sigarra.up.pt/feup/pt/func_geral.formview?p_codigo=353972) for guidance and support throughout the course.
+
 <br>
-This project was developed for LTW at @FEUP
+
+__© 2024 Auto Paradise, LTW__
