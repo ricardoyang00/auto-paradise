@@ -624,7 +624,7 @@ footer {
             margin-top: 5px;
         }
 
-        img {
+        a, img {
             width: 100%;
             border-radius: 5px;
             justify-self: center;
@@ -653,10 +653,10 @@ footer {
         .price {
             color: var(--orange_primary);
         }
+    }
 
-        a:hoover {
-            cursor: pointer;
-        }
+    article:hover {
+        box-shadow: 0 2px 8px var(--shadow);
     }
 
     #no-results {

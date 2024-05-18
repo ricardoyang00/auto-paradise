@@ -22,12 +22,12 @@
                 $product_thumb_url = "../database/images/" . $product->getProductThumbnail($db);
                 $second_product_thumb_url = isset($product_images[1]) ? "../database/images/" . $product_images[1] : null;
             ?>
-            <img src="<?= $product_thumb_url ?>" alt="<?= $product->title ?>"
-                onmouseover="changeImage(this, '<?= $second_product_thumb_url ?>')"
-                onmouseout="resetImage(this, '<?= $product_thumb_url ?>')">
             <a href="<?= $url ?>">
-                <h1><?= $product->title ?></h1>
+                <img src="<?= $product_thumb_url ?>" alt="<?= $product->title ?>"
+                    onmouseover="changeImage(this, '<?= $second_product_thumb_url ?>')"
+                    onmouseout="resetImage(this, '<?= $product_thumb_url ?>')">
             </a>
+            <h1><a href="<?= $url ?>"><?= $product->title ?></a></h1>
             <a class="price"><p>€<?= $product->price ?></p></a>
             <?php $product_id = $product->id; ?>
             <button class="add-wishlist" onclick="addToWishlist(<?= $product_id ?>)">Add to Wishlist</button>
