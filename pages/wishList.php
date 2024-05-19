@@ -20,7 +20,7 @@
     $wishList = Product::getUserWishList($db, $session->getUsername());
 
     $scripts = [];
-    drawHeader(true, $scripts, false);
+    drawHeader(false, $scripts, false);
     drawWishList($db, $wishList);
     drawFooter(); 
 ?>
