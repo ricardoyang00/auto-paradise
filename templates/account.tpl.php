@@ -84,7 +84,7 @@
 
                 <h3>Address</h3>
                 <div class="data-container">
-                    <input type="text" id="address" name="address" pattern="[A-Za-z][A-Za-z0-9. ]*" title="Address must start with a letter and can only contain letters, numbers, spaces, and points." maxlength="60" value="<?=htmlspecialchars($address->address, ENT_QUOTES, 'UTF-8')?>">
+                    <input type="text" id="address" name="address" pattern="[A-Za-z0-9][A-Za-z0-9. ]*" title="Address must start with a letter or a number and can only contain letters, numbers, spaces, and points." maxlength="60" value="<?=htmlspecialchars($address->address, ENT_QUOTES, 'UTF-8')?>">
                 </div>
 
                 <h3>Postal Code</h3>

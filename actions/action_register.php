@@ -41,8 +41,8 @@
         }
 
         $address = $_POST['registerAddress'];
-        if (!preg_match("/^(?=.*[A-Za-z])[A-Za-z0-9. ]+$/", $address)) {
-            $session->addMessage('error', 'Address must start with a letter and can only contain letters, numbers, spaces, and points.');
+        if (!preg_match("/^(?=.*[A-Za-z0-9])[A-Za-z0-9. ]+$/", $address)) {
+            $session->addMessage('error', 'Address must start with a letter or a number and can only contain letters, numbers, spaces, and points.');
             header('Location: ../pages/register.php');
             exit();
         }

@@ -205,17 +205,17 @@ INSERT INTO SCALE (scale_id, scale_name) VALUES
     (8, 'Other');
 
 INSERT INTO ADDRESS (address_id, postal_code, address, city, country) VALUES
-    (1, '12345', '123 Main St', 'City A', 'Country A'),
-    (2, '23456', '456 Elm St', 'City B', 'Country B'),
-    (3, '34567', '789 Oak St', 'City C', 'Country C'),
-    (4, '45678', '101 Pine St', 'City D', 'Country D'),
-    (5, '56789', '202 Maple St', 'City E', 'Country E'),
-    (6, '67890', '303 Cedar St', 'City F', 'Country F'),
-    (7, '78901', '404 Walnut St', 'City G', 'Country G'),
-    (8, '89012', '505 Birch St', 'City H', 'Country H'),
-    (9, '90123', '606 Spruce St', 'City I', 'Country I'),
-    (10, '01234', '707 Fir St', 'City J', 'Country J'),
-    (11, '00000', '0 Zero St', 'City K', 'Country K');
+    (1, '1234-567', '123 Main St', 'City A', 'Country A'),
+    (2, '2345-678', '456 Elm St', 'City B', 'Country B'),
+    (3, '3456-789', '789 Oak St', 'City C', 'Country C'),
+    (4, '4567-890', '101 Pine St', 'City D', 'Country D'),
+    (5, '5678-901', '202 Maple St', 'City E', 'Country E'),
+    (6, '6789-012', '303 Cedar St', 'City F', 'Country F'),
+    (7, '7890-123', '404 Walnut St', 'City G', 'Country G'),
+    (8, '8901-234', '505 Birch St', 'City H', 'Country H'),
+    (9, '9012-345', '606 Spruce St', 'City I', 'Country I'),
+    (10, '0123-456', '707 Fir St', 'City J', 'Country J'),
+    (11, '0000-000', '0 Zero St', 'City K', 'Country K');
 
 INSERT INTO USER (username, name, password, phone_number, address_id) VALUES
     ('user1', 'John Doe', '$2y$12$OAxx8x8115OTpUvqDPSzNeb7PK1uEYRGY3O6Qjos2NbDlFlAkfZFm', '123456789', 1),

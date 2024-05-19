@@ -17,7 +17,7 @@ git clone git@github.com:FEUP-LTW-2024/ltw-project-2024-ltw06g09.git
 cd ltw-project-2024-ltw06g09
 
 # switch to the correct branch
-git checkout final-delivery-v2
+git checkout final-delivery-v3
 ```
 
 ### Build and run

@@ -52,8 +52,8 @@
         }
         if (isset($_POST['address'])) {
             $address->address = $_POST['address'];
-            if (!preg_match("/^(?=.*[A-Za-z])[A-Za-z0-9. ]+$/", $address->address)) {
-                $session->addMessage('error', 'Address must start with a letter and can only contain letters, numbers, spaces, and points.');
+            if (!preg_match("/^(?=.*[A-Za-z0-9])[A-Za-z0-9. ]+$/", $address->address)) {
+                $session->addMessage('error', 'Address must start with a letter or a number and can only contain letters, numbers, spaces, and points.');
                 header('Location: ../pages/account.php');
                 exit();
             }
