@@ -72,7 +72,7 @@ function renameCategory() {
     };
     xhr.open("POST", "../actions/action_admin.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("action=categoryId=" + encodeURIComponent(categoryId) + "&categoryName=" + encodeURIComponent(categoryName));
+    xhr.send("action=renameCategory&categoryId=" + encodeURIComponent(categoryId) + "&categoryName=" + encodeURIComponent(categoryName));
 }
 
 function deleteBrand() {
