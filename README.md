@@ -15,9 +15,6 @@ Auto Paradise is an marketplace dedicated to buying and selling preloved diecast
 git clone git@github.com:FEUP-LTW-2024/ltw-project-2024-ltw06g09.git
 
 cd ltw-project-2024-ltw06g09
-
-# switch to the correct branch
-git checkout final-delivery-v4
 ```
 
 ### Build and run
