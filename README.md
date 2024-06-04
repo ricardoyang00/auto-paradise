@@ -1,5 +1,4 @@
 # Auto Paradise
-## Group ltw06g09
 
 <p align="center"><img src="images/logo/auto-paradise-logo-text.png" width=50% ></p>
 
@@ -128,7 +127,7 @@ Feel free to use the following test account credentials to explore our platform
 
 ## Acknowledgements
 
-This project was developed for the "Linguagens e Tecnologias Web" (LTW) course at @FEUP by team l11gr05 on May 2024:
+This project was developed for the "Linguagens e Tecnologias Web" (LTW) course at @FEUP by team ltw06g09 on May 2024:
 
 - Bruno Huang (up202207517)
 - Ricardo Yang (up202208465)
