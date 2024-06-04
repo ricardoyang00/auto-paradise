@@ -65,6 +65,8 @@ We have used the following external libraries:
 - [x] Ban users or products in practical cases of acts against regulations
 - [x] Oversee and ensure the smooth operation of the entire system.
 
+💡 **Some account credencials [click here](#account-credentials).**
+
 **Security** :
 We have been careful with the following security aspects:
 
@@ -99,6 +101,12 @@ We also implemented the following additional requirements:
 <p align="center" justify="center">
 <b><i>Fig 3. Product details page</i></b>
 <br></br>
+
+![](images/report/dark_mode.png)
+<p align="center" justify="center">
+<b><i>Fig 4. Dark mode</i></b>
+<br></br>
+
 
 ## Account Credentials
 Feel free to use the following test account credentials to explore our platform
