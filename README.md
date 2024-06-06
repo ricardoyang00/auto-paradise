@@ -10,9 +10,9 @@ The entire project was developed using vanilla CSS, PHP, and JavaScript.
 
 ### Download
 ```bash
-git clone git@github.com:FEUP-LTW-2024/ltw-project-2024-ltw06g09.git
+git clone git@github.com:ricardoyang00/auto-paradise.git
 
-cd ltw-project-2024-ltw06g09
+cd auto-paradise
 ```
 
 ### Build and run
