@@ -107,6 +107,11 @@ We also implemented the following additional requirements:
 <b><i>Fig 4. Dark mode</i></b>
 <br></br>
 
+<p align="center"><img src="images/report/receipt.png" width=300></p>
+<p align="center" justify="center">
+<b><i>Fig 5. Receipt example</i></b>
+<br></br>
+
 
 ## Account Credentials
 Feel free to use the following test account credentials to explore our platform
