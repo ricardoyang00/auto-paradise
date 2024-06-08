@@ -1,5 +1,4 @@
 # Auto Paradise
-## Group ltw06g09
 
 <p align="center"><img src="images/logo/auto-paradise-logo-text.png" width=50% ></p>
 
@@ -11,9 +10,9 @@ The entire project was developed using vanilla CSS, PHP, and JavaScript.
 
 ### Download
 ```bash
-git clone git@github.com:FEUP-LTW-2024/ltw-project-2024-ltw06g09.git
+git clone git@github.com:ricardoyang00/auto-paradise.git
 
-cd ltw-project-2024-ltw06g09
+cd auto-paradise
 ```
 
 ### Build and run
@@ -133,7 +132,7 @@ Feel free to use the following test account credentials to explore our platform
 
 ## Acknowledgements
 
-This project was developed for the "Linguagens e Tecnologias Web" (LTW) course at @FEUP by team l11gr05 on May 2024:
+This project was developed for the "Linguagens e Tecnologias Web" (LTW) course at @FEUP by team ltw06g09 on May 2024:
 
 - Bruno Huang (up202207517)
 - Ricardo Yang (up202208465)
